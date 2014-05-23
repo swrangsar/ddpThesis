@@ -139,10 +139,4 @@ The management plane takes care of the coordination between different planes.
 It also manages functions related to the control and/or user planes.
 The management plane handles things like network configuration, network fault, etc.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{logicalChannelsUserControl}
-\caption[Logical channels for user plane data and control plane signalling]{Logical channels for user plane data and control plane signalling.
-\emph{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
-\end{figure}
 

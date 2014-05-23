@@ -111,38 +111,12 @@ The area covered by a GSM operator is called a PLMN Service Area. A PLMN service
 
 
 \section{Protocol Architecture}
-A GSM network is a bearer data communication protocol families. 
-The GSM protocol architecture is structured into three independent planes:
+A GSM network is a bearer data communication protocol families. The GSM protocol architecture is structured into three independent planes:
 \begin{itemize}
  \item user plane
  \item control plane
  \item management plane
 \end{itemize}
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{gsmPlanes}
-\caption[GSM protocol architecture planes]{GSM protocol architecture planes.
-\emph{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
-\end{figure}
 
-The user plane defines protocols for handling the voice and user data. 
-At the Um interface, the traffic control channel (TCH) is used to carry the user data.
-
-
-The control plane defines protocols for controlling connections by using signalling data.
-The signalling data are carried over logical channels called Dm-channels (wireless analog of the D-channels for wired interface).
-The spare capacities of the Dm-channels are used for carrying user data.
-Eventually all logical channels have to multiplexed onto the physical channel.
-
-
-The management plane takes care of the coordination between different planes.
-It also manages functions related to the control and/or user planes.
-The management plane handles things like network configuration, network fault, etc.
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{logicalChannelsUserControl}
-\caption[Logical channels for user plane data and control plane signalling]{Logical channels for user plane data and control plane signalling.
-\emph{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
-\end{figure}
-
+The user plane defines protocols for handling the voice and user data. At the Um interface, the traffic control channel (TCH) is used to carry the user data. The control plane defines protocols for handling
+signalling.  
