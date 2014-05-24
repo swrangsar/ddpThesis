@@ -111,12 +111,67 @@ The area covered by a GSM operator is called a PLMN Service Area. A PLMN service
 
 
 \section{Protocol Architecture}
-A GSM network is a bearer data communication protocol families. The GSM protocol architecture is structured into three independent planes:
+The data communication protocols in a GSM network are implemented to work over the bearer\footnote{A bearer data channel is a channel that carries call content i.e.
+one that does not carry signaling.} data channel. 
+The GSM protocol architecture is structured into three independent planes:
 \begin{itemize}
  \item user plane
  \item control plane
  \item management plane
 \end{itemize}
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{gsmPlanes}
+\caption[GSM protocol architecture planes]{GSM protocol architecture planes.
+\emph{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
+\end{figure}
 
-The user plane defines protocols for handling the voice and user data. At the Um interface, the traffic control channel (TCH) is used to carry the user data. The control plane defines protocols for handling
-signalling.  
+The user plane defines protocols for handling the voice and user data. 
+At the Um interface, the traffic control channel (TCH) is used to carry the user data.
+
+
+The control plane defines protocols for controlling connections by using signalling data.
+The signalling data are carried over logical channels called Dm-channels (wireless analog of the D-channels for wired interface).
+The spare capacities of the Dm-channels are used for carrying user data.
+Eventually all logical channels have to multiplexed onto the physical channel.
+
+
+The management plane takes care of the coordination between different planes.
+It also manages functions related to the control and/or user planes.
+The management plane handles things like network configuration, network fault, etc.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{logicalChannelsUserControl}
+\caption[Logical channels for user plane data and control plane signalling]{Logical channels for user plane data and control plane signalling.
+\emph{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
+\end{figure}
+
+\subsection{Signalling Transmission}
+In GSM the network nodes exchange signaling information with each other to establish, control and terminate connections.
+The various interfaces in a GSM network are:
+\begin{itemize}
+ \item MS-BTS: Um
+ \item BTS-BSC: Abis
+ \item BSC-MSC: A
+ \item MSC-VLR: B
+ \item MSC-HLR: C
+ \item VLR-HLR: D
+ \item MSC-MSC: E
+ \item MSC-EIR: F
+ \item VLR-VLR: G
+\end{itemize}
+
+The Um interface is the only interface that uses the wireless physical medium for carrying signals. The rest of the interfaces all use wired and digital mediums.
+
+\subsubsection{Data Link Layer (Layer 2) protocols}
+
+\begin{description}
+ \item [Link Access Protocol, Dm-channel (LAPDm)] is a layer 2 protocol that provides safe, reliable connections to layer 3 protocols. It is a wireless-adapted version of 
+ the standard Link Access Protocol, D-channel (LAPD) of ISDN. It works in two modes: Unacknowledged and Acknowledged. In Unacknowledged mode it operates without acknowledgement,
+ without error correction and without flow control. While in acknowledged mode, it asserts acknowledgement, error correction is done by resending and flow is controlled.
+ \item [Message Transfer Part (MTP)] is the standard ISDN message transport part of Signaling System 7 (SS7). The networking layers covered by MTP cannot be mapped
+ one-on-one to the OSI\footnote{Operation Systems Interconnection} model
+\end{description}
+
+

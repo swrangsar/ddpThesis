@@ -111,7 +111,8 @@ The area covered by a GSM operator is called a PLMN Service Area. A PLMN service
 
 
 \section{Protocol Architecture}
-A GSM network is a bearer data communication protocol families. 
+The data communication protocols in a GSM network are implemented to work over the bearer\footnote{A bearer data channel is a channel that carries call content i.e.
+one that does not carry signaling.} data channel. 
 The GSM protocol architecture is structured into three independent planes:
 \begin{itemize}
  \item user plane
@@ -145,4 +146,33 @@ The management plane handles things like network configuration, network fault, e
 \caption[Logical channels for user plane data and control plane signalling]{Logical channels for user plane data and control plane signalling.
 \emph{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
 \end{figure}
+
+\subsection{Signalling Transmission}
+In GSM, the network nodes exchange signaling information with each other to establish, control and terminate connections.
+The various interfaces in a GSM network are:
+\begin{itemize}
+ \item MS-BTS: Um
+ \item BTS-BSC: Abis
+ \item BSC-MSC: A
+ \item MSC-VLR: B
+ \item MSC-HLR: C
+ \item VLR-HLR: D
+ \item MSC-MSC: E
+ \item MSC-EIR: F
+ \item VLR-VLR: G
+\end{itemize}
+
+The Um interface is the only interface that uses the wireless physical medium for carrying signals. The rest of the interfaces all use wired and digital mediums.
+
+\subsubsection{\uppercase{Data Link Layer (Layer 2) protocols}}
+
+\begin{description}
+ \item [Link Access Protocol, Dm-channel (LAPDm)] is a layer 2 protocol that provides safe, reliable connections to layer 3 protocols. It is a wireless-adapted version of 
+ the standard Link Access Protocol, D-channel (LAPD) of ISDN. It works in two modes: Unacknowledged and Acknowledged. In Unacknowledged mode it operates without acknowledgement,
+ without error correction and without flow control. While in acknowledged mode, it asserts acknowledgement, error correction is done by resending and flow is controlled.
+ \item [Message Transfer Part (MTP)] is the standard ISDN message transport part of Signaling System 7 (SS7). The networking layers covered by MTP cannot be mapped
+ one-to-one to the OSI\footnote{Operation Systems Interconnection} model. But it covers layer 1, layer 2 and parts of layer 3 from the OSI model. The parts of layer 3
+ not covered by MTP are covered by Signalling Connection Control Part (SCCP).
+\end{description}
+
 
