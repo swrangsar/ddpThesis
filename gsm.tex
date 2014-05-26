@@ -175,4 +175,47 @@ The Um interface is the only interface that uses the wireless physical medium fo
  not covered by MTP are covered by Signalling Connection Control Part (SCCP).
 \end{description}
 
+\subsubsection{\uppercase{Network Layer (Layer 3) protocols}}
+
+\begin{description}
+ \item [Radio Resource Management (RR)] is a protocol that sets up, manages and terminates
+ radio link channels. It is involved in measuring radio field strength, signal quality etc.
+ It manages handover, modulation scheme, co-channel interference, etc. The goal is to 
+ utilize the limited spectral resources efficiently.
+ 
+ \item [Mobility Management (MM)] manages mobility of the mobile stations (MS). This
+ protocol is used by the MS to communicate directly with the MSC bypassing the BSS. It works over an already established
+ RR connection. It handles stuff like TMSI reallocation, authentication, IMSI attach/detach, roaming, location update procedure, etc.
+ 
+ \item [Call Management (CM)] protocol consists of the following parts:
+ \begin{description}
+  \item [Call Control (CC)] sets up, manages and ends calls. For each call a CC instance is created in the MS and another one in the MSC. CC instances 
+  communicate over already established MM and RR connections.
+  \item [Short Message Service (SMS)] works over already established MM, RR and LAPDm connections.
+  \item [Supplementary Services (SS)] provide upper layers the access to GSM supplementary services like call forwarding, call barring, etc. 
+ \end{description}
+
+ \item [Signal Connection Control Part (SCCP)] is a SS7 protocol that provides routing, flow control, connection-orientation, error correction facilities etc. It
+ works at the A-interface.
+ \item [Base Station System Application Part (BSSAP)] is a signaling protocol at the A interface supported by MTP and SCCP.
+ \begin{description}
+  \item [Direct Transfer Application Part (DTAP)] handles signaling between the MS and the MSC.
+  \item [Base Station System Management Application Part (BSSMAP)] transfers management information from the BSC to the MSC.
+  \item [Base Station System Operation and Management Application Part (BSSOMAP)] transports network management information from
+  OMC to BSC.
+ \end{description}
+
+ \item [Mobile Application Part (MAP)] is an SS7 application-layer protocol for the various nodes in a GSM network.
+ It provides facilities such as:
+  \begin{itemize}
+   \item roaming support via location update, IMSI attach/detach, authentication
+   \item call handling
+   \item subscriber tracing
+   \item SMS
+   \item supplementary services
+  \end{itemize}
+
+\end{description}
+
+
 
