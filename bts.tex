@@ -35,14 +35,14 @@ The OpenBTS application contains:
 \item L4 GSM-SIP gateway for text messaging
 \end{itemize}
 
-The general design approach of OpenBTS is avoid implementing any function above L3 or L4,
-so at L3 or L4 every subprotocol of GSM is either terminated locally or translated 
-through a gateway to some other protocol for handling by an external application. 
-Similarly, OpenBTS itself does not contain any speech transcoding functions above the
-L1 FEC parts.
+The general design approach of OpenBTS is not to implement any function above L3 or L4, so at L3 or L4
+every subprotocol of GSM is either terminated locally or translated through a gateway to some other protocol
+for handling by an external application. Similarly, OpenBTS itself does not contain any speech transcoding
+functions above the L1 FEC parts.
+
 
 \subsection{Transceiver}
-The transceiver application performs the radio modem functions of GSM 05.05 and manages 
+The transceiver application performs the radiomodem functions of GSM 05.05 and manages 
 the Gigabit Ethernet interface
 (USB2 interface, in case
 of USRP1 or older models) to the radio hardware.
