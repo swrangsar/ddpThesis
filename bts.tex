@@ -52,13 +52,17 @@ text messaging in the OpenBTS system. SMQueue is required to send
 a text message from one MS to another, or to provide reliable 
 delivery of text messages to an MS from any source.
 
-\subsection{Asterisk}
+\subsection{SIP router/PBX}
+
 OpenBTS uses a SIP router or PBX to perform the 
 call control functions that are normally performed by the MSC
 in a conventional GSM network, although in 
 most network configurations this switching
 function is distributed over multiple switches. 
 These switches also provide transcoding services.
+
+The SIP router used in OpenBTS is Asterisk by default. Though there are other
+PBXs available in the market like Yate, FreeSwitch, etc.
 
 \subsection{SIPAuthServe}
 An application that implements Subscriber Registry, the database of subscriber 
