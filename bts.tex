@@ -68,15 +68,29 @@ found in a conventional GSM net-
 work.
 
 \section{Network organization}
-In the simplest network, with just a single access point, all the applications run in a single embedded computer.
+In the simplest network, with just a single access point, all the applications run
+on the same embedded computer as shown in figure~\ref{fig:btsSimple}.
 
-In larger network, with more than one access points, one of the access points can behave as a master and provide servers to the rest of them.
+In larger network, with more than one access points, one of them can behave as a master and provide servers to the rest of them.
+Figure~\ref{fig:btsLarge} shows a network with two access points where
+a master access points is providing servers to the other one.
 
-The transceiver and the OpenBTS need to run in each GSM/SIP access point. 
+The Transceiver applications and the OpenBTS must run in each GSM/SIP access point. 
 The Asterisk and the Subscriber Registry applications (SIPAuthServe) 
-communicate via the filesystem, so they need to run in the same computer,
+communicate via the filesystem, so they must run in the same computer,
 but that computer can be remote to the access point. 
-SMQueue and other servers can have 
-multiple instances and they can be connected to any access point.
+SMQueue and other servers can run in any access point and can have 
+multiple instances.
+\begin{figure}
+  \centering
+    \includegraphics[width=\textwidth]{btsSimple}
+  \caption{Close-up of a gull}
+  \label{fig:btsSimple}
+\end{figure}
 
-
+\begin{figure}
+  \centering
+    \includegraphics[width=\textwidth]{btsLarge}
+  \caption{Close-up of a gull}
+  \label{fig:btsLarge}
+\end{figure}
