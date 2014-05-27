@@ -8,20 +8,21 @@ cost than existing technologies in many applications,
 especially rural cellular deployments and private cellular networks in remote areas.
 
 \section{The OpenBTS Application Suite}
-A complete OpenBTS P2.8 installation comprises several distinct applications:
+A complete OpenBTS installation consists of many distinct applications:
 
 \begin{description}
 \item[OpenBTS] The actual OpenBTS application, containing most of the GSM stack above the radio modem.
 \item[Transceiver] The software radio modem and hardware control interface.
-\item[Asterisk] A VoIP PBX or ``softswitch''.
 \item[Smqueue] A store-and-forward server for text messaging.
+\item[Asterisk] A VoIP PBX or ``softswitch''.
 \item[SIPAuthServe] A database of subscriber information that replaces both the Asterisk SIP registry and the GSM Home Location Register (HLR).
-\item[Other Servers] Other optional GSM services, beyond speech and text messaging, are supported through external servers.
+\item[Other Services] Optional services supported through external servers, interfaced to OpenBTS through
+various protocol.
+
 \end{description}
 
-The OpenBTS and Transceiver applications must run inside each GSM/SIP access point. The Asterisk and the subscriber registry applications communicated through the filesystem and therefore must run on the same computer, but that computer can be remote from the access point. smqueue and the other servers can run anywhere and may have multiple instances.
 
- \subsection{OpenBTS}
+\subsection{OpenBTS}
 The OpenBTS application contains:
 \begin{itemize}
 \item L1 TDM functions (GSM 05.02)
@@ -46,14 +47,26 @@ the Gigabit Ethernet interface
 (USB2 interface, in case
 of USRP1 or older models) to the radio hardware.
 
-\subsection{Asterisk}
-OpenBTS uses a SIP router or PBX to perform the call control functions that are normally performed by the MSC
-in a conventional GSM network, although in most network configurations this switching
-function is distributed over multiple switches. These switches also provide transcoding services.
-
-\subsection{Subscriber Registry}
-OpenBTS uses a modified SIP registry as a substitute for the home location register found in a conventional GSM network. OpenBTS also relies on Asterisk for any transcoding functions.
-
 \subsection{Smqueue}
-Smqueue is a store-and-forward server that is used for text messaging in the OpenBTS system. Smqueue is required to send a text message from one MS to another, or to provide reliable delivery of text messages to an MS from any source.
+Smqueue is an RFC-3428 store-and-forward server that is used for 
+text messaging in the OpenBTS system. Smqueue is required to send 
+a text message from one MS to another, or to provide reliable 
+delivery of text messages to an MS from any source.
+
+\subsection{Asterisk}
+OpenBTS uses a SIP router or PBX to perform the 
+call control functions that are normally performed by the MSC
+in a conventional GSM network, although in 
+most network configurations this switching
+function is distributed over multiple switches. 
+These switches also provide transcoding services.
+
+\subsection{SIPAuthServe}
+An application that implements Subscriber Registry, the database of subscriber 
+information that replaces both
+the Asterisk SIP registry and the GSM Home Location Register (HLR) 
+found in a conventional GSM net-
+work.
+
+
 
