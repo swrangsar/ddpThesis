@@ -11,13 +11,14 @@ especially rural cellular deployments and private cellular networks in remote ar
 A complete OpenBTS installation consists of many distinct applications:
 
 \begin{description}
-\item[OpenBTS] The actual OpenBTS application, containing most of the GSM stack above the radio modem.
+\item[OpenBTS] The actual OpenBTS application, containing most of
+the GSM stack above the radio modem.
 \item[Transceiver] The software radio modem and hardware control interface.
 \item[SMQueue] A store-and-forward server for text messaging.
 \item[Asterisk] A VoIP PBX or ``softswitch''.
 \item[SIPAuthServe] An application managing the database of subscriber information.
-\item[Other Services] Optional services supported through external servers, interfaced to OpenBTS through
-various protocols.
+\item[Other Services] Optional services supported through 
+external servers, interfaced to OpenBTS through various protocols.
 \end{description}
 
 \section{Key applications}
@@ -91,8 +92,8 @@ multiple instances.
   \caption[Simplest OpenBTS network]{Components of the OpenBTS application suite 
   and their communication channels as installed in each
 access point. Sharp-cornered boxes are hardware components.
-Round-cornered boxes are software components.
-\emph{Source: \url{https://wush.net/trac/rangepublic/attachment/wiki/WikiStart/OpenBTS-4.0-Manual.pdf} [Accessed on May 27, 2014]}}
+Round-cornered boxes are software components.\\
+\footnotesize{Source: \url{https://wush.net/trac/rangepublic/attachment/wiki/WikiStart/OpenBTS-4.0-Manual.pdf} [Accessed on May 27, 2014]}}
   \label{fig:btsSimple}
 \end{figure}
 
@@ -100,8 +101,7 @@ Round-cornered boxes are software components.
   \centering
     \includegraphics[width=\textwidth]{btsLarge}
   \caption[OpenBTS network with two access points]{Two access points with unit 
-  \#1 providing servers for both.
-  \emph{Source: \url{https://wush.net/trac/rangepublic/attachment/wiki/WikiStart/OpenBTS-4.0-Manual.pdf} [Accessed on May 27, 2014]}
-}
+  \#1 providing servers for both. \\
+  \footnotesize{Source: \url{https://wush.net/trac/rangepublic/attachment/wiki/WikiStart/OpenBTS-4.0-Manual.pdf} [Accessed on May 27, 2014]}}
   \label{fig:btsLarge}
 \end{figure}
