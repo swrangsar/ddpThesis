@@ -166,46 +166,51 @@ The Um interface is the only interface that uses the wireless physical medium fo
 
 \subsubsection{\uppercase{Data Link Layer (Layer 2) protocols}}
 
-\begin{description}
- \item [Link Access Protocol on Dm-channel (LAPDm)] is a layer 2 protocol that provides safe, reliable connections to layer 3 protocols. It is a wireless-adapted version of 
+\textbf{Link Access Protocol on Dm-channel (LAPDm)} is a layer 2 protocol that provides safe, reliable connections to layer 3 protocols. It is a wireless-adapted version of 
  the standard Link Access Protocol on D-channel (LAPD) of ISDN. It works in two modes: Unacknowledged and Acknowledged. In Unacknowledged mode it operates without acknowledgement,
  without error correction and without flow control. While in acknowledged mode, it asserts acknowledgement, error correction is done by resending and flow is controlled.
- \item [Message Transfer Part (MTP)] is the standard ISDN message transport part of Signaling System 7 (SS7). The networking layers covered by MTP cannot be mapped
+ 
+ 
+ \textbf{Message Transfer Part (MTP)} is the standard ISDN message transport part of Signaling System 7 (SS7). The networking layers covered by MTP cannot be mapped
  one-to-one to the OSI model\footnote{Operation Systems Interconnection model}. But it covers layer 1, layer 2 and parts of layer 3 from the OSI model. The parts of layer 3
  not covered by MTP are covered by Signalling Connection Control Part (SCCP).
-\end{description}
 
 \subsubsection{\uppercase{Network Layer (Layer 3) protocols}}
 
-\begin{description}
- \item [Radio Resource Management (RR)] is a protocol that sets up, manages and terminates
+\textbf{Radio Resource Management (RR)} is a protocol that sets up, manages and terminates
  radio link channels. It is involved in measuring radio field strength, signal quality etc.
  It manages handover, modulation scheme, co-channel interference, etc. The goal is to 
  utilize the limited spectral resources efficiently.
  
- \item [Mobility Management (MM)] manages mobility of the mobile stations (MS). This
+
+\textbf{Mobility Management (MM)} manages mobility of the mobile stations (MS). This
  protocol is used by the MS to communicate directly with the MSC bypassing the BSS. It works over an already established
  RR connection. It handles stuff like TMSI reallocation, authentication, IMSI attach/detach, roaming, location update procedure, etc.
  
- \item [Call Management (CM)] protocol consists of the following parts:
- \begin{description}
-  \item [Call Control (CC)] sets up, manages and ends calls. For each call a CC instance is created in the MS and another one in the MSC. CC instances 
+ 
+ \textbf{Call Management (CM)} protocol consists of the following parts:
+ \begin{enumerate}
+  \item \textit{Call Control (CC)} sets up, manages and ends calls. For each call a CC instance is created in the MS and another one in the MSC. CC instances 
   communicate over already established MM and RR connections.
-  \item [Short Message Service (SMS)] works over already established MM, RR and LAPDm connections.
-  \item [Supplementary Services (SS)] provide upper layers the access to GSM supplementary services like call forwarding, call barring, etc. 
- \end{description}
+  \item \textit{Short Message Service (SMS)} works over already established MM, RR and LAPDm connections.
+  \item \textit{Supplementary Services (SS)} provide upper layers the access to GSM supplementary services like call forwarding, call barring, etc. 
+ \end{enumerate}
 
- \item [Signal Connection Control Part (SCCP)] is a SS7 protocol that provides routing, flow control, connection-orientation, error correction facilities etc. It
+
+\textbf{Signal Connection Control Part (SCCP)} is a SS7 protocol that provides routing, flow control, connection-orientation, error correction facilities etc. It
  works at the A-interface.
- \item [Base Station System Application Part (BSSAP)] is a signaling protocol at the A interface supported by MTP and SCCP.
- \begin{description}
-  \item [Direct Transfer Application Part (DTAP)] handles signaling between the MS and the MSC.
-  \item [Base Station System Management Application Part (BSSMAP)] transfers management information from the BSC to the MSC.
-  \item [Base Station System Operation and Management Application Part (BSSOMAP)] transports network management information from
+ 
+ 
+\textbf{Base Station System Application Part (BSSAP)} is a signaling protocol at the A interface supported by MTP and SCCP.
+ \begin{enumerate}
+  \item \textit{Direct Transfer Application Part (DTAP)} handles signaling between the MS and the MSC.
+  \item \textit{Base Station System Management Application Part (BSSMAP)} transfers management information from the BSC to the MSC.
+  \item \textit{Base Station System Operation and Management Application Part (BSSOMAP)} transports network management information from
   OMC to BSC.
- \end{description}
+ \end{enumerate}
 
- \item [Mobile Application Part (MAP)] is an SS7 application-layer protocol for the various nodes in a GSM network.
+
+\textbf{Mobile Application Part (MAP)} is an SS7 application-layer protocol for the various nodes in a GSM network.
  It provides facilities such as:
   \begin{itemize}
    \item roaming support via location update, IMSI attach/detach, authentication
@@ -214,8 +219,6 @@ The Um interface is the only interface that uses the wireless physical medium fo
    \item SMS
    \item supplementary services
   \end{itemize}
-
-\end{description}
 
 
 
