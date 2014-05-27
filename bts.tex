@@ -13,7 +13,7 @@ A complete OpenBTS installation consists of many distinct applications:
 \begin{description}
 \item[OpenBTS] The actual OpenBTS application, containing most of the GSM stack above the radio modem.
 \item[Transceiver] The software radio modem and hardware control interface.
-\item[Smqueue] A store-and-forward server for text messaging.
+\item[SMQueue] A store-and-forward server for text messaging.
 \item[Asterisk] A VoIP PBX or ``softswitch''.
 \item[SIPAuthServe] An application managing the database of subscriber information.
 \item[Other Services] Optional services supported through external servers, interfaced to OpenBTS through
@@ -46,9 +46,9 @@ the Gigabit Ethernet interface
 (USB2 interface, in case
 of USRP1 or older models) to the radio hardware.
 
-\subsection{Smqueue}
-Smqueue is an RFC-3428 store-and-forward server that is used for 
-text messaging in the OpenBTS system. Smqueue is required to send 
+\subsection{SMQueue}
+SMQueue is an RFC-3428 store-and-forward server that is used for 
+text messaging in the OpenBTS system. SMQueue is required to send 
 a text message from one MS to another, or to provide reliable 
 delivery of text messages to an MS from any source.
 
