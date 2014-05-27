@@ -1,0 +1,49 @@
+\documentclass[12pt, a4paper, openright]{book}
+
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}  % for citing URLs
+\usepackage{listings}
+\usepackage{float}
+\lstset{breaklines=true}
+\pagestyle{plain}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\topmargin       0in
+\oddsidemargin   0in
+\evensidemargin  0in
+\headheight      0in
+\headsep         0in
+\topskip         0in
+\textheight      9in
+\textwidth       6.5in
+
+\begin{document}
+
+\frontmatter
+\include{title2}
+\include{abstract2}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\listoffigures
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\setlength\arraycolsep{2pt}
+
+\mainmatter
+\include{intro2}
+\include{spectrumSensing}
+
+\appendix
+%\include{appendix1}
+
+
+
+\backmatter
+\bibliographystyle{plain}
+\bibliography{thesis2}
+
+\end{document}
