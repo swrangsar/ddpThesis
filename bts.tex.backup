@@ -67,16 +67,5 @@ the Asterisk SIP registry and the GSM Home Location Register (HLR)
 found in a conventional GSM net-
 work.
 
-\section{Network organization}
-In the simplest network, with just a single access point, all the applications run in a single embedded computer.
-
-In larger network, with more than one access points, one of the access points can behave as a master and provide servers to the rest of them.
-
-The transceiver and the OpenBTS need to run in each GSM/SIP access point. 
-The Asterisk and the Subscriber Registry applications (SIPAuthServe) 
-communicate via the filesystem, so they need to run in the same computer,
-but that computer can be remote to the access point. 
-SMQueue and other servers can have 
-multiple instances and they can be connected to any access point.
 
 
