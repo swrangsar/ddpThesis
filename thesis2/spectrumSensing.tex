@@ -37,22 +37,22 @@ Block diagram for energy detection technique from stage one report here:
 
 
 As described in the energy detection block diagram, it is basically a hypothesis
-testing problem with two possible hypothesis H0 and H1. Hypothesis H1 concludes 
-the presence of primary users in the band of interest and hypothesis H0 
+testing problem with two possible hypothesis $H0$ and $H1$. Hypothesis $H1$ concludes 
+the presence of primary users in the band of interest and hypothesis $H0$ 
 concludes their absence. And energy detection technique is basically about 
 distinguishing between these two hypothesizes.[3 from stage one report]
 
 \begin{align}
-x(t) & = n(t); \qquad H0 \nonumber \\
-x(t) & = hs(t)+n(t); \qquad H1 \nonumber
+x(t) & = n(t); & H0 \nonumber \\
+x(t) & = hs(t)+n(t); & H1 \nonumber
 \end{align}
 
-where x(t) is signal received by secondary user and s(t) is primary radio 
-signal, n(t) is additive white Gaussian noise (AWGN) and h is the amplitude gain
-of the channel.  s(t) and n(t) are assumed to be independent of each other. 
+where $x(t)$ is signal received by secondary user and $s(t)$ is primary radio 
+signal, $n(t)$ is additive white Gaussian noise (AWGN) and $h$ is the amplitude gain
+of the channel. $s(t)$ and $n(t)$ are assumed to be independent of each other. 
 Signal detection is performed using an energy detector and compute decision 
-statistics Y which corresponds to energy collected in observation time Y and 
-bandwidth W and comparing this statistics to a predetermined threshold. Energy 
+statistics $Y$ which corresponds to energy collected in observation time $Y$ and 
+bandwidth $W$ and comparing this statistics to a predetermined threshold. Energy 
 detection is implemented using average periodogram analysis which is covered in 
 later part of this report.
 
@@ -67,8 +67,7 @@ mirror and shifted version of reference signal. This output is then compared
 with the threshold for primary user detection. It is mathematically defined as:
 
 
-
-X is the unknown signal an H is the impulse response of matched filter which is 
+$X$ is the unknown signal an $H$ is the impulse response of matched filter which is 
 matched to reference signal for maximizing SNR. 
 
 Block diagram of matched filter is given in fig:
@@ -102,7 +101,8 @@ Cyclostationary feature detection is robust to noise and is a better performer
 than energy based detection in low SNR regions. This technique also requires a 
 priori knowledge of the primary signal. Also this technique is computationally 
 highly complex and the sensing time is also quiete long. Due the these reasons 
-it is less common than energy based detection
+it is less commonly used than energy based detection.
+
 Block diagram of cyclostationary detection is given in the figure:[14 from 
 kranti thesis]
 
@@ -119,7 +119,7 @@ spectral correlation function is defined as:
 
 Where the cyclic autocorrelation function is defined by:
 
-Here x(t) is the signal received an ? is the cyclic frequency. The spectral 
+Here $x(t)$ is the signal received an ? is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
 This is a two dimensional transform unlike power spectral density which is 1 
 dimensional. For successful detection under cyclo-stationary based spectrum 
@@ -167,19 +167,20 @@ segments and periodogram of each segment is calculated which are also referred
 to as modified periodograms. Then an average of all these modified periodogram 
 is calculated.[8 from krantis report]
 
-Let X[n]; n = 0,1.L-1 be the discrete time signal which is  divided into M 
-finite length segments of equal length, where N is the length of each segment  
-i.e. MN = L;Xr[n]; n = 0,1..N -1 is the rth segment and W[n]; n = 0,1.N -1 is 
-the window applied to each segment. The modified periodogram for the rth segment
+Let $X[n]; n = 0,1..L-1$ be the discrete time signal which is  divided into 
+$M$ 
+finite length segments of equal length, where $N$ is the length of each segment  
+i.e. $MN = L; Xr[n]; n = 0,1..N-1$ is the rth segment and $W[n]; n = 0,1..N-1$ is 
+the window applied to each segment. The modified periodogram for the $r$th segment
  is,
 
-Ir[k] =      k = 0,1.N-1
-where Vr[k] is a N point DFT and U is normalization factor i.e. , 
-Vr[k] = DFT{W[n]*X[n]}
-and U = (
-The PSD of X[n] sequence is then the time averaged periodogram estimate ,
+$Ir[k] =      k = 0,1..N-1$
+where $Vr[k]$ is a N point DFT and $U$ is normalization factor i.e. , 
+$Vr[k] = DFT{W[n]*X[n]}$
+and $U = ($
+The PSD of $X[n]$ sequence is then the time averaged periodogram estimate ,
 
-I[k] =
+$I[k] =$
 
 \section{Wide band spectrum analyzer}
 
@@ -189,16 +190,16 @@ usrp\_spectrum\_sense.py. The program is provided in the appendix.
 It is used as
 a basic code for wide band spectrum analyzer implementation. The output of this 
 code is the magnitude squared of the FFT. This means for each FFT bin he output 
-is Y [i] = re[X[i]] *re[X[i]] + im[X[i]]*im[X[i]]. We can calculate the power by
+is $Y[i] = re[X[i]] *re[X[i]] + im[X[i]]*im[X[i]]$. We can calculate the power by
 taking square root of the output. We need N time samples of x(t) sampled at a 
-sampling frequency of Fs to use N point complex FFT X($\omega$) analysis. An 
+sampling frequency of Fs to use N point complex FFT $X(\omega)$ analysis. An 
 appropriate window function is to be selected to reduce spectral leakage and 
 applied to these time samples. The output of the complex FFT will represent the 
 frequency spectrum content as follows: The first value of the FFT output 
-(bin0 == X[0]) is the passband centre frequency The first half of FFT spectrum 
-(X[1] to X[N=2 1]) contains the positive baseband frequencies, which corresponds
+$(bin0 == X[0])$ is the passband centre frequency The first half of FFT spectrum 
+($X[1]$ to $X[N=2 1]$) contains the positive baseband frequencies, which corresponds
 to the passband spectrum from centre frequency to +Fs/2. The second half of the 
-FFT (X[N/2] to X[N-1]) contains the negative baseband frequencies, i.e. from 
+FFT ($X[N/2]$ to $X[N-1]$) contains the negative baseband frequencies, i.e. from 
 Fs/2 to centre frequency.
 
 
