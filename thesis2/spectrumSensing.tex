@@ -66,7 +66,9 @@ which the incoming signal is convolved with a filter whose impulse response is
 mirror and shifted version of reference signal. This output is then compared 
 with the threshold for primary user detection. It is mathematically defined as:
 
-
+\begin{align}
+Y[n] &= \sum_{k=-\infinity}^{\infinity} x[k]h[n-k] \nonumber
+\end{align}
 $X$ is the unknown signal an $H$ is the impulse response of matched filter which is 
 matched to reference signal for maximizing SNR. 
 
@@ -114,12 +116,14 @@ correlation function of the received signal [4kranti]. The spectral correlation
 function is the Fourier transform of the cyclic autocorrelation function the 
 spectral correlation function is defined as:
 \begin{align}
-                                        S(f,\alpha)=
+    S(f,\alpha) &= \integral_{-\infinity}^{\infinity} R_{x}^{\alpha}(\tau)e^{-2\pi{}f\tau}d\tau \nonumber
 \end{align}
 
 Where the cyclic autocorrelation function is defined by:
-
-Here $x(t)$ is the signal received an ? is the cyclic frequency. The spectral 
+\begin{align}
+    R_{x}^{\alpha} &= E{x(t+\tau)x^{\*}(t-\tau)e^{-2 \pi \alpha t} \ nonumber
+\end{align}
+Here $x(t)$ is the signal received an $\alpha$ is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
 This is a two dimensional transform unlike power spectral density which is 1 
 dimensional. For successful detection under cyclo-stationary based spectrum 
@@ -167,20 +171,22 @@ segments and periodogram of each segment is calculated which are also referred
 to as modified periodograms. Then an average of all these modified periodogram 
 is calculated.[8 from krantis report]
 
-Let $X[n]; n = 0,1..L-1$ be the discrete time signal which is  divided into 
+Let $X[n]; n = 0,1...L-1$ be the discrete time signal which is  divided into 
 $M$ 
 finite length segments of equal length, where $N$ is the length of each segment  
-i.e. $MN = L; X_{r}[n]; n = 0,1..N-1$ is the $r$th segment and $W[n]; n = 0,1..N-1$ is 
+i.e. $MN = L; X_{r}[n]; n = 0,1...N-1$ is the $r$th segment and $W[n]; n = 0,1...N-1$ is 
 the window applied to each segment. The modified periodogram for the $r$th segment
  is,
-
-$I_{r}[k] =      k = 0,1..N-1$
+\begin{align}
+    I_{r}[k] &= \frac{1}{NU}\abs{V_{r}[k]}^2     & k = 0,1..N-1 \nonumber
+\end{align}
 where $V_{r}[k]$ is a N point DFT and $U$ is normalization factor i.e. , 
 $V_{r}[k] = DFT{W[n]*X[n]}$
-and $U = ($
+and $U = \frac{1}{N}(\sum_{n-0}^{N-1} (W[n])^2)$
 The PSD of $X[n]$ sequence is then the time averaged periodogram estimate ,
-
-$I[k] =$
+\begin{align}
+    I[k] &= \frac{1}{M}\abs{\sum_{r=0}^{M-1}X_{r}[k].}\nonumber
+\end{align}
 
 \section{Wide band spectrum analyzer}
 
@@ -191,13 +197,13 @@ It is used as
 a basic code for wide band spectrum analyzer implementation. The output of this 
 code is the magnitude squared of the FFT. This means for each FFT bin he output 
 is $Y[i] = re[X[i]] *re[X[i]] + im[X[i]]*im[X[i]]$. We can calculate the power by
-taking square root of the output. We need N time samples of x(t) sampled at a 
-sampling frequency of Fs to use N point complex FFT $X(\omega)$ analysis. An 
+taking square root of the output. We need N time samples of $x(t)$ sampled at a 
+sampling frequency of F_{s} to use N point complex FFT $X(\omega)$ analysis. An 
 appropriate window function is to be selected to reduce spectral leakage and 
 applied to these time samples. The output of the complex FFT will represent the 
 frequency spectrum content as follows: The first value of the FFT output 
 $(bin0 == X[0])$ is the passband centre frequency The first half of FFT spectrum 
-($X[1]$ to $X[N=2 1]$) contains the positive baseband frequencies, which corresponds
+($X[1]$ to $X[N/2-1]$) contains the positive baseband frequencies, which corresponds
 to the passband spectrum from centre frequency to +Fs/2. The second half of the 
 FFT ($X[N/2]$ to $X[N-1]$) contains the negative baseband frequencies, i.e. from 
 Fs/2 to centre frequency.
