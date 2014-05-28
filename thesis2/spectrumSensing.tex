@@ -67,7 +67,7 @@ mirror and shifted version of reference signal. This output is then compared
 with the threshold for primary user detection. It is mathematically defined as:
 
 \begin{align}
-Y[n] &= \sum_{k=-\infinity}^{\infinity} x[k]h[n-k] \nonumber
+Y[n] &= \sum_{k=-\infty}^{\infty} x[k]h[n-k] \nonumber
 \end{align}
 $X$ is the unknown signal an $H$ is the impulse response of matched filter which is 
 matched to reference signal for maximizing SNR. 
@@ -116,12 +116,12 @@ correlation function of the received signal [4kranti]. The spectral correlation
 function is the Fourier transform of the cyclic autocorrelation function the 
 spectral correlation function is defined as:
 \begin{align}
-    S(f,\alpha) &= \integral_{-\infinity}^{\infinity} R_{x}^{\alpha}(\tau)e^{-2\pi{}f\tau}d\tau \nonumber
+    S(f,\alpha) &= \int_{-\infty}^{\infty} R_{x}^{\alpha}(\tau)e^{-2 \pi f\tau}d\tau \nonumber
 \end{align}
 
 Where the cyclic autocorrelation function is defined by:
 \begin{align}
-    R_{x}^{\alpha} &= E{x(t+\tau)x^{\*}(t-\tau)e^{-2 \pi \alpha t} \ nonumber
+    R_{x}^{\alpha} &= E{x(t+\tau)x^{*}(t-\tau)e^{-2 \pi \alpha t} \ nonumber
 \end{align}
 Here $x(t)$ is the signal received an $\alpha$ is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
@@ -196,7 +196,7 @@ usrp\_spectrum\_sense.py. The program is provided in the appendix.
 It is used as
 a basic code for wide band spectrum analyzer implementation. The output of this 
 code is the magnitude squared of the FFT. This means for each FFT bin he output 
-is $Y[i] = re[X[i]] *re[X[i]] + im[X[i]]*im[X[i]]$. We can calculate the power by
+is $Y[i] = \re{X[i]} *\re{X[i]} + \im{X[i]}*\im{X[i]}$. We can calculate the power by
 taking square root of the output. We need N time samples of $x(t)$ sampled at a 
 sampling frequency of F_{s} to use N point complex FFT $X(\omega)$ analysis. An 
 appropriate window function is to be selected to reduce spectral leakage and 
