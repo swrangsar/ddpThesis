@@ -19,13 +19,13 @@ are referred to as spectrum holes. A spectrum hole is a band of frequencies
 assigned to a primary user, but, at a particular time and specific geographic 
 location, the band is not being utilized by that user\cite{kolodzy01}.
 
+
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{freqUsage}
-\caption{Frequency usage of Spectrum Band}
+\includegraphics[width=1\textwidth]{frequencyUsage}
+\caption{Frequency usage of Spectrum BAnd}
 \label{frequencyUsage}
 \end{figure}
-
 
 This problem of inefficient utilization of spectrum can be solved by allowing 
 secondary users which are non licensed, to access these spectrum holes.
