@@ -82,7 +82,13 @@ Y[n] = \sum_{k=-\infty}^{\infty}x[k]h[n-k]
 $x$ is the unknown signal and $h$ is the impulse response of matched filter which is 
 matched to reference signal for maximizing SNR. 
 
-Block diagram of matched filter is given in fig:
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{matchedFilter}
+\caption[Matched Filter implementation]{Block diagram 
+of Matched Filter implementation.}
+\label{matchedFilter}
+\end{figure}
 
 There is a constraint on this technique. We need to have a prior information 
 about the primary radio to perform matched filtering. However matched filter 
@@ -97,7 +103,7 @@ user signal is known, it is optimal detection in stationary Gaussian noise. But
 the performance of matched filter detection depends on the accuracy of the 
 information of primary radio. This technique also requires cognitive radio to 
 have dedicated receiver for every type of primary user which in turn results in 
-complex hardware and large power consumption. [4] kranti thesis
+complex hardware and large power consumption\cite{mansi11}.
 
 \section{Cyclostationarity detection}
 
@@ -105,7 +111,7 @@ This technique utilizes periodicity property of the received signal to detect
 presence of primary users. Periodicity property is generally exhibited by the 
 communication signals due to sinusoidal carriers, pulse train, hopping sequences
 etc. Due to this underlying periodicity most of the communication signals can be
-modeled as cyclostationary processes[1from folder project on desktop]. This 
+modeled as cyclostationary processes. This 
 technique detects a random primary signal with a particular modulation type in a
 background of noise and other modulated signals.
 
@@ -115,14 +121,21 @@ priori knowledge of the primary signal. Also this technique is computationally
 highly complex and the sensing time is also quiete long. Due the these reasons 
 it is less commonly used than energy based detection.
 
-Block diagram of cyclostationary detection is given in the figure:[14 from 
-kranti thesis]
+Block diagram of cyclostationary detection is given in figure \ref{csd}
+\cite{mansi11}.
 
 
-Diagram 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{csd}
+\caption[Cyclostationary Detection implementation]{Block diagram 
+of Cyclostationary Detection implementation.}
+\label{csd}
+\end{figure}
+ 
 
 The detection is done by finding a unique cyclic frequency of the spectral 
-correlation function of the received signal [4kranti]. The spectral correlation 
+correlation function of the received signal\cite{cabric04}. The spectral correlation 
 function is the Fourier transform of the cyclic autocorrelation function the 
 spectral correlation function is defined as:
 \begin{equation*}
@@ -146,26 +159,30 @@ over channel fading destroys the property of cyclo stationarty of the received
 signal and is also susceptible to sampling clock offset. 
 
 
-Comparision of various spectrum detection techniques
-
-Diagram from kranti's thesis 
+\section{Comparision of various spectrum detection techniques}
 
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{compSensingTch}
+\caption[Comparison of sensing methods]{Comparison of sensing methods}
+\label{compSensingTch}
+\end{figure}
+ 
 
 
 
 
 
 
-
-The figure compares various spectrum sensing techniques on the basis of their 
+Figure \ref{compSensingTch} compares various spectrum sensing techniques on the basis of their 
 accuracy and complexity. We can see that energy detection technique is the least
 accurate and least complex of all where as matched filtering is most complex and
 highly accurate. Other techniques lie in between with some having more accuracy 
 and some less complex. There is no ideal detector that suits all occasions. Thus
 decisions, compromises and tradeoffs must be made depending on primary radio 
 type, transmission and propagation characteristics, characteristics of secondary
-user receiver, and etc [2 from karanti thesis].
+user receiver, and etc\cite{akyildiz06}.
 
 \section{Implementaton of energy detection technique}
 We have used energy detection technique for spectrum sensing in our project for 
@@ -181,7 +198,7 @@ and it is based on the Discrete Fourier Transform (DFT) of finite length
 segments of signal. In this technique signal is sectioned into finite length 
 segments and periodogram of each segment is calculated which are also referred 
 to as modified periodograms. Then an average of all these modified periodogram 
-is calculated.[8 from krantis report]
+is calculated\cite{welch67}.
 
 Let $X[n]; n = 0,1...L-1$ be the discrete time signal which is  divided into 
 $M$ 

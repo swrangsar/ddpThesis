@@ -36,7 +36,6 @@
 \mainmatter
 \include{intro2}
 \include{gsm2}
-\include{bts2}
 \include{spectrumSensing}
 \include{implementation}
 
