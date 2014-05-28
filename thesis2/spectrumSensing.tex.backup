@@ -122,10 +122,10 @@ spectral correlation function is defined as:
 
 Where the cyclic autocorrelation function is defined by:
 \begin{equation*}
-    R_{x}^{\alpha} = E{x(t+\tau)x^{*}(t-\tau)e^{-2 \pi \alpha t}}
+    R_{x}^{\alpha} = E\{x(t+\tau)x^{*}(t-\tau)e^{-2 \pi \alpha t}\}
 \end{equation*}
 
-Here $x(t)$ is the signal received an $\alpha$ is the cyclic frequency. The spectral 
+Here $x(t)$ is the signal received and $\alpha$ is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
 This is a two dimensional transform unlike power spectral density which is 1 
 dimensional. For successful detection under cyclo-stationary based spectrum 
@@ -181,27 +181,28 @@ i.e. $MN = L; X_{r}[n]; n = 0,1...N-1$ is the $r$th segment and $W[n]; n = 0,1..
 the window applied to each segment. The modified periodogram for the $r$th segment
  is,
 \begin{equation*}
-    I_{r}[k] = \frac{1}{NU}\abs{V_{r}[k]}^2     \qquad k = 0,1...N-1 
+    I_{r}[k] = \frac{1}{NU} \left| V_{r}[k]\right|^2     \qquad k = 0,1...N-1 
 \end{equation*}
 where $V_{r}[k]$ is a N point DFT and $U$ is normalization factor i.e. , 
-$V_{r}[k] = DFT{W[n]*X[n]}$
+$V_{r}[k] = DFT\{W[n]*X[n]\}$
 and $U = \frac{1}{N}(\sum_{n-0}^{N-1} (W[n])^2)$
 The PSD of $X[n]$ sequence is then the time averaged periodogram estimate ,
 \begin{equation*}
-    I[k] = \frac{1}{M}\abs{\sum_{r=0}^{M-1}X_{r}[k].}\
+    I[k] = \frac{1}{M}\left|\sum_{r=0}^{M-1}X_{r}[k]\right|
 \end{equation*}
 
 \section{Wide band spectrum analyzer}
 
-GNU radio packages provide a tool for wide band spectrum sensing 
+GNU radio packages provide a tool for
+wide band spectrum sensing 
 called 
 usrp\_spectrum\_sense.py. The program is provided in the appendix. 
 It is used as
 a basic code for wide band spectrum analyzer implementation. The output of this 
 code is the magnitude squared of the FFT. This means for each FFT bin he output 
-is $Y[i] = \re{X[i]} *\re{X[i]} + \im{X[i]}*\im{X[i]}$. We can calculate the power by
-taking square root of the output. We need N time samples of $x(t)$ sampled at a 
-sampling frequency of F_{s} to use N point complex FFT $X(\omega)$ analysis. An 
+is $ Y[i] = re[X[i]]*re[X[i]] + im[X[i]]*im[X[i]]$. We can calculate the power by
+taking square root of the output. We need $N$ time samples of $x(t)$ sampled at a 
+sampling frequency of $F_{s}$ to use $N$ point complex FFT $X(\omega)$ analysis. An 
 appropriate window function is to be selected to reduce spectral leakage and 
 applied to these time samples. The output of the complex FFT will represent the 
 frequency spectrum content as follows: The first value of the FFT output 
