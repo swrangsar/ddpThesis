@@ -170,13 +170,13 @@ is calculated.[8 from krantis report]
 Let $X[n]; n = 0,1..L-1$ be the discrete time signal which is  divided into 
 $M$ 
 finite length segments of equal length, where $N$ is the length of each segment  
-i.e. $MN = L; X_{r}[n]; n = 0,1..N-1$ is the $r$th segment and $W[n]; n = 0,1..N-1$ is 
+i.e. $MN = L; Xr[n]; n = 0,1..N-1$ is the rth segment and $W[n]; n = 0,1..N-1$ is 
 the window applied to each segment. The modified periodogram for the $r$th segment
  is,
 
-$I_{r}[k] =      k = 0,1..N-1$
-where $V_{r}[k]$ is a N point DFT and $U$ is normalization factor i.e. , 
-$V_{r}[k] = DFT{W[n]*X[n]}$
+$Ir[k] =      k = 0,1..N-1$
+where $Vr[k]$ is a N point DFT and $U$ is normalization factor i.e. , 
+$Vr[k] = DFT{W[n]*X[n]}$
 and $U = ($
 The PSD of $X[n]$ sequence is then the time averaged periodogram estimate ,
 
