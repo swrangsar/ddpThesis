@@ -15,8 +15,8 @@ There are various methods for local spectrum sensing proposed by researchers.
 The following section describes three important methods:
 \begin{enumerate}
 	\item Energy detection
-	\item matched filter detection 
-	\item cyclo stationarity detection
+	\item Matched filter detection 
+	\item Cyclostationarity detection
 \end{enumerate}
 
 \section{Energy Detection}
@@ -33,14 +33,23 @@ is an optimal one when we have absolutely no knowledge of the user occupying the
 channel in advance. The following block diagram describes energy detection 
 technique:
 
-Block diagram for energy detection technique from stage one report here:
-
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{energyDetector}
+\caption[Block diagram of Energy Detection implementatio]{Block diagram 
+of Energy Detection implementation.
+\emph{Source:
+\url{http://www.hindawi.com/journals/ijvt/2011/630467.fig.003.jpg} 
+[Accessed on Oct 22, 2013]}}
+\label{energyDetector}
+\end{figure}
 
 As described in the energy detection block diagram, it is basically a hypothesis
 testing problem with two possible hypothesis $H0$ and $H1$. Hypothesis $H1$ concludes 
 the presence of primary users in the band of interest and hypothesis $H0$ 
 concludes their absence. And energy detection technique is basically about 
-distinguishing between these two hypothesizes.[3 from stage one report]
+distinguishing between these two hypothesizes\cite{sarijari09}.
+
 
 \begin{align}
 x(t) & = n(t); & H0 \nonumber \\
