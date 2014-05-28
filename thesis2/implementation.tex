@@ -1,0 +1,95 @@
+\chapter{Implementation of cognitive radio using OpenBTS}
+
+In our project we are able to successfully demonstrate the
+coexistence of primary users and secondary users in the
+GSM band. In order to accomplish this, implementation of
+a cognitive radio which detects the spectrum holes in the
+radio spectrum and enables secondary users to utilize these 
+for communication is needed. An experimental setup is 
+developed for this demonstration using OpenBTS and GNU 
+radio software and USRP N2 as hardware.
+
+Experimental setup diagram:
+
+
+\section{Description of setup}
+The figure above describes the experimental setup for 
+two frequency system. The primary system has only
+OpenBTS software and one USRP for RF front. Where as 
+secondary system has OpenBTS along with GNU radio and 
+two USRP kits for each of these softwares as hardware 
+RF front. This secondary system has cognitive capabilities. 
+To provide cognitive capabilities it was required that 
+OpenBTS an GNU radio run together in the same system and 
+talk to each other which was challenging. Secondary system
+continuously senses the frequency band of interest and does 
+decision making depending upon the analysis of the data 
+collected and changes its parameters accordingly so that 
+primary and secondary users coexist. The spectrum sensing 
+is accomplished by using GNU radio. Also we made GNU radio 
+and OpenBTS coordinate to behave in appropriate manner and 
+take dynamic decisions as an when required to make over all
+system behave cognitively.
+
+First a two frequency cognitive system is developed.
+For this two GSM bands are used with centre frequency
+945MHz(F1) and 950MHz(F2). Secondary users are made to occupy
+one of these two bands say F1. Then we make primary users 
+enter the same band. This results in an increase in energy 
+levels in this band which is sensed by the secondary system 
+as it is continuously scanning this band. Immediately
+secondary users are shifted to other frequency band (F2)
+there by vacating F1 for primary users. Hence a two frequency
+cognitive system demonstrating coexistence of a pair of
+primary and secondary users is accomplished. 
+
+The whole technique is described using a flow graph below:
+
+Flow graph here :
+
+Now this two frequency system is expanded to a 
+four frequency system where we have F1=936MHz, 
+F2=943MHz, F3=950MHz, F4=957MHz. The experimental setup
+is also expanded with two primary systems and one secondary
+system. Primary system has OpenBTS and one USRP kit and
+secondary system has OpenBTS and GNU radio software and 
+two USRP kits as we had previously in two frequency system.
+ 
+Figure for 4 frequency system here:
+
+
+Here we make one pair of primary users occupy one of the four
+frequencies say F2. We make secondary users use one frequency
+say F1. Now other pair of primary users try an enter frequency
+F1 for communication. This is sensed by the secondary system 
+and it tries to migrate secondary users to F2 which is also 
+occupied. Our secondary system detects that F2 is occupied an
+therefore continues to find spectrum hole in a four frequency 
+spectrum. It finds that frequency F3 is unoccupied and thus
+allows secondary users to enter F3 and utilize it for communication.
+The difference between a four frequency system than a two 
+frequency system is that secondary system in a four frequency
+system has to first check the presence of primary users before 
+switching which was not the case in two frequency system. In 
+two frequency system we assumed that the other band is always 
+unoccupied at the time of switching as only one pair of primary
+users are there hence one band is always unoccupied.
+
+ The following flow graph describes the four frequency cognitive system:
+
+Flow graph here
+The spectrum sensing is done by energy detection technique and
+it was required that a proper threshold is set for decision making. 
+A number of readings were taken to decide the noise level, energy 
+level when only primary users are occupying and also energy levels 
+when both primary users and secondary users exist in the same band 
+for a short duration of time. The threshold value depends on the
+power transmitted by the users and their distance from the USRP 
+kit which is RF front for GNU radio. This distance dependency can 
+be removed by setting the threshold quite low then required so 
+that even if the users move far away the decision making is not
+affected. 
+
+
+
+
