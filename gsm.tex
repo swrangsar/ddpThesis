@@ -11,13 +11,13 @@ A GSM Public Land Mobile Network (PLMN) consists of at least one Service Area ma
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.7]{archPLMN}
+\includegraphics[scale=0.5]{archPLMN}
 \caption[GSM PLMN architecture]{The architecture of a GSM Public Land Mobile Network (PLMN).\\
 \footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
 \end{figure}
 
 The network structure can be divided into the following discrete sections:
-\begin{itemize}
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 \item Base Station Subsystem
 \item Network and Switching Subsystem
 \item Operation Subsystem
@@ -27,7 +27,7 @@ The network structure can be divided into the following discrete sections:
 \subsection{Base Station Subsystem (BSS)}
 
 A base station subsystem consists of
-\begin{itemize} 
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt] 
 \item a Base Station Controller (BSC) and
 \item at least one Base Transceiver Station (BTS) for Mobile Stations (MS). A mobile station can be a cell phone, or any electronic equipment such as a Personal Digital Assistant (PDA) with a phone interface.
 \end{itemize}
@@ -37,7 +37,7 @@ The area served by a single BTS is considered a Network Cell. One or more BTSs a
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.7]{archMSCServiceArea}
+\includegraphics[scale=0.4]{archMSCServiceArea}
 \caption[Network architecture for a single MSC Service Area]{The GSM network architecture for a single MSC controlled Service Area.\\
 \footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
 \end{figure}
@@ -47,7 +47,7 @@ An MSC may also be connected via a Gateway MSC (GMSC) to other MSCs or the Publi
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.7]{gsmNetworkComponents}
+\includegraphics[scale=0.5]{gsmNetworkComponents}
 \caption[GSM network components]{GSM network components.\\
 \footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
 \end{figure}
@@ -58,7 +58,7 @@ An MSC may also be connected via a Gateway MSC (GMSC) to other MSCs or the Publi
 \subsection{Network and Switching Subsystem (NSS)}
 
 The NSS is made up of an MSC and a Visitor Location Register (VLR). An MSC 
-\begin{itemize} 
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 \item sets up, controls and shuts down connections
 \item handles call charges
 \item manages additionals services like call forwarding, call blocking, etc.
@@ -66,17 +66,17 @@ The NSS is made up of an MSC and a Visitor Location Register (VLR). An MSC
 
 A VLR contains all the subscriber data of the phones being served by the accompanying MSC. It contains their location data too. The VLR also maintains data about the SIMs that do not belong to the network but have roamed into the network. The area served by an MSC is called a MSC/VLR service area.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{mscvlrServiceArea}
-\caption[MSC/VLR Service Area]{MSC/VLR Service Area.\\
-\footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
-\end{figure}
+% \begin{figure}
+% \centering
+% \includegraphics[scale=0.4]{mscvlrServiceArea}
+% \caption[MSC/VLR Service Area]{MSC/VLR Service Area.\\
+% \footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
+% \end{figure}
 
 \subsection{The Operation Subsystem (OSS)}
 
 The OSS consists of :
-\begin{itemize}
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 \item the Operation and Maintenance Center (OMC)
 \item the Authentication Center (AuC)
 \item the Home Location Register (HLR)
@@ -84,7 +84,7 @@ The OSS consists of :
 \end{itemize}
 
 The OSS is responsible for
-\begin{itemize}
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 \item network management functions like service provisioning, network configuration, fault management, etc.
 \item billing calls
 \item administering subscribers
@@ -92,21 +92,23 @@ The OSS is responsible for
 
 The AuC controls all the encryption algorithms used for verifying the SIMs. The EIR contains the serial numbers of all the MSs (mobile phones) being served. The HLR contains the subscriber data and location data of all the SIMs in different parts of the network.
 
-\subsection{GSM Network Areas}
-
-The area covered by a GSM operator is called a PLMN Service Area. A PLMN service area is made up of several MSC/VLR service areas. The hierarchy of service areas is as follows:
-\begin{itemize}
-\item PLMN service area,
-\item MSC/VLR service area,
-\item Location Area and
-\item Network Cell
-\end{itemize}
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{PLMNServiceArea}
-\caption[A PLMN Service Area for a GSM operator]{A PLMN Service Area for a GSM operator.\\
-\footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
-\end{figure}
+% \subsection{GSM Network Areas}
+% 
+% The area covered by a GSM operator is called a PLMN Service Area. 
+% A PLMN service area is made up of several MSC/VLR service areas.
+% The hierarchy of service areas is as follows:
+% \begin{itemize}
+% \item PLMN service area,
+% \item MSC/VLR service area,
+% \item Location Area and
+% \item Network Cell
+% \end{itemize}
+% \begin{figure}
+% \centering
+% \includegraphics[scale=0.7]{PLMNServiceArea}
+% \caption[A PLMN Service Area for a GSM operator]{A PLMN Service Area for a GSM operator.\\
+% \footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
+% \end{figure}
 
 
 
@@ -114,17 +116,17 @@ The area covered by a GSM operator is called a PLMN Service Area. A PLMN service
 The data communication protocols in a GSM network are implemented to work over the bearer\footnote{A bearer data channel is a channel that carries call content i.e.
 one that does not carry signaling.} data channel. 
 The GSM protocol architecture is structured into three independent planes:
-\begin{itemize}
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
  \item user plane
  \item control plane
  \item management plane
 \end{itemize}
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{gsmPlanes}
-\caption[GSM protocol architecture planes]{GSM protocol architecture planes.\\
-\footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
-\end{figure}
+% \begin{figure}
+% \centering
+% \includegraphics[scale=0.4]{gsmPlanes}
+% \caption[GSM protocol architecture planes]{GSM protocol architecture planes.\\
+% \footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
+% \end{figure}
 
 The user plane defines protocols for handling the voice and user data. 
 At the Um interface, the traffic control channel (TCH) is used to carry the user data.
@@ -140,17 +142,17 @@ The management plane takes care of the coordination between different planes.
 It also manages functions related to the control and/or user planes.
 The management plane handles things like network configuration, network fault, etc.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.7]{logicalChannelsUserControl}
-\caption[Logical channels for user plane data and control plane signalling]{Logical channels for user plane data and control plane signalling.\\
-\footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
-\end{figure}
+% \begin{figure}
+% \centering
+% \includegraphics[scale=0.5]{logicalChannelsUserControl}
+% \caption[Logical channels for user plane data and control plane signalling]{Logical channels for user plane data and control plane signalling.\\
+% \footnotesize{Source: \url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_3.html}}}
+% \end{figure}
 
 \subsection{Signalling Transmission}
 In GSM, the network nodes exchange signaling information with each other to establish, control and terminate connections.
 The various interfaces in a GSM network are:
-\begin{itemize}
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
  \item MS-BTS: Um
  \item BTS-BSC: Abis
  \item BSC-MSC: A
@@ -189,12 +191,12 @@ The Um interface is the only interface that uses the wireless physical medium fo
  
  
  \textbf{Call Management (CM)} protocol consists of the following parts:
- \begin{enumerate}
+ \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
   \item \textit{Call Control (CC)} sets up, manages and ends calls. For each call a CC instance is created in the MS and another one in the MSC. CC instances 
   communicate over already established MM and RR connections.
   \item \textit{Short Message Service (SMS)} works over already established MM, RR and LAPDm connections.
   \item \textit{Supplementary Services (SS)} provide upper layers the access to GSM supplementary services like call forwarding, call barring, etc. 
- \end{enumerate}
+ \end{itemize}
 
 
 \textbf{Signal Connection Control Part (SCCP)} is a SS7 protocol that provides routing, flow control, connection-orientation, error correction facilities etc. It
@@ -202,17 +204,17 @@ The Um interface is the only interface that uses the wireless physical medium fo
  
  
 \textbf{Base Station System Application Part (BSSAP)} is a signaling protocol at the A interface supported by MTP and SCCP.
- \begin{enumerate}
+ \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
   \item \textit{Direct Transfer Application Part (DTAP)} handles signaling between the MS and the MSC.
   \item \textit{Base Station System Management Application Part (BSSMAP)} transfers management information from the BSC to the MSC.
   \item \textit{Base Station System Operation and Management Application Part (BSSOMAP)} transports network management information from
   OMC to BSC.
- \end{enumerate}
+ \end{itemize}
 
 
 \textbf{Mobile Application Part (MAP)} is an SS7 application-layer protocol for the various nodes in a GSM network.
  It provides facilities such as:
-  \begin{itemize}
+  \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
    \item roaming support via location update, IMSI attach/detach, authentication
    \item call handling
    \item subscriber tracing
