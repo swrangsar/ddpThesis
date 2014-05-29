@@ -6,6 +6,7 @@
 \usepackage{hyperref}  % for citing URLs
 \usepackage{listings}
 \usepackage{float}
+\usepackage{setspace}
 \lstset{breaklines=true}
 \pagestyle{plain}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -18,6 +19,9 @@
 \topskip         0in
 \textheight      9in
 \textwidth       6.5in
+%added on may 28 2014
+\linespread{1.3}
+%added on may 28 2014
 
 \begin{document}
 
@@ -36,8 +40,9 @@
 \mainmatter
 \include{intro2}
 \include{gsm2}
-\include{spectrumSensing}
-\include{implementation}
+\include{bts2}
+\include{spectrumSensing2}
+\include{impl2}
 
 \appendix
 %\include{appendix1}

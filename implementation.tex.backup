@@ -104,7 +104,16 @@ the availability of a channel before deciding to switch into it. In the
 two-frequency system, it was assumed that one of the two channels is always
 unoccupied.
 
-Flow graph here.
+Flow graph for four-frequency system here.
+
+The spectrum sensing is done using the energy detection based method. For 
+making decisions whether to switch the frequency of the secondary BTS or not, 
+a threshold of energy level is required to be set. If the energy level in a 
+given channel is beyond the threshold, it implies that the primary users are
+also using that channel i.e. that channel is already occupied by primary 
+users. 
+
+
 
 
 
