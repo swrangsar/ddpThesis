@@ -65,18 +65,18 @@ technologies: digital radio, and computer software.
 
 \section{Contribution of Thesis}
 
-A cognitive base transceiver station is developed to demonstrate the efficient 
-utilization of spectrum by allowing secondary users to make use of the 
-frequency bands that are already licensed to primary users but that are not 
-being used at that particular time and space.
+An experimental setup is developed to demonstrate the efficient utilization of
+spectrum by allowing secondary users to make use of the frequency bands that 
+are licensed to primary users but that are not being used at a particular
+space and time.
 
 \begin{enumerate}
-    \item A two-frequency system is developed where as soon as the presence of 
-    primary users is detected in $F_1$  the secondary BTS switches from $F_1$ 
-    to $F_2$ and vice-versa.
+    \item A two-frequency system is developed where the secondary BTS switches
+    from F1 to F2 as soon as the presence of primary users is detected in F1 
+    and vice-versa.
     \item The two-frequency system is extended to a four-frequency one where
-    two of the four frequency channels always remain occupied. The secondary
-    system switches to one of the two unused frequency channels.
+    two of the four frequency channels always stay occupied. The secondary
+    system scans to find an unused channel and uses it.
     \item For sensing the frequency channels the energy detection based
     spectrum sensing method has been used and for peak detection the method 
     called CUSUM has been used. The frequency used by the secondary users is
