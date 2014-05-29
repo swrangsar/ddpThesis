@@ -112,8 +112,8 @@ implies CUSUM involves calculating cumulative sum. This makes it sequential.
 The samples from process  are assigned weights  and summed as followed,
 
 \begin{align}
-~ &=0; \nonumber \\
-~ &=max(0,) \nonumber
+S_0 &= 0; \nonumber \\
+S_{n+1} &= max(0, S_n + x_n - \omega_n) \nonumber
 \end{align}
 When the value of  exceeds a certain threshold value a change  in value has 
 been found. This formula detects change only in positive direction. To detect 
@@ -152,7 +152,7 @@ kit as hardware end.
 \item Since spectrum sensing is major part of cognitive radio literature survey 
 on various spectrum sensing techniques was done. We choose energy detection 
 spectrum sensing technique for our project and so we did detail study of a 
-technique called Average Perodogram Analysis to implement this method. We also 
+technique called Average Periodogram Analysis to implement this method. We also 
 simulated this technique in Matlab using various windowing methods and 
 understand results. 
 \item After all this we designed our problem statement and the flow graph of 
