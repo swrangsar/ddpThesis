@@ -125,10 +125,24 @@ the users move farther away the decision making is not affected.
 \section{CUSUM method}
 
 The CUSUM (or cumulative sum control chart) method is used here to detect 
-the peak in energy levels. This method was used to ascertain that the peak in 
-the energy levels in a given channel are not just due to some random 
-fluctuations in the noise power.
+the peak in energy levels. This method is used to ascertain that the peak in 
+the energy levels in a given channel are not just due to some irrelevant 
+reasons like random fluctuations in the noise power, etc.
 
+CUSUM is a technique used for monitoring change detection. It involves 
+calculating the cumulative sum, which is what makes it sequential. The samples
+from a process $x_n$ are assigned weights $\omega_n$ and summed in the 
+following way:
+\begin{align}
+    S_0 &= 0 \nonumber \\
+    S_n &= max(0, S_n + x_n - \omega_n) \nonumber
+\end{align}
+
+When the value of $S$ exceeds a certain threshold value, a change in value has 
+been found. However, this formula detects only a change in the positive 
+direction. For the negative direction, the $max$ operation has to be replaced 
+by the $min$ operation. In this case the change is detected when the 
+(negative) value goes below the threshold value.
 
 
 
