@@ -66,8 +66,8 @@ Flow graph here.
 \section{The four-frequency system}
 
 As has been said earlier, in second phase, we expanded the two-frequency
-system to a four-frequency one. The frequency channels are F1 = 936 MHz, F2 =
-943 MHz, F3 = 950 MHz, F4 = 957 MHz.
+system to a four-frequency one. The frequency channels are $F_1$ = 936 MHz, $F_2$ =
+943 MHz, $F_3$ = 950 MHz, $F_4$ = 957 MHz.
 We also had two primary systems instead of just one this time.
 We also used a method known as CUSUM for peak
 detection in this case.
@@ -80,7 +80,7 @@ The tools used in this experiment are as follows:
     phones are connected to each one of them.
     \item \textbf{A secondary BTS --} This is the same as in the 
     two-frequency system. It runs OpenBTS and GNURadio on two different USRP
-    kits. And a pair of mobile phones (secondary users) are connected to its
+    kits. A pair of mobile phones (secondary users) are connected to its
     OpenBTS network.
 \end{itemize}
 
@@ -88,5 +88,23 @@ One of the primary BTSs has a USRP with a SBX 400-4400 MHz RX/TX
 daughterboard, the rest of the USRPs all had a WBX daughterboard as before.
 
 \subsection{Testing}
+
+Initially we make one of the primary systems operate in $F_2$. And the secondary
+is made to operate in $F_1$. Now we let the other primary come into $F_1$. The
+secondary senses it and attempts to switch to $F_2$ because the secondary is 
+programmed to check $F_1$, $F_2$, $F_3$, $F_4$ serially in that order. After checking $F_4$ 
+the secondary checks $F_1$, $F_2$, $F_3$, ... again and so on the cycle continues.
+
+But the frequency $F_2$ happens to be occupied by the one of the primary systems.
+So, the secondary moves ahead to $F_3$ which is unoccupied and utilizes that 
+channel.
+
+Unlike the two-frequency system, in this case the secondary always checks 
+the availability of a channel before deciding to switch into it. In the 
+two-frequency system, it was assumed that one of the two channels is always
+unoccupied.
+
+Flow graph here.
+
 
 
