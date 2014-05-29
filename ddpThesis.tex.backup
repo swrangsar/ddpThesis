@@ -42,7 +42,6 @@
 %\include{intro}
 \include{gsm}
 \include{bts}
-\include{implementation}
 
 \appendix
 %\include{appendix1}
