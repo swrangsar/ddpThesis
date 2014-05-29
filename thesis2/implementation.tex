@@ -98,3 +98,77 @@ affected.
 
 
 
+
+
+\section{CUSUM}
+CUMSUM peak detection is also applied after energy detection to ensure that the
+detected high energy in the band of interest is not due some  not relevant 
+reason like random fluctuations in noise power etc but due to presence of 
+primary radio in that band. This ensures high accuracy in primary radio 
+detection and correct decision making.
+CUSUM is basically a sequential analysis technique to monitor change detection. 
+It is a criterion for deciding when to take corrective action. As the name 
+implies CUSUM involves calculating cumulative sum. This makes it sequential. 
+The samples from process  are assigned weights  and summed as followed,
+
+\begin{align}
+~ &=0; \nonumber \\
+~ &=max(0,) \nonumber
+\end{align}
+When the value of  exceeds a certain threshold value a change  in value has 
+been found. This formula detects change only in positive direction. To detect 
+change in negative direction we have to do min operation instead of max 
+operation and the change in value is detected when goes below threshold.
+
+
+
+
+
+
+
+\section{Tasks over the year}
+The next section of this chapter gives a step by step description of tasks we 
+accomplished during our project tenure. 
+
+\begin{enumerate}
+
+\item We began with exploring with what cognitive radio is and how it can be used 
+in the already existing radio. We did literature survey on the ongoing work in 
+context to cognitive radio. 
+\item We learned GNU Radio software package starting from its installation. We 
+also designed FM receiver using GNU Radio Companion to get use to the software. 
+Also we tried and learn the codes of already existing signal processing blocks 
+that GNU Radio provides.
+\item GNU Radio applications are primarily written using the Python programming 
+language and hence we learned Python language.
+\item USRP N2 kit is used as hardware in our project. We got use to this kit and 
+also did range testing of this kit to ensure distance is not a major factor in 
+our decision making algorithm and can be neglected.
+\item The next task was to understand the working of OpenBTS software. Starting 
+from the installation of this software we registered our GSM SIM cards in the 
+local network established by OpenBTS. We could perform calling and SMS sending 
+between our phones using the local network established by Open BTS with USRP 
+kit as hardware end.
+\item Since spectrum sensing is major part of cognitive radio literature survey 
+on various spectrum sensing techniques was done. We choose energy detection 
+spectrum sensing technique for our project and so we did detail study of a 
+technique called Average Perodogram Analysis to implement this method. We also 
+simulated this technique in Matlab using various windowing methods and 
+understand results. 
+\item After all this we designed our problem statement and the flow graph of 
+how we will approach the problem which we have included in the last chapter. 
+Also we decided upon building the experimental setup which we have covered in 
+the start of this chapter. 
+\item  First key step to approach this problem was to run Open BTS and GNU 
+Radio together in the same computer with two USRP kits connected one for Open 
+BTS and other for GNU radio. It was a little tricky. \textbf{Why tricky u 
+include here regarding the IP conflict an all}
+\item The next was to build a two frequency cognitive system with a pair of 
+primary and secondary users communicating in parallel and primary pair having 
+higher priority when ever both try to use same radio band. Detail description 
+of this is in the start of this chapter.
+\item This two frequency system was expanded to four frequency system with two 
+primary pair of users and one secondary pair of users coexisting. This 
+demonstrated that both primary and secondary users can exist in the same GSM 
+Network without affecting the existing system.
+\end{enumerate}
