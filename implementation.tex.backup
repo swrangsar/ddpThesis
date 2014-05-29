@@ -41,12 +41,23 @@ The hardware and software components used in this experiment are the following
 
 The secondary BTS system has cognitive capabilities. It was a challenge to 
 make OpenBTS and GNURadio run simultaneously in the same computer and make 
-them communicate with each other. GNURadio keeps sensing the spectrum 
-continuously in the background and takes decisions whether to switch the 
-frequency band of the secondary BTS or not, depending upon the energy level in 
-the frequency band in which it is running.
+them communicate with each other. GNURadio keeps sensing the spectrum used by
+the secondary users continuously in the background and takes decisions whether
+to switch the frequency band of the secondary BTS or not, depending upon the 
+energy level in the frequency band in which it is running.
 
 \subsection{Testing}
+First we choose any two GSM frequency bands say 945 MHz ($F_1$) and 950 MHz 
+($F_2$). The primary users are made to occupy $F_1$. Then we let the secondary
+users come into $F_1$. This makes the energy level in $F_1$ go high, which gets
+detected by the spectrum sensor of the secondary BTS. So, the secondary BTS 
+moves out of $F_1$ and switches its frequency to $F_2$. Similarly, now if the
+primary users are made to come into $F_2$, the secondary switches back to $F_1$.
+
+In this experiment we don't have the situation where both $F_1$ and $F_2$ remain 
+occupied because there is only one set of primary users. Therefore, the 
+secondary also doesn't check the energy level in a channel before taking the
+decision to switch into that channel.
 
 
 

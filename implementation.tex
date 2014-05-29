@@ -19,9 +19,10 @@ always remain used.
 \section{The two-frequency system}
 \subsection{Experimental setup}
 
-Experimental setup diagram:
+Experimental setup diagram.
 
-The hardware and software components used in this experiment are the following
+The hardware and software components used in this experiment are the 
+following:
 \begin{itemize}
     \item \textbf{A primary BTS --} This is a Linux laptop running OpenBTS
     software with 1 USRP as the OpenBTS radio interface. The USRP hardware kit
@@ -59,6 +60,27 @@ occupied because there is only one set of primary users. Therefore, the
 secondary also doesn't check the energy level in a channel before taking the
 decision to switch into that channel.
 
+Flow graph here.
 
+
+\section{The four-frequency system}
+
+As has been said earlier, in second phase, we expanded the two-frequency
+system to a four-frequency one. We also used a method known as CUSUM for peak
+detection in this case.
+\subsection{Experimental setup}
+The tools used in this experiment are as follows:
+\begin{itemize}
+    \item \textbf{Two primary BTSs --} One is a laptop and the other one is a
+    desktop. Both of them runs Ubuntu as the Operating System. Each one of
+    them runs OpenBTS with a USRP kit as its radio interface. A pair of mobile
+    phones are connected to each one of them.
+    \item \textbf{A secondary BTS --} This is the same as in the 
+    two-frequency system. It runs OpenBTS and GNURadio on two different USRP
+    kits. And a pair of mobile phones (secondary users) are connected to its
+    OpenBTS network.
+\end{itemize}
+
+One of the primary BTSs had USRP with a SBX 
 
 
