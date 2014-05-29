@@ -115,7 +115,7 @@ The samples from a process $x_n$  are assigned weights $\omega_n$  and summed as
 S_0 &= 0; \nonumber \\
 S_{n+1} &= max(0, S_n + x_n - \omega_n) \nonumber
 \end{align}
-When the value of  exceeds a certain threshold value a change  in value has 
+When the value of $S$ exceeds a certain threshold value a change in value has 
 been found. This formula detects change only in positive direction. To detect 
 change in negative direction we have to do min operation instead of max 
 operation and the change in value is detected when goes below threshold.
