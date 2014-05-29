@@ -1,18 +1,24 @@
 \chapter{Introduction}
 \section{Background}
-The electromagnetic radio spectrum is a natural resource that remains underutilized \cite{haykin05}.
+The electromagnetic radio spectrum is a natural resource that remains 
+underutilized \cite{haykin05}.
 It is licensed by governments for use by transmitters and receivers.
-With the explosive proliferation of cell phones and other wireless communication devices,
+With the explosive proliferation of cell phones and other wireless 
+communication devices,
 we cannot afford to waste our spectral resources anymore.
 
-In November 2002, the Spectrum Policy Task Force, a group under the Federal Communications Commission(FCC) 
+In November 2002, the Spectrum Policy Task Force, a group under the Federal
+Communications Commission(FCC) 
 in the United States, published a report saying \cite{repFCC}, 
 \begin{quote}
-``In many bands, spectrum access is a more significant problem than physical scarcity of spectrum,
-in large part due to legacy command-and-control regulation that limits the ability of potential spectrum users to obtain such access.''
+``In many bands, spectrum access is a more significant problem than physical 
+scarcity of spectrum,
+in large part due to legacy command-and-control regulation that limits the 
+ability of potential spectrum users to obtain such access.''
 \end{quote}
 
-If we were to scan the radio spectrum even in metropolitan places where it's heavily used, 
+If we were to scan the radio spectrum even in metropolitan places where it's
+heavily used, 
 we would find that \cite{staple04}:
 \begin{enumerate}
 	\item some frequency bands are unoccupied most of the time,
@@ -20,33 +26,56 @@ we would find that \cite{staple04}:
 	\item the rest are heavily used.
 \end{enumerate}
 
-The underutilization of spectral resources leads us to think in terms of \emph{spectrum holes}, which are defined as \cite{kolodzy01}:
+The underutilization of spectral resources leads us to think in terms of 
+\emph{spectrum holes}, which are defined as \cite{kolodzy01}:
 \begin{quote}
-\emph{A spectrum hole is a band of frequencies assigned to a primary user, but, at a particular time and specific geographic location, the band is not being utilized by that user.
+\emph{A spectrum hole is a band of frequencies assigned to a primary user, 
+but, at a particular time and specific geographic location, the band is not 
+being utilized by that user.
 }
 \end{quote}
 
-The spectrum can be better utilized by enabling secondary users (users who are not licensed to use the services) to access spectrum holes unoccupied by primary users at the location and the time in question. \emph{Cognitive Radio}, which includes software-defined radio, has been promoted as the means to make efficient use of the spectrum by exploiting the existence of spectrum holes \cite{haykin05}\cite{mitola99}\cite{mitola00}.
+The spectrum can be better utilized by enabling secondary users (users who are
+not licensed to use the services) to access spectrum holes unoccupied by 
+primary users at the location and the time in question. \emph{Cognitive Radio}
+, which includes software-defined radio, has been promoted as the means to 
+make efficient use of the spectrum by exploiting the existence of spectrum 
+holes \cite{haykin05}\cite{mitola99}\cite{mitola00}.
 
 \section{Cognitive Radio}
 One of the definitions of Cognitive Radio is \cite{haykin05}:
 \begin{quote}
-\emph{Cognitive radio is an intelligent wireless communication system that is aware of its surrounding environment (i.e., outside world), and uses the methodology of understanding-by-building to learn from the environment and adapt its internal states to statistical variations in the incoming RF stimuli by making corresponding changes in certain operating parameters (e.g., transmit-power, carrier-frequency, and modulation strategy) in real-time, with two primary objectives in mind:
+\emph{Cognitive radio is an intelligent wireless communication system that is
+aware of its surrounding environment (i.e., outside world), and uses the 
+methodology of understanding-by-building to learn from the environment and 
+adapt its internal states to statistical variations in the incoming RF stimuli
+by making corresponding changes in certain operating parameters (e.g., 
+transmit-power, carrier-frequency, and modulation strategy) in real-time, with
+two primary objectives in mind:
 \begin{itemize}
 	\item highly reliable communications whenever and wherever needed;
 	\item efficient utilization of the radio spectrum.
 \end{itemize}}
 \end{quote}
 
-Besides, a cognitive radio is also reconfigurable. This property of cognitive radio is provided by a platform known as \emph{software-defined radio}. Software-defined Radio (SDR) is basically a combination of two key technologies: digital radio, and computer software.
+Besides, a cognitive radio is also reconfigurable. This property of cognitive 
+radio is provided by a platform known as \emph{software-defined radio}. 
+Software-defined Radio (SDR) is basically a combination of two key 
+technologies: digital radio, and computer software.
+
+\section{Contribution of Thesis}
 
 
 \section{Organization}
 The rest of this document is organized as follows.
 Chapter 2 briefly describes the GSM architecture and its Um interface. 
-Chapter 3 gives a literature survey on Universal Software Radio Peripheral (USRP N210). 
-Chapter 4 and 5 describe the literature survey done on the GNU Radio software package and OpenBTS software respectively. 
-Chapter 6 covers a partial implementation of cognitive radio using GNU Radio and OpenBTS. 
-It also describes the proposed future work along with a flowgraph describing the algorithm for the 
-complete implementation of cognitive radio on the OpenBTS platform.
+Chapter 3 gives a literature survey on Universal Software Radio Peripheral 
+(USRP N210). 
+Chapter 4 and 5 describe the literature survey done on the GNU Radio software 
+package and OpenBTS software respectively. 
+Chapter 6 covers a partial implementation of cognitive radio using GNU Radio 
+and OpenBTS. 
+It also describes the proposed future work along with a flowgraph describing 
+the algorithm for the complete implementation of cognitive radio on the 
+OpenBTS platform.
 
