@@ -156,7 +156,12 @@ during the course of the project.
     research work in the field of Cognitive Radio.
     \item Since GNURadio applications are written in the Python programming 
     language, we had to brush up our knowledge of the Python language.
-    
+    \item We familiarized ourselves with the GNURadio software package. Even 
+    the installation procedure of GNURadio was a little challenging for us
+    back then because GNURadio required a manual installation. We tweaked
+    and played around with the already existing codes of signal processing
+    blocks that come by default with GNURadio.
+    \item 
 \end{enumerate}
 
 
