@@ -1,13 +1,14 @@
 \chapter{Implementation of a cognitive Base Transceiver Station in GSM band 
 using OpenBTS and spectrum sensing techniques}
 
-In this project we try to demonstrate a more efficient 
-way of utilizing the spectral resources by having the secondary users
-make use of the spectrum holes. The spectrum holes are the frequency channels
-that have been licensed to the primary users but are not being used at that
-particular space and time. This allows secondary users to make use of already 
-licensed frequency bands instead of having to allot them completely new 
-frequency bands altogether.
+In this project we try to demonstrate the coexistence of primary and secondary
+users in the same GSM frequency band by making the secondary users switch to 
+some neighboring unoccupied GSM frequency band (spectrum hole) as soon as the 
+primary users of that frequency band makes a call. A spectrum hole is a 
+frequency band/channel that have been licensed to the primary users but is not 
+being used at that particular space and time. This allows secondary users to 
+make use of already licensed frequency bands instead of having to allot them 
+completely new frequency bands altogether.
 
 In the first phase of the project, we implemented a two-frequency system where
 the secondary system had an option of switching into one of two frequency 
@@ -178,6 +179,10 @@ during the course of the project.
     resource-expensive. Average Periodogram Analysis is a technique used in 
     energy detection based spectrum sensing. So we carried out a study on
     Average Periodogram Analysis.
+    \item After all these we prepared our problem statement and designed a 
+    flow graph presenting our proposed algorithm to solve the problem. Then 
+    we started developing the experimental setup that we have covered at the
+    beginning part of this chapter.
     
     
 \end{enumerate}
