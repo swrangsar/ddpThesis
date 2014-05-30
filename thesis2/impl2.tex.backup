@@ -127,7 +127,7 @@ operation and the change in value is detected when goes below threshold.
 
 
 
-\section{Things done over the year}
+\section{Tasks over the year}
 The next section of this chapter gives a step by step description of the tasks we 
 accomplished during our project tenure. 
 
@@ -144,15 +144,14 @@ that GNU Radio provides.
 
 \item GNURadio applications are primarily written in the Python programming 
 language and hence we learned the language, Python.
-
-\item USRP N210 kit is used as hardware in our project. We got used to this kit and 
-also performed range testing of this kit to ensure distance is not a major factor in 
+\item USRP N2 kit is used as hardware in our project. We got use to this kit and 
+also did range testing of this kit to ensure distance is not a major factor in 
 our decision making algorithm and can be neglected.
 \item The next task was to understand the working of OpenBTS software. Starting 
-with the installation of this software we registered our GSM SIM cards in the 
-local network established by OpenBTS. We could perform calling and sending SMS
-between our phones using the local network established by OpenBTS with USRP 
-kit as its radio interface.
+from the installation of this software we registered our GSM SIM cards in the 
+local network established by OpenBTS. We could perform calling and SMS sending 
+between our phones using the local network established by Open BTS with USRP 
+kit as hardware end.
 \item Since spectrum sensing is major part of cognitive radio literature survey 
 on various spectrum sensing techniques was done. We choose energy detection 
 spectrum sensing technique for our project and so we did detail study of a 
@@ -164,16 +163,13 @@ how we will approach the problem which we have included in the last chapter.
 Also we decided upon building the experimental setup which we have covered in 
 the start of this chapter. 
 \item  First key step to approach this problem was to run Open BTS and GNU 
-Radio together in the same computer with two USRP kits connected one for 
-OpenBTS and the other for GNURadio. It was a little tricky because we had to
-find out whether it was possible run two USRP kits on the same computer simultaneously.
-Fortunately, it turned out it was possible if the two kits had two different IP addresses.
-We then tried to figure out how to burn a different IP address to a USRP kit and
-managed to do the same.
-\item The next step was to build a two frequency cognitive system with a pair of 
+Radio together in the same computer with two USRP kits connected one for Open 
+BTS and other for GNU radio. It was a little tricky. \textbf{Why tricky u 
+include here regarding the IP conflict an all}
+\item The next was to build a two frequency cognitive system with a pair of 
 primary and secondary users communicating in parallel and primary pair having 
-higher priority when ever both try to use same radio band. Detailed description 
-is in the start of this chapter.
+higher priority when ever both try to use same radio band. Detail description 
+of this is in the start of this chapter.
 \item This two frequency system was expanded to four frequency system with two 
 primary pair of users and one secondary pair of users coexisting. This 
 demonstrated that both primary and secondary users can exist in the same GSM 
