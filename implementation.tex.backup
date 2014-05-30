@@ -145,6 +145,19 @@ by the $min$ operation. In this case the change has been found when the
 (negative) value is below the threshold value.
 
 
+\section{Things done over the year}
+
+What follows is a brief overview of the things done and the challenges faced 
+during the course of the project.
+
+\begin{enumerate}
+    \item We began by trying to get acquainted with Cognitive Radio. We 
+    carried out a literature survey on Cognitive Radio and also on the ongoing 
+    research work in the field of Cognitive Radio.
+    \item Since GNURadio applications are written in the Python programming 
+    language, we had to brush up our knowledge of the Python language.
+    
+\end{enumerate}
 
 
 
