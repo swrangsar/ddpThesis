@@ -212,8 +212,8 @@ the window applied to each segment. The modified periodogram for the $r$th segme
 \end{equation*}
 where $V_{r}[k]$ is a N point DFT and $U$ is normalization factor i.e. , 
 $V_{r}[k] = DFT\{W[n]*X[n]\}$
-and $U = \frac{1}{N}(\sum_{n-0}^{N-1} (W[n])^2)$
-The PSD of $X[n]$ sequence is then the time averaged periodogram estimate ,
+and $U = \frac{1}{N}(\sum_{n-0}^{N-1} (W[n])^2)$. The PSD of $X[n]$ sequence 
+is then the time averaged periodogram estimate ,
 \begin{equation*}
     I[k] = \frac{1}{M}\left|\sum_{r=0}^{M-1}X_{r}[k]\right|
 \end{equation*}
@@ -224,9 +224,8 @@ GNU radio packages provide a tool for
 wide band spectrum sensing 
 called 
 usrp\_spectrum\_sense.py. The program is provided in the appendix. 
-It is used as
-a basic code for wide band spectrum analyzer implementation. The output of this 
-code is the magnitude squared of the FFT. This means for each FFT bin he output 
+It is used as a basic code for wide band spectrum analyzer implementation. The output of this 
+code is the magnitude squared of the FFT. This means for each FFT bin the output 
 is $ Y[i] = re[X[i]]*re[X[i]] + im[X[i]]*im[X[i]]$. We can calculate the power by
 taking square root of the output. We need $N$ time samples of $x(t)$ sampled at a 
 sampling frequency of $F_{s}$ to use $N$ point complex FFT $X(\omega)$ analysis. An 
@@ -240,14 +239,15 @@ FFT ($X[N/2]$ to $X[N-1]$) contains the negative baseband frequencies, i.e. from
 $-F_{s}/2$ to centre frequency.
 
 
+
 For our project purpose, we collected 1024 samples using a tuner centered at 
 uplink frequency of our interest, say 900 MHz. 1024 is choosen as the number of 
 FFT points because the number of FFT points has to be a power of 2 for the fast 
-execution of the FFT algorithm. Default  sampling frequency is set as 10 MHz. 
-The frequency resolution is therefore: 10 MHz / 1024 = 9.7656 MHz. The 
+execution of the FFT algorithm. Default  sampling frequency is set as 1 MHz. 
+The frequency resolution is therefore: 1 MHz / 1024 = 976.56 KHz. The 
 decimation is defined as dsp rate divided by sample rate. The UHD driver 
 requires the decimation value to be an even number. The dsp rate is the actual 
 hardware-level sampling rate of the USRP kit. It is the rate at which the USRP 
 device takes analog samples from the external world and converts them to digital
 form. The dsp rate of the USRP is 100 MHz. Hence we chose sampling frequency to 
-be 10 MHz which gives a decimation value of: 100 MHz / 10 MHz = 10.
+be 1 MHz which gives a decimation value of: 100 MHz / 1 MHz = 100.

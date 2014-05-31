@@ -108,11 +108,12 @@ complex hardware and large power consumption\cite{mansi11}.
 \section{Cyclostationarity detection}
 
 This technique utilizes periodicity property of the received signal to detect 
-presence of primary users. Periodicity property is generally exhibited by the 
+the
+presence of primary users. The property of Periodicity is generally exhibited by 
 communication signals due to sinusoidal carriers, pulse train, hopping sequences
 etc. Due to this underlying periodicity most of the communication signals can be
 modeled as cyclostationary processes. This 
-technique detects a random primary signal with a particular modulation type in a
+technique can detect a primary signal with a particular modulation type even in a
 background of noise and other modulated signals.
 
 Cyclostationary feature detection is robust to noise and is a better performer 
@@ -136,7 +137,7 @@ of Cyclostationary Detection implementation.}
 
 The detection is done by finding a unique cyclic frequency of the spectral 
 correlation function of the received signal\cite{cabric04}. The spectral correlation 
-function is the Fourier transform of the cyclic autocorrelation function the 
+function is the Fourier transform of the cyclic autocorrelation function. The 
 spectral correlation function is defined as:
 \begin{equation*}
         S(f,\alpha) = \int_{-\infty}^{\infty} R_{x}^{\alpha}(\tau)e^{-2 \pi f\tau}d\tau 
@@ -149,8 +150,8 @@ Where the cyclic autocorrelation function is defined by:
 
 Here $x(t)$ is the signal received and $\alpha$ is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
-This is a two dimensional transform unlike power spectral density which is 1 
-dimensional. For successful detection under cyclo-stationary based spectrum 
+This is a two-dimensional transform unlike power spectral density which is 
+one-dimensional. For successful detection under cyclo-stationary based spectrum 
 sensing, we need a priori knowledge of the cyclo-stationary features of the 
 received signal only. However matched filtering is the optimal solution when we 
 completely know about received signal in advance.
@@ -211,8 +212,8 @@ the window applied to each segment. The modified periodogram for the $r$th segme
 \end{equation*}
 where $V_{r}[k]$ is a N point DFT and $U$ is normalization factor i.e. , 
 $V_{r}[k] = DFT\{W[n]*X[n]\}$
-and $U = \frac{1}{N}(\sum_{n-0}^{N-1} (W[n])^2)$
-The PSD of $X[n]$ sequence is then the time averaged periodogram estimate ,
+and $U = \frac{1}{N}(\sum_{n-0}^{N-1} (W[n])^2)$. The PSD of $X[n]$ sequence 
+is then the time averaged periodogram estimate ,
 \begin{equation*}
     I[k] = \frac{1}{M}\left|\sum_{r=0}^{M-1}X_{r}[k]\right|
 \end{equation*}
@@ -223,9 +224,8 @@ GNU radio packages provide a tool for
 wide band spectrum sensing 
 called 
 usrp\_spectrum\_sense.py. The program is provided in the appendix. 
-It is used as
-a basic code for wide band spectrum analyzer implementation. The output of this 
-code is the magnitude squared of the FFT. This means for each FFT bin he output 
+It is used as a basic code for wide band spectrum analyzer implementation. The output of this 
+code is the magnitude squared of the FFT. This means for each FFT bin the output 
 is $ Y[i] = re[X[i]]*re[X[i]] + im[X[i]]*im[X[i]]$. We can calculate the power by
 taking square root of the output. We need $N$ time samples of $x(t)$ sampled at a 
 sampling frequency of $F_{s}$ to use $N$ point complex FFT $X(\omega)$ analysis. An 
