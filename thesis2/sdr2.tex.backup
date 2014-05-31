@@ -16,9 +16,9 @@ Programmable Gate Array (FPGA), Digital Signal Processor (DSP) and
 General-Purpose Processor (GPP) are used to build the software radio elements.
 
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=0.59\textwidth]{sdrBlock}
+\includegraphics[width=1\textwidth]{sdrBlock}
 \caption{Block diagram of SDR.}
 \label{sdrBlock}
 \end{figure}
@@ -32,13 +32,13 @@ section performs the digital to analog conversion and vice versa. It also
 contains the signal processing like Filtering, modulation and demodulation, 
 Digital up conversion (DUC), Digital down conversion (DDC) etc. The last stage
 of the radio is the baseband processor. It is at this point that the digital 
-data is processed \cite{miller08}\cite{kranthi13}.
+data is processed [38 from krantis thesis and kranti’s thesis as reference].
 We have used GNURadio and USRP N210 to confgure the SDR to implement the
 Cognitive Radio test-bed. 
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=0.59\textwidth]{usrpGNURadioBlock}
+\includegraphics[width=1\textwidth]{usrpGNURadioBlock}
 \caption{Block diagram for USRP operation with GNURadio.}
 \label{usrpGNURadioBlock}
 \end{figure}
@@ -60,9 +60,9 @@ filters, demodulators, equalizers and other building blocks for signal
 processing, as well as a framework for data flow control between them. We can
 build a software defined radio by connecting these blocks together. 
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=0.59\textwidth]{gnuradio_architecture}
+\includegraphics[width=1\textwidth]{gnuradio_architecture}
 \caption{Architecture of GNU Radio}
 \label{gnuradio_architecture}
 \end{figure}
@@ -74,7 +74,7 @@ demodulation (FM, AM, PSK, QAM, GMSK, OFDM and etc), Interpolation and
 decimation. Apart from signal processing blocks, GNURadio also provides 
 support for various signal sources and sinks, such as Signal generators, Noise
 generators, Pseudo random number generators, USRP source and sink, Graphical 
-sinks, Audio source and sink, File source and sink and etc \cite{wikiGNURadio}.
+sinks, Audio source and sink, File source and sink and etc [21from krantis report].
 GNURadio applications are primarily written using the Python programming 
 language.
 
