@@ -108,12 +108,11 @@ complex hardware and large power consumption\cite{mansi11}.
 \section{Cyclostationarity detection}
 
 This technique utilizes periodicity property of the received signal to detect 
-the
-presence of primary users. The property of Periodicity is generally exhibited by 
+presence of primary users. Periodicity property is generally exhibited by the 
 communication signals due to sinusoidal carriers, pulse train, hopping sequences
 etc. Due to this underlying periodicity most of the communication signals can be
 modeled as cyclostationary processes. This 
-technique can detect a primary signal with a particular modulation type even in a
+technique detects a random primary signal with a particular modulation type in a
 background of noise and other modulated signals.
 
 Cyclostationary feature detection is robust to noise and is a better performer 
@@ -137,7 +136,7 @@ of Cyclostationary Detection implementation.}
 
 The detection is done by finding a unique cyclic frequency of the spectral 
 correlation function of the received signal\cite{cabric04}. The spectral correlation 
-function is the Fourier transform of the cyclic autocorrelation function. The 
+function is the Fourier transform of the cyclic autocorrelation function the 
 spectral correlation function is defined as:
 \begin{equation*}
         S(f,\alpha) = \int_{-\infty}^{\infty} R_{x}^{\alpha}(\tau)e^{-2 \pi f\tau}d\tau 
@@ -150,8 +149,8 @@ Where the cyclic autocorrelation function is defined by:
 
 Here $x(t)$ is the signal received and $\alpha$ is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
-This is a two dimensional transform unlike power spectral density which is 
-one-dimensional. For successful detection under cyclo-stationary based spectrum 
+This is a two dimensional transform unlike power spectral density which is 1 
+dimensional. For successful detection under cyclo-stationary based spectrum 
 sensing, we need a priori knowledge of the cyclo-stationary features of the 
 received signal only. However matched filtering is the optimal solution when we 
 completely know about received signal in advance.
