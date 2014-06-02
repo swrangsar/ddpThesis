@@ -18,4 +18,24 @@ them are as follows:
 \end{itemize}
 
 \section{Energy detection}
-Energy detection \cite{zhang09}.
+
+Conventional energy detector is made up of a low pass filter, an A/D converter
+, a square law detector and an integrator. This implementation is not flexible
+enough, especially in the case of narrowband signals and sinewaves. Also, this
+requires a pre-filter matched to the bandwidth $B$ of the signal to be 
+scanned.
+
+So, an alternative implementation is generally used where we find the squared 
+magnitude of the FFT using the Average Periodogram method. In this 
+architecture, we can alter the bandwidth of frequencies scanned just by taking
+the required number of FFT bins. 
+
+Spectrum sensing can be viewed as a binary hypothesis-testing problem 
+\cite{zhang09}:
+\begin{itemize}
+    \item $H0$: primary user is absent
+    \item $H1$: primary user is present
+\end{itemize}
+
+
+
