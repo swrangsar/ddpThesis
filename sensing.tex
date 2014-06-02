@@ -79,12 +79,6 @@ A matched filter is a linear filter to maximize the output SNR of a received
 signal. It is the optimum filter to detect signals that are known a priori 
 \cite{wikiMF}.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.8\textwidth]{matchedFilter}
-\caption[Matched filter]{Block diagram of Matched filter implementation.}
-\label{matchedFilter}
-\end{figure}
 
 In matched filtering, the received signal is first band pass filtered and then
 convolved with the impulse response. The impulse response $h$ here is the 
@@ -115,6 +109,13 @@ received data carry preambles, synchronization data, etc.
 This method requires a specific type of receiver for every primary user.
 Implementing this method on a receiver will increase the complexity and the 
 power consumption greatly.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{matchedFilter}
+\caption[Matched filter]{Block diagram of Matched filter implementation.}
+\label{matchedFilter}
+\end{figure}
 
 \section{Cyclostationarity detection}
 
