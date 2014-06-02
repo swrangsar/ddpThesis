@@ -106,10 +106,3 @@ and USRP: An Analysis Study ",
     month = "December",
     pages = "5761--5766",
 }
-
-@Proceedings{cabric06,
-  author = "D Cabric and A Tkachenko and R W Brodersen",
-  title = "Experimental Study of Spectrum Sensing based on Energy Detection 
-  and Network Cooperation",
-  year = 2006,
-}

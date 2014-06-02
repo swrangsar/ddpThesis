@@ -21,8 +21,31 @@ them are as follows:
 
 Conventional energy detector is made up of a low pass filter, an A/D converter
 , a square law detector and an integrator. This implementation is not flexible
-enough, especially in the case of narrowband signals and sinewaves.
+enough, especially in the case of narrowband signals and sinewaves. Also, this
+requires a pre-filter matched to the bandwidth $B$ of the signal to be 
+scanned.
 
-So, an alternative implementation using Average Periodogram method is usually
-used. In this case, we find the squared magnitude of the FFT. we can alter the
-bandwidth scanned just by taking the required number of FFT bins. 
+So, an alternative implementation is generally used where we find the squared 
+magnitude of the FFT using the Average Periodogram method. In this 
+architecture, we can alter the bandwidth of frequencies scanned just by taking
+the required number of FFT bins. 
+
+Spectrum sensing can be viewed as a binary hypothesis-testing problem 
+\cite{zhang09}:
+\begin{itemize}
+    \item $H0$: primary user is absent
+    \item $H1$: primary user is present
+\end{itemize}
+
+The detection is basically to decide between the following two hypotheses,
+\begin{align}
+    x(t) &= n(t), & H0 \nonumber \\
+    x(t) &= h(t)s(t) + n(t), & H1 \nonumber
+\end{align}
+
+where $x(t)$ is the received signal, $s(t)$ is the primary user signal, $h(t)$
+is the complex channel gain and $n(t)$ is the additive white gaussian noise
+(AWGN). Generally $h(t)$ is assumed to be constant for the detection period
+and replaced by a constant value $h_0$.
+
+

@@ -23,7 +23,7 @@ Conventional energy detector is made up of a low pass filter, an A/D converter
 , a square law detector and an integrator. This implementation is not flexible
 enough, especially in the case of narrowband signals and sinewaves. Also, this
 requires a pre-filter matched to the bandwidth $B$ of the signal to be 
-scanned.
+scanned \cite{cabric06}.
 
 So, an alternative implementation is generally used where we find the squared 
 magnitude of the FFT using the Average Periodogram method. In this 
@@ -45,7 +45,11 @@ The detection is basically to decide between the following two hypotheses,
 
 where $x(t)$ is the received signal, $s(t)$ is the primary user signal, $h(t)$
 is the complex channel gain and $n(t)$ is the additive white gaussian noise
-(AWGN). Generally $h(t)$ is assumed to be constant for the detection period
-and replaced by a constant value $h_0$.
+(AWGN). Generally $h(t)$ is assumed to be constant $h_0$ for the detection 
+period.
+
+Energy detection is one of the simplest methods of spectrum sensing. It is the 
+optimal detection method for unknown signals. Moreover, it is widely used 
+because its computationally less resource-intensive.
 
 
