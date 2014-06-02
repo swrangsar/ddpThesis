@@ -5,7 +5,7 @@ primary users and secondary users in the GSM band. In order to accomplish this,
 implementation of a cognitive radio which detects the spectrum holes in the 
 radio spectrum and enables secondary users to utilize these for communication 
 is needed. An experimental setup is developed for this demonstration using 
-OpenBTS and GNU radio software and USRP N2 as hardware. First a two frequency 
+OpenBTS and GNU radio software and USRP N210 as hardware. First a two frequency 
 system is developed which is then expanded to a four frequency system.
 
 
@@ -15,45 +15,44 @@ Experimental setup diagram:
 
 \subsection{SYSTEM DESCRIPTION}
 The figure above describes the experimental setup for two frequency system. It 
-consists of one primary and one secondary subsystem. The primary subsystem has 
+consist of one primary and one secondary subsystems. The primary subsystem has 
 only OpenBTS software and one USRP for RF front. Where as secondary subsystem 
 has OpenBTS along with GNU radio and two USRP kits for each of these softwares 
 as hardware RF front. This secondary subsystem has cognitive capabilities. To 
-provide cognitive capabilities it was required that OpenBTS and GNU radio run 
-together in the same computer and talk to each other which was challenging. 
-Secondary subsystem continuously senses the frequency band of interest and does 
-decision making depending upon the analysis of the data collected and changes 
+provide cognitive capabilities it was necessary for OpenBTS and GNU radio to run 
+together in the same computer and communicate with each other which was challenging. 
+Secondary subsystem continuously senses the frequency band of interest and  
+takes decision depending upon the analysis of the data collected and changes 
 its parameters accordingly so that primary and secondary users coexist. The 
-spectrum sensing is accomplished by using GNU radio. Also we made GNU radio and 
-OpenBTS coordinate to behave in appropriate manner and take dynamic decisions 
+spectrum sensing is accomplished by using GNU radio.  GNU radio and 
+OpenBTS of the secondary subsystem were made to coordinate and behave in appropriate manner and take dynamic decisions 
 as and when required to make over all system behave cognitively.
 
 \subsection{TESTING}
 For two frequency cognitive system, two GSM bands are used with centre 
-frequency 945MHz($F_1$) and 950MHz($F_2$). Secondary users are made to occupy 
+frequency 945MHz ($F_1$) and 950MHz ($F_2$). Secondary users are made to occupy 
 one of these two bands say $F_1$. Then we make primary users enter the same 
 band. This results in an increase in energy levels in this band which is sensed 
 by the secondary subsystem as it is continuously scanning this band. 
-Immediately secondary users are shifted to other frequency band ($F_2$) there 
-by vacating $F_1$ for primary users. Hence a two frequency cognitive system 
+Immediately secondary users are shifted to other frequency band ($F_2$) thereby 
+vacating $F_1$ for primary users. Hence a two frequency cognitive system 
 demonstrating coexistence of a pair of primary and secondary users is 
 accomplished. 
 The whole technique is described using a flow graph below:
 Flow graph here :
 
 \section{Four frequency system}
-The two frequency system is expanded to a four frequency system with two 
-primary subsystems and one cognitive secondary subsystem.
+The two frequency system is expanded to a four frequency system by adding another primary subsystem to the two frequency experimental setup and having a four frequency radio spectrum instead of two. 
 
 
 Figure for 4 frequency system here:
 
 \subsection{SYSTEM DESCRIPTION}
-In a four frequency system, we have four GSM bands with centre frequencies 
-$F_1$=936MHz, $F_2$=943MHz, $F_3$=950MHz, $F_4$=957MHz. The experimental setup 
-is has two primary subsystems and one secondary subsystem. Primary subsystem 
+ The experimental setup of the four freqency system has 
+has two primary subsystems and one secondary subsystem as described in the figure above. Primary subsystem 
 has OpenBTS and one USRP kit and secondary subsystem has OpenBTS and GNU radio 
-software and two USRP kits as we had previously in two frequency system.
+software and two USRP kits as we had previously in two frequency system. Here we have four GSM bands with centre frequencies 
+$F_1$=936MHz, $F_2$=943MHz, $F_3$=950MHz, $F_4$=957MHz as the radio spectrum.
  
 
 
@@ -61,17 +60,15 @@ software and two USRP kits as we had previously in two frequency system.
 \subsection{Testing}
 Here we make one pair of primary users occupy one of the four frequencies say 
 $F_2$. We make secondary users use one frequency say $F_1$. Now other pair of 
-primary users try an enter frequency $F_1$ for communication. This is sensed by 
+primary users are made try and enter frequency $F_1$ for communication. This is sensed by 
 the secondary system and it tries to migrate secondary users to $F_2$ which is 
-also occupied. Our secondary system detects that $F_2$ is occupied an therefore 
-continues to find spectrum hole in a four frequency spectrum. It finds that 
+also occupied. Our secondary system detects that $F_2$ is occupied and therefore 
+continues to find a spectrum hole in a four frequency spectrum. It finds that 
 frequency $F_3$ is unoccupied and thus allows secondary users to enter $F_3$ 
 and utilize it for communication. The difference between a four frequency 
-system than a two frequency system is that secondary system in a four frequency 
-system has to first check the presence of primary users before switching which 
-was not the case in two frequency system. In two frequency system we assumed 
-that the other band is always unoccupied at the time of switching as only one 
-pair of primary users are there hence one band is always unoccupied.
+system and a two frequency system is that in a four frequency 
+system the secondary subsystem has to first confirm absence of primary users in the band before making secondary users migrate to that band . This was not the case in two frequency system as it has only one 
+pair of primary users. Hence the other band where secondary users will be made to migrate is always unoccupied at the time of switching secondary radio to that band. So there is no need to check for the peresence of primary users in that band.
 
 The following flow graph describes the four frequency cognitive system:
 
@@ -83,8 +80,8 @@ taken to decide the noise level, energy level when only primary users are
 occupying and also energy levels when both primary users and secondary users 
 exist in the same band for a short duration of time. The threshold value 
 depends on the power transmitted by the users and their distance from the USRP 
-kit which is RF front for GNU radio. This distance dependency can be removed by 
-setting the threshold quite low then required so that even if the users move 
+kits which is RF front for GNU radio. This distance dependency can be removed by 
+setting the threshold much lower so that even if the users move 
 far away, the decision making is not affected.  
 
 
@@ -93,11 +90,11 @@ far away, the decision making is not affected.
 
 \section{CUSUM}
 CUMSUM peak detection is also applied after energy detection to ensure that the
-detected high energy in the band of interest is not due some  not relevant 
-reason like random fluctuations in noise power etc but due to presence of 
+detected high energy in the band of interest is not due to some irrelevant 
+reasons like random fluctuations in noise power etc, but due to the presence of 
 primary radio in that band. This ensures high accuracy in primary radio 
 detection and correct decision making.
-CUSUM is basically a sequential analysis technique to monitor change detection. 
+CUSUM is basically a sequential analysis technique to detect change. 
 It is a criterion for deciding when to take corrective action. As the name 
 implies CUSUM involves calculating cumulative sum. This makes it sequential. 
 The samples from a process $x_n$  are assigned weights $\omega_n$  and summed 
@@ -110,7 +107,7 @@ S_{n+1} &= max(0, S_n + x_n - \omega_n) \nonumber
 When the value of $S$ exceeds a certain threshold value a change in value has 
 been found. This formula detects change only in positive direction. To detect 
 change in negative direction we have to do min operation instead of max 
-operation and the change in value is detected when goes below threshold.
+operation and the change  is detected when value goes below the threshold.
 
 
 
@@ -126,7 +123,7 @@ accomplished during our project tenure.
 
 \item We began by exploring what cognitive radio is and how it can be used 
 in the already existing radio. We did a literature survey on the ongoing work in the
-context of cognitive radio.
+field of cognitive radio.
 
 \item We learned how to use the GNURadio software package starting from its installation procedure. We 
 also designed an FM receiver using GNURadio Companion to get used to the software. 
@@ -144,27 +141,26 @@ with the installation of this software we registered our GSM SIM cards in the
 local network established by OpenBTS. We could perform calling and sending SMS
 between our phones using the local network established by OpenBTS with USRP 
 kit as its radio interface.
-\item Since spectrum sensing is major part of cognitive radio literature survey 
+\item Since spectrum sensing is major part of cognitive radio, literature survey 
 on various spectrum sensing techniques was done. We chose energy detection 
-spectrum sensing technique for our project and so we did detail study of a 
+spectrum sensing technique for our project and so we did detailed study of a 
 technique called Average Periodogram Analysis to implement this method. We also 
 simulated this technique in Matlab using various windowing methods and 
 understand results. 
-\item After all this we designed our problem statement and the flow graph of 
-how we will approach the problem which we have included in the last chapter. 
-Also we decided upon building the experimental setup which we have covered in 
-the start of this chapter. 
-\item  First key step to approach this problem was to run Open BTS and GNU 
+\item After all this the problem statement was designed and a flow graph of 
+how this problem will be approached was constructed. We also decided upon the experimental setup required for this problem. Detailed discription of all this is included in the previous sections of this chapter. 
+ 
+\item  First key step to approach the problem was to run Open BTS and GNU 
 Radio together in the same computer with two USRP kits connected one for 
 OpenBTS and the other for GNURadio. It was a little tricky because we had to
-find out whether it was possible run two USRP kits on the same computer simultaneously.
+find out whether it was possible to run two USRP kits on the same computer simultaneously.
 Fortunately, it turned out it was possible if the two kits had two different IP addresses.
 We then tried to figure out how to burn a different IP address to a USRP kit and
 managed to do the same.
 \item The next step was to build a two frequency cognitive system with a pair of 
 primary and secondary users communicating in parallel and primary pair having 
 higher priority when ever both try to use same radio band. Detailed description 
-is in the start of this chapter.
+is in the previous sections of this chapter.
 \item This two frequency system was expanded to four frequency system with two 
 primary pair of users and one secondary pair of users coexisting. This 
 demonstrated that both primary and secondary users can exist in the same GSM 

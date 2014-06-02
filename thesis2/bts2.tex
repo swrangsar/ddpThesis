@@ -15,7 +15,7 @@ A complete OpenBTS P2.8 installation comprises several distinct applications:
 \item[Other Servers] Other optional GSM services, beyond speech and text messaging, are supported through external servers.
 \end{description}
 
-The OpenBTS and Transceiver applications must run inside each GSM/SIP access point. The Asterisk and the subscriber registry applications communicated through the filesystem and therefore must run on the same computer, but that computer can be remote from the access point. smqueue and the other servers can run anywhere and may have multiple instances.
+The OpenBTS and Transceiver applications must run inside each GSM/SIP access point. The Asterisk and the subscriber registry applications are communicated through the filesystem and therefore must run on the same computer, but that computer can be remote from the access point. smqueue and the other servers can run anywhere and may have multiple instances.
 
  \subsection{OpenBTS}
 The OpenBTS application contains:
@@ -47,7 +47,7 @@ OpenBTS uses a modified SIP registry as a substitute for the home location regis
 Smqueue is a store-and-forward server that is used for text messaging in the OpenBTS system. Smqueue is required to send a text message from one MS to another, or to provide reliable delivery of text messages to an MS from any source.
 
 \subsection{Network Organization}
-In the simplest network, with a single access point, all of the applications in the suite run inside the access point on the same embedded computer.
+In the simplest network, with a single access point, all of the applications in the suite run inside the access point on the same embedded computer. Figure \ref{networkOrg} describes this.
 
 
 
@@ -68,6 +68,14 @@ registry, etc. \\
 \label{networkOrg}
 \end{figure}
 
+In larger network, with more than one access points, one of the BTS can behave as a master
+and provide servers to the rest of them. Figure \ref{fig:btsLarge} describes a network with two access points
+where a master access points is providing servers to the other one.
+The Transceiver applications and the OpenBTS must run in each GSM/SIP access point.
+The Asterisk and the Subscriber Registry applications (SIPAuthServe) communicate via the
+filesystem and hence must run in the same computer, but that computer can be remote to the
+access point. SMQueue and other servers can run in any access point and can have multiple
+instances.
 \begin{figure}
   \centering
     \includegraphics[width=\textwidth]{btsLarge}
