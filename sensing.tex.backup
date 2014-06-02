@@ -96,9 +96,14 @@ to be purely Gaussian.
 Matched filtering requires only $O$(1/SNR) samples to meet a given $P_d$, 
 probability of detection requirement. Thus it requires less detection time.
 
-But, matched filtering requires you to know about the reference signal 
-beforehand. To demodulate the received signal information 
-like bandwidth, 
+But, matched filtering requires us to know a lot of information about the 
+reference signal beforehand. It also requires us to demodulate the received 
+signal. For demodulation, we require information like bandwidth, operating 
+frequency, modulation type, pulse shaping, packet format, etc. Demodulating 
+the received signal correctly also requires timing synchronization, carrier 
+synchronization, etc. It might still be possible to achive this because the
+received data carry preambles, synchronization data, etc.
 
+This method requires a specific type of receiver for every primary user. 
 
 

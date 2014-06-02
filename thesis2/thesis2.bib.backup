@@ -88,3 +88,39 @@ and USRP: An Analysis Study ",
   month = "June",
   year = 2011,
 }
+
+@Article{cabric04,
+  author = "D. Cabric, S. M. Mishra and R. W. Brodersen",
+  title = "Implementation Issues in Spectrum Sensing for Cognitive Radios",
+  journal = "Proc. IEEE Asilomar Conf. Signals, Sys., and Comp.",
+  month = "November",
+  year = 2004,
+}
+
+@Article{akyildiz06,
+  author = "Ian F. Akyildiz, Won-Yeol Lee, Mehmet C. Vuran and Shantidev Mohanty",
+  title = "Next generation/dynamic spectrum access/cognitive radio wireless networks: A survey", 
+  journal = "Computer Networks", 
+  volume = 50,
+  year = 2006,
+}
+
+@PhdThesis{miller08,
+  author = "Andreas Miller",
+  title = "DAB Software Receiver Implementation",
+  institution = "Department of Information Technology and Electrical Engineering",
+  school = "ETH", 
+  year = 2008,
+}
+
+@MastersThesis{kranthi13,
+  author = "Kranthi Ananthula",
+  title = "Experimental setup of Cognitive Radio Test-Bed using Software Defined Radio",
+  institution = "Indian Institute of Technology Bombay",
+  year = 2013,
+}
+
+@Misc{wikiGNURadio,
+    key = "GNURadio Wiki",
+    howpublished = "\url{http://gnuradio.org/redmine/projects/gnuradio/wiki}",
+}

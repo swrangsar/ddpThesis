@@ -19,17 +19,17 @@ them are as follows:
 
 \section{Energy detection}
 
-Conventional energy detector is made up of a low pass filter, an A/D converter
-, a square law detector and an integrator (Figure \ref{energyDetection}a).
-This implementation is not flexible
-enough, especially in the case of narrowband signals and sinewaves. Also, this
-requires a pre-filter matched to the bandwidth $B$ of the signal to be 
-scanned \cite{cabric06}.
+Conventional energy detector is made up of a low pass filter, an A/D 
+converter, a square law detector and an integrator (Figure 
+\ref{energyDetection}a). This implementation is not flexible enough, 
+especially in the case of narrowband signals and sinewaves. Also, this 
+requires a pre-filter matched to the bandwidth $B$ of the signal to be scanned
+\cite{cabric06}.
 
 So, an alternative implementation is generally used where we find the squared 
 magnitude of the FFT using the Average Periodogram method (Figure 
-\ref{energyDetection}b). In this 
-architecture, we can alter the bandwidth of frequencies scanned just by taking
+\ref{energyDetection}b). In this architecture, we can alter the bandwidth of
+frequencies scanned just by taking
 the required number of FFT bins. 
 
 Spectrum sensing can be viewed as a binary hypothesis-testing problem 
@@ -76,12 +76,20 @@ points, but then this requires more samples and thereby takes more time.
 
 \section{Matched filter detection}
 A matched filter is a linear filter to maximize the output SNR of a received 
-signal. It is the optimum filter to detect signals that are known a priori.
+signal. It is the optimum filter to detect signals that are known a priori 
+\cite{wikiMF}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{matchedFilter}
+\caption[Matched filter]{Block diagram of Matched filter implementation.}
+\label{matchedFilter}
+\end{figure}
 
 In matched filtering, the received signal is first band pass filtered and then
 convolved with the impulse response. The impulse response $h$ here is the 
-reference signal itself. Matched filtering is so called because the impulse 
-response is matched to the reference signal.
+reference signal itself \cite{bhatta11}. Matched filtering is so called 
+because the impulse response is matched to the reference signal.
 \begin{equation*}
     Y[n] = \sum_{-\infty}^{\infty} h[n-k]x[k]
 \end{equation*}
@@ -96,11 +104,18 @@ to be purely Gaussian.
 Matched filtering requires only $O$(1/SNR) samples to meet a given $P_d$, 
 probability of detection requirement. Thus it requires less detection time.
 
-But, matched filtering requires us to know a lot of information about the 
-reference signal beforehand. It also requires to demodulate the received 
-signal. For demodulation, we require information like bandwidth, operating 
-frequency, modulation type, pulse shaping, packet
-format, etc.
+But, matched filtering requires us to have a priori information about the 
+received signal. This technique requires demodulating the received signal. For
+demodulation, we require information like bandwidth, operating frequency, 
+modulation type, pulse shaping, packet format, etc. Demodulating the received
+signal correctly also requires timing synchronization, carrier 
+synchronization, etc. It might still be possible to achive this because the
+received data carry preambles, synchronization data, etc.
 
+This method requires a specific type of receiver for every primary user.
+Implementing this method on a receiver will scale up the complexity and the 
+power consumption greatly.
+
+\section{Cyclostationarity detection}
 
 
