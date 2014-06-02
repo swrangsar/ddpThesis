@@ -106,3 +106,35 @@ and USRP: An Analysis Study ",
     month = "December",
     pages = "5761--5766",
 }
+
+@InProceedings{cabric06,
+  author = "D Cabric and A Tkachenko and R W Brodersen",
+  title = "Experimental Study of Spectrum Sensing based on Energy Detection 
+  and Network Cooperation",
+  booktitle = "TAPAS '06 Proceedings of the first international workshop on 
+  Technology and policy for accessing spectrum",
+  month = "August",
+  year = 2006,
+}
+
+@Misc{wikiMF,
+    key = "Matched Filter Wiki",
+    howpublished = "\url{http://en.wikipedia.org/wiki/Matched_filter}",
+}
+
+@Article{bhatta11,
+  title = "A Survey on Spectrum Sensing Techniques in Cognitive Radio",
+  author = "P P Bhattacharya and others",
+  journal = "International Journal of Computer Science \& Communication Networks",
+  volume = 1,
+  number = 2,
+  pages = "196--206",
+  year = 2011,
+}
+
+@MastersThesis{kranthi13,
+  author = "Kranthi Ananthula",
+  title = "Experimental setup of Cognitive Radio Test-Bed using Software Defined Radio",
+  institution = "Indian Institute of Technology Bombay",
+  year = 2013,
+}

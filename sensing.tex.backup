@@ -19,17 +19,17 @@ them are as follows:
 
 \section{Energy detection}
 
-Conventional energy detector is made up of a low pass filter, an A/D converter
-, a square law detector and an integrator (Figure \ref{energyDetection}a).
-This implementation is not flexible
-enough, especially in the case of narrowband signals and sinewaves. Also, this
-requires a pre-filter matched to the bandwidth $B$ of the signal to be 
-scanned \cite{cabric06}.
+Conventional energy detector is made up of a low pass filter, an A/D 
+converter, a square law detector and an integrator (Figure 
+\ref{energyDetection}a). This implementation is not flexible enough, 
+especially in the case of narrowband signals and sinewaves. Also, this 
+requires a pre-filter matched to the bandwidth $B$ of the signal to be scanned
+\cite{cabric06}.
 
 So, an alternative implementation is generally used where we find the squared 
 magnitude of the FFT using the Average Periodogram method (Figure 
-\ref{energyDetection}b). In this 
-architecture, we can alter the bandwidth of frequencies scanned just by taking
+\ref{energyDetection}b). In this architecture, we can alter the bandwidth of
+frequencies scanned just by taking
 the required number of FFT bins. 
 
 Spectrum sensing can be viewed as a binary hypothesis-testing problem 
@@ -76,12 +76,14 @@ points, but then this requires more samples and thereby takes more time.
 
 \section{Matched filter detection}
 A matched filter is a linear filter to maximize the output SNR of a received 
-signal. It is the optimum filter to detect signals that are known a priori.
+signal. It is the optimum filter to detect signals that are known a priori 
+\cite{wikiMF}.
+
 
 In matched filtering, the received signal is first band pass filtered and then
 convolved with the impulse response. The impulse response $h$ here is the 
-reference signal itself. Matched filtering is so called because the impulse 
-response is matched to the reference signal.
+reference signal itself \cite{bhatta11}. Matched filtering is so called 
+because the impulse response is matched to the reference signal.
 \begin{equation*}
     Y[n] = \sum_{-\infty}^{\infty} h[n-k]x[k]
 \end{equation*}
@@ -96,14 +98,66 @@ to be purely Gaussian.
 Matched filtering requires only $O$(1/SNR) samples to meet a given $P_d$, 
 probability of detection requirement. Thus it requires less detection time.
 
-But, matched filtering requires us to know a lot of information about the 
-reference signal beforehand. It also requires us to demodulate the received 
-signal. For demodulation, we require information like bandwidth, operating 
-frequency, modulation type, pulse shaping, packet format, etc. Demodulating 
-the received signal correctly also requires timing synchronization, carrier 
+But, matched filtering requires us to have a priori information about the 
+received signal. This technique requires demodulating the received signal. For
+demodulation, we require information like bandwidth, operating frequency, 
+modulation type, pulse shaping, packet format, etc. Demodulating the received
+signal correctly also requires timing synchronization, carrier 
 synchronization, etc. It might still be possible to achive this because the
 received data carry preambles, synchronization data, etc.
 
-This method requires a specific type of receiver for every primary user. 
+This method requires a specific type of receiver for every primary user.
+Implementing this method on a receiver will increase the complexity and the 
+power consumption greatly.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{matchedFilter}
+\caption[Matched filter]{Block diagram of Matched filter implementation.}
+\label{matchedFilter}
+\end{figure}
+
+\section{Cyclostationarity detection}
+
+To identify signals in the presence of noise and other signals, 
+cyclostationarity detection uses the periodic properties of the signal. 
+Sinusoidal waves, hopping sequences, cyclic prefixes, etc. of primary signals
+carry periodic properties in them. These cyclostationary signals manifest 
+spectral correlation and other periodic statistics while stationary noise and
+interference do not.
+
+These periodic properties are intentionally put in these signals to help the
+receivers do timing synchronization, phase synchronization,
+direction of arrival estimation \cite{kranthi13}, etc. These periodic 
+properties help in identifying some random signal with particular modulation
+types even in the midst of noise and interference from other signals.
+
+In low SNR regions, cyclostationarity detection performs better than energy 
+detection in identifying or detecting signals. Cyclostationarity detection is
+very resistant to noise and other interferences. Although it requires some
+a priori information, cyclostationarity can distinguish some Cognitive Radio
+signals from primary signals.
+
+The cons of cyclostationarity detection are that it is quite complicated 
+mathematically, more computationally involved and requires longer observation
+time.
+
+We can detect a signal, given we know its cyclic frequency, by finding that
+frequency in the SCD (Spectral Correlation Density) function calculated for 
+the received signal. The SCD is also known as CS (Cyclic Spectrum) and SCF 
+(Spectral Correlation Function).The SCD is given by \cite{deepa10}:
+\begin{equation*}
+    S_{x}^{\alpha}(f) = \int_{-\infty}^{\infty}R_{x}^{\alpha}(\tau)e^{-i2\pi f\tau}d\tau
+\end{equation*}
+
+where the cyclic autocorrelation function $R_{x}^{\alpha}(\tau)$ is defined as \cite{gardner91}
+
+\begin{equation*}
+    R_{x}^{\alpha}(\tau) {\buildrel\triangle\over =} \lim_{T\rightarrow\infty}
+    \int_{-T/2}^{T/2}x(t+\tau/2)x^{\ast}(t-\tau/2)e^{-{i2\pi\alpha t}}dt
+\end{equation*}
+where $x(t)$ is the received signal and $\alpha$ is the 
+\emph{cyclic frequency}.
+
 
 
