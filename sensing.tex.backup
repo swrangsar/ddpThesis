@@ -147,10 +147,12 @@ frequency in the SCD (Spectral Correlation Density) function calculated for
 the received signal. The SCD is also known as CS (Cyclic Spectrum) and SCF 
 (Spectral Correlation Function).The SCD is given by \cite{deepa10}:
 \begin{equation*}
-    S_{x}^{\alpha}(f) = \int_{-\infty}^{\infty}R_{x}^{\alpha}(\tau)e^{-i2\pi f\tau}d\tau
+    S_{x}^{\alpha}(f) = \int_{-\infty}^{\infty}R_{x}^{\alpha}(\tau)e^{-i2\pi 
+    f\tau}d\tau
 \end{equation*}
 
-where the cyclic autocorrelation function $R_{x}^{\alpha}(\tau)$ is defined as \cite{gardner91}
+where the cyclic autocorrelation function $R_{x}^{\alpha}(\tau)$ is defined as
+\cite{gardner91}
 
 \begin{equation*}
     R_{x}^{\alpha}(\tau) {\buildrel\triangle\over =} \lim_{T\rightarrow\infty}
@@ -159,5 +161,52 @@ where the cyclic autocorrelation function $R_{x}^{\alpha}(\tau)$ is defined as \
 where $x(t)$ is the received signal and $\alpha$ is the 
 \emph{cyclic frequency}.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{csd}
+\caption[Cyclostationary Detection implementation]{Block diagram 
+of Cyclostationary Detection implementation.}
+\label{csd}
+\end{figure}
 
+We can also get the SCD function by considering a zero mean signal $x(t)$
+whose time varying autocorrelation function $R_x(t,\tau)$ defined as
+\cite{prithvi11}
+\begin{equation*}
+    R_{x}(t,\tau) = E\{x(t)x^{\ast}(t+\tau)\}
+\end{equation*}
 
+is periodic in time $t$ and can be represented as a Fourier series
+\begin{equation*}
+    R_{x}(t,\tau) = \sum_{\alpha}R_{x}^{\alpha}(\tau)e^{i2\pi\alpha t} 
+\end{equation*}
+for which the cyclic autocorrelation function is defined as
+\begin{equation*}
+    R_{x}^{\alpha}(\tau) = \lim_{T\rightarrow\infty}{\frac{1}{T}}
+    \int_{\frac{T}{2}}^{\frac{T}{2}}R_{x}(t,\tau)e^{-i2\pi\alpha t}dT
+\end{equation*}
+Again the Fourier transform of $R_{x}^{\alpha}(\tau)$ is the SCD defined as
+\begin{equation*}
+    S_{x}^{\alpha}(\tau)=\int_{-\infty}^{\infty}R_{x}^{\alpha}(\tau)e^{-i2\pi
+    f\tau}d\tau
+\end{equation*}
+Cyclic Spectrum is a two-dimensional transform whereas Power Spectral Density
+(PSD) is just one-dimensional. Cyclostationarity detection won't work without
+a priori information. But if we have all the a priori information, then 
+matched filtering turns out to be a much simpler and faster technique.
+
+\section{Comparison of sensing techniques}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{compSensingTch}
+\caption[Comparison of sensing methods]{Comparison of some spectrum sensing 
+methods}
+\label{compSensingTch}
+\end{figure}
+
+Energy detection technique is the simplest method of all but it is also the 
+most error prone. On the other hand, matched filtering is the most complex but 
+it is very accurate. Cyclostationarity detection is more complicated than 
+energy detection but it is more accurate. There is no ideal detection method.
+There are always compromises and tradeoffs to be made.
