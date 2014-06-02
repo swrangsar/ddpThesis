@@ -47,11 +47,10 @@ The detection is basically to decide between the following two hypotheses,
 
 where $x(t)$ is the received signal, $s(t)$ is the primary user signal, $h(t)$
 is the complex channel gain and $n(t)$ is the additive white gaussian noise
-(AWGN) with zero mean and variance $\sigma_n^2$. Generally $h(t)$ is assumed to
-be constant $h_0$ for the detection 
-period. A statistics $Y$ is computed by taking energy samples over a time $T$
-in a bandwidth $B$ and compared with a predefined threshold $\gamma$ for 
-making the decision.
+(AWGN) with zero mean and variance $\sigma_n^2$. Generally $h(t)$ is assumed
+to be constant $h_0$ for the detection period. A statistics $Y$ is computed by
+taking energy samples over a time $T$ in a bandwidth $B$ and compared with a 
+predefined threshold $\gamma$ for making the decision.
 
 Energy detection is one of the simplest methods of spectrum sensing. It is the 
 optimal detection method for unknown signals. Moreover, it is widely used 
@@ -76,4 +75,30 @@ The frequency resolution can be improved by increasing N, the number of FFT
 points, but then this requires more samples and thereby takes more time.
 
 \section{Matched filter detection}
+A matched filter is a linear filter to maximize the output SNR of a received 
+signal. It is the optimum filter to detect signals that are known a priori.
+
+In matched filtering, the received signal is first band pass filtered and then
+convolved with the impulse response. The impulse response $h$ here is the 
+reference signal itself. Matched filtering is so called because the impulse 
+response is matched to the reference signal.
+\begin{equation*}
+    Y[n] = \sum_{-\infty}^{\infty} h[n-k]x[k]
+\end{equation*}
+
+Here, $x[k]$ is the received or unknown signal with additive noise.
+The goal of matched filtering is to enhance the component of reference signal
+in the received signal and to suppress the noise. This works best when the 
+additive noise is completely orthogonal to the reference signal or when the
+noise is completely Gaussian. In practice though, the noise doesn't turn out 
+to be purely Gaussian.
+ 
+Matched filtering requires only $O$(1/SNR) samples to meet a given $P_d$, 
+probability of detection requirement. Thus it requires less detection time.
+
+But, matched filtering requires you to know about the reference signal 
+beforehand. To demodulate the received signal information 
+like bandwidth, 
+
+
 

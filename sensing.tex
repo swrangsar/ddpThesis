@@ -75,4 +75,32 @@ The frequency resolution can be improved by increasing N, the number of FFT
 points, but then this requires more samples and thereby takes more time.
 
 \section{Matched filter detection}
+A matched filter is a linear filter to maximize the output SNR of a received 
+signal. It is the optimum filter to detect signals that are known a priori.
+
+In matched filtering, the received signal is first band pass filtered and then
+convolved with the impulse response. The impulse response $h$ here is the 
+reference signal itself. Matched filtering is so called because the impulse 
+response is matched to the reference signal.
+\begin{equation*}
+    Y[n] = \sum_{-\infty}^{\infty} h[n-k]x[k]
+\end{equation*}
+
+Here, $x[k]$ is the received or unknown signal with additive noise.
+The goal of matched filtering is to enhance the component of reference signal
+in the received signal and to suppress the noise. This works best when the 
+additive noise is completely orthogonal to the reference signal or when the
+noise is completely Gaussian. In practice though, the noise doesn't turn out 
+to be purely Gaussian.
+ 
+Matched filtering requires only $O$(1/SNR) samples to meet a given $P_d$, 
+probability of detection requirement. Thus it requires less detection time.
+
+But, matched filtering requires us to know a lot of information about the 
+reference signal beforehand. It also requires to demodulate the received 
+signal. For demodulation, we require information like bandwidth, operating 
+frequency, modulation type, pulse shaping, packet
+format, etc.
+
+
 
