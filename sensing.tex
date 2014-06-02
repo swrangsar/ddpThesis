@@ -20,13 +20,15 @@ them are as follows:
 \section{Energy detection}
 
 Conventional energy detector is made up of a low pass filter, an A/D converter
-, a square law detector and an integrator. This implementation is not flexible
+, a square law detector and an integrator (Figure \ref{energyDetection}a).
+This implementation is not flexible
 enough, especially in the case of narrowband signals and sinewaves. Also, this
 requires a pre-filter matched to the bandwidth $B$ of the signal to be 
 scanned \cite{cabric06}.
 
 So, an alternative implementation is generally used where we find the squared 
-magnitude of the FFT using the Average Periodogram method. In this 
+magnitude of the FFT using the Average Periodogram method (Figure 
+\ref{energyDetection}b). In this 
 architecture, we can alter the bandwidth of frequencies scanned just by taking
 the required number of FFT bins. 
 
@@ -51,5 +53,15 @@ period.
 Energy detection is one of the simplest methods of spectrum sensing. It is the 
 optimal detection method for unknown signals. Moreover, it is widely used 
 because its computationally less resource-intensive.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.59\textwidth]{energyDetection}
+    \caption[Energy Detection block diagram]{(a) Implementation using analog 
+    filter and square law device \\
+    (b) Implementation using periodogram. \\
+    \footnotesize{Source: \cite{cabric06}}}
+    \label{energyDetection}
+\end{figure}
 
 
