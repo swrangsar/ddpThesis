@@ -178,17 +178,17 @@ whose time varying autocorrelation function $R_x(t,\tau)$ defined as
 
 is periodic in time $t$ and can be represented as a Fourier series
 \begin{equation*}
-    R_{x}(t,\tau) = \sum_{\alpha}R_{x}^{\alpha}(\tau)e^{i2\pi\alpha t} 
+    R_{x}(t,\tau) = \sum_{\alpha}R_{x}^{\alpha} (\tau)e^{i2\pi\alpha t} 
 \end{equation*}
 for which the cyclic autocorrelation function is defined as
 \begin{equation*}
-    R_{x}^{\alpha}(\tau) = \lim_{T\rightarrow\infty}{\frac{1}{T}}
+    R_{x}^{\alpha}(\tau) = \lim_{T\rightarrow\infty} {\frac{1}{T}}
     \int_{\frac{T}{2}}^{\frac{T}{2}}R_{x}(t,\tau)e^{-i2\pi\alpha t}dT
 \end{equation*}
 Again the Fourier transform of $R_{x}^{\alpha}(\tau)$ is the SCD defined as
 \begin{equation*}
-    S_{x}^{\alpha}(\tau)=\int_{-\infty}^{\infty}R_{x}^{\alpha}(\tau)e^{-i2\pi
-    f\tau}d\tau
+    S_{x}^{\alpha}(\tau)=\int_{-\infty}^{\infty}R_{x}^{\alpha}
+    (\tau)e^{-i2\pi f\tau}d\tau
 \end{equation*}
 Cyclic Spectrum is a two-dimensional transform whereas Power Spectral Density
 (PSD) is just one-dimensional. Cyclostationarity detection won't work without
@@ -197,9 +197,9 @@ matched filtering turns out to be a much simpler and faster technique.
 
 \section{Comparison of sensing techniques}
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
-\includegraphics[width=0.7\textwidth]{compareSensing}
+\includegraphics[width=0.77\textwidth]{compareSensing}
 \caption[Comparison of sensing methods]{Comparison of some spectrum sensing 
 methods}
 \label{compareSensing}
@@ -209,8 +209,10 @@ Energy detection technique is the simplest method of all but it is also the
 most error prone. On the other hand, matched filtering is the most complex but 
 it is very accurate. Cyclostationarity detection is more complicated than 
 energy detection but it is more accurate. There is no ideal detection method.
-There are always compromises and tradeoffs to be made.
+There are always compromises and tradeoffs to be made. Figure 
+\ref{compareSensing} shows a comparison of some spectrum sensing methods.
 
 There are other methods of spectrum sensing that are more involved. For
 example multitaper spectral estimation, wavelet based detection, waveform
-based detection, etc. 
+based detection, etc.
+
