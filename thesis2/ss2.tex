@@ -224,7 +224,7 @@ wide band spectrum sensing
 called 
 usrp\_spectrum\_sense.py. The program is provided in the appendix. 
 It is used as a basic code for wide band spectrum analyzer implementation. The output of this 
-code is the magnitude squared of the FFT. This means for each FFT bin the output 
+code is the magnitude squared of the FFT. This means for each FFT bin[i] the output 
 is $ Y[i] = re[X[i]]*re[X[i]] + im[X[i]]*im[X[i]]$. We can calculate the power by
 taking square root of the output. We need $N$ time samples of $x(t)$ sampled at a 
 sampling frequency of $F_{s}$ to use $N$ point complex FFT $X(\omega)$ analysis. An 

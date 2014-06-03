@@ -4,10 +4,9 @@ Due to limited availability of spectrum resource, there is a serious impact on
 the emerging mobile applications. Hence there is a need to efficiently utilize
 the available radio spectrum. The problem right now is not the physical scarcity
 of the radio spectrum rather the inefficient use of the spectrum. Solution to 
-this is cognitive radio. The major problems in cognitive radio is detection of 
-primary users in the licensed spectrum and enable secondary users to quit the 
-frequency band as quickly as possible if the corresponding primary radio emerges
-to avoid interference to primary users. This technique is called spectrum 
+this is cognitive radio. The major problem in cognitive radio is to detect 
+spectrum holes which can be utilized by secondary users for communication and to enable secondary users to quit the 
+frequency band as soon as the corresponding primary radio emerges. This technique is called spectrum 
 sensing. Spectrum sensing is the first step to implement cognitive radio system.
 
 There are various methods for local spectrum sensing proposed by researchers.
@@ -37,8 +36,8 @@ technique:
 \centering
 \includegraphics[width=0.8\textwidth]{energyDetector}
 \caption[Block diagram of Energy Detection implementatio]{Block diagram 
-of Energy Detection implementation.
-\emph{Source:
+of Energy Detection implementation.\\
+\footnotesize{Source:
 \url{http://www.hindawi.com/journals/ijvt/2011/630467.fig.003.jpg} 
 [Accessed on Oct 22, 2013]}}
 \label{energyDetector}
@@ -48,7 +47,7 @@ As described in the energy detection block diagram, it is basically a hypothesis
 testing problem with two possible hypothesis $H0$ and $H1$. Hypothesis $H1$ concludes 
 the presence of primary users in the band of interest and hypothesis $H0$ 
 concludes their absence. And energy detection technique is basically about 
-distinguishing between these two hypothesizes\cite{sarijari09}.
+distinguishing between these two hypotheses\cite{sarijari09}.
 
 
 \begin{align}
@@ -56,14 +55,14 @@ x(t) & = n(t); & H0 \nonumber \\
 x(t) & = hs(t)+n(t); & H1 \nonumber
 \end{align}
 
-where $x(t)$ is signal received by secondary user and $s(t)$ is primary radio 
+$x(t)$ is signal received by secondary user and $s(t)$ is primary radio 
 signal, $n(t)$ is additive white Gaussian noise (AWGN) and $h$ is the amplitude gain
 of the channel. $s(t)$ and $n(t)$ are assumed to be independent of each other. 
 Signal detection is performed using an energy detector and compute decision 
 statistics $Y$ which corresponds to energy collected in observation time $T$ and 
-bandwidth $W$ and comparing this statistics to a predetermined threshold $\gamma$. Energy 
+bandwidth $W$ and comparing this statistics to a predetermined threshold $\gamma$. In our project energy 
 detection is implemented using average periodogram analysis which is covered in 
-later part of this report.
+later part of this chapter.
 
 
 \section{Matched filter detection}
@@ -232,21 +231,25 @@ sampling frequency of $F_{s}$ to use $N$ point complex FFT $X(\omega)$ analysis.
 appropriate window function is to be selected to reduce spectral leakage and 
 applied to these time samples. The output of the complex FFT will represent the 
 frequency spectrum content as follows: The first value of the FFT output 
-$(bin0 == X[0])$ is the passband centre frequency The first half of FFT spectrum 
-($X[1]$ to $X[N/2-1]$) contains the positive baseband frequencies, which corresponds
+$(bin0 == X[0])$ is the passband centre frequency The first half of FFT spectrum ($X[1]$ to $X[N/2-1]$) contains the positive baseband frequencies, which corresponds
 to the passband spectrum from centre frequency to $+F_{s}/2$. The second half of the 
 FFT ($X[N/2]$ to $X[N-1]$) contains the negative baseband frequencies, i.e. from 
 $-F_{s}/2$ to centre frequency.
 
 
+
 For our project purpose, we collected 1024 samples using a tuner centered at 
 uplink frequency of our interest, say 900 MHz. 1024 is choosen as the number of 
 FFT points because the number of FFT points has to be a power of 2 for the fast 
-execution of the FFT algorithm. Default  sampling frequency is set as 10 MHz. 
-The frequency resolution is therefore: 10 MHz / 1024 = 9.7656 MHz. The 
+execution of the FFT algorithm. Default  sampling frequency is set as 1 MHz. 
+The frequency resolution is therefore: 1 MHz / 1024 = 976.56 KHz. The 
 decimation is defined as dsp rate divided by sample rate. The UHD driver 
 requires the decimation value to be an even number. The dsp rate is the actual 
 hardware-level sampling rate of the USRP kit. It is the rate at which the USRP 
 device takes analog samples from the external world and converts them to digital
 form. The dsp rate of the USRP is 100 MHz. Hence we chose sampling frequency to 
-be 10 MHz which gives a decimation value of: 100 MHz / 10 MHz = 10.
+be 1 MHz which gives a decimation value of: 100 MHz / 1 MHz = 100.
+
+A GSM band is of 200 KHz. So, in order to calculate the energy in a particular
+frequency channel of interest, we need to find the average of all the bin values
+which lie in the 200 KHz band centered at that frequency.
