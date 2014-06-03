@@ -1,5 +1,60 @@
 \chapter{Software Defined Radio}
 
+Software Define Radio, SDR is a radio communication system where most of the 
+hardware components have been replaced by software. This isn't a new concept
+but recent advances in electronics technologies have made many things possible
+that were just theoretically possible before. In traditional radio systems,
+all the components are hardwired into the device. These components cannot be
+modified or tweaked easily. Most of them needs to be replaced instead. They
+are also much more expensive to reconfigure. But in an SDR, to change the
+functionality of the radio system all you need to do is rewrite its software
+code. Thus it can be reconfigured easily and economically. The protocols used
+by the software based radio system can also be changed easily. Usually, in 
+an SDR most of the hard work is handed over to a general purpose 
+microprocessor instead of a special purpose hardware.
+
+The traditional hardware radio system consists of elements such as mixers, 
+filters, amplifiers, converters, modulators, etc. which are expensive and inflexible. Thus 
+traditional hardware-based radio devices limit cross-functionality and can 
+only be modified only through physical intervention. This results in higher 
+production costs and minimal flexibility. Whereas in SDR technologies like Field 
+Programmable Gate Array (FPGA), Digital Signal Processor (DSP) and 
+General-Purpose Processor (GPP) are used to build the software radio elements.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.59\textwidth]{sdrBlock}
+\caption{Block diagram of SDR.}
+\label{sdrBlock}
+\end{figure}
+
+The SDR contains a number of basic functional blocks.
+The radio in general can be divided into three basic sections, namely the front
+end, the IF section and the base-band section as shown in Figure \ref{sdrBlock}. The 
+front end section uses analogue RF circuitry and it is responsible for 
+receiving and transmitting the signal at the frequency of operation. IF 
+section performs the digital to analog conversion and vice versa. It also 
+does the signal processing tasks like filtering, modulation and demodulation, 
+Digital up conversion (DUC), Digital down conversion (DDC) etc. The last stage
+of the radio is the baseband processor. It is at this point that the digital 
+data is processed \cite{miller08}\cite{kranthi13}.
+We have used GNURadio and USRP N210 to confgure the SDR to implement the
+Cognitive Radio test-bed. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.59\textwidth]{usrpGNURadioBlock}
+\caption{Block diagram for USRP operation with GNURadio.}
+\label{usrpGNURadioBlock}
+\end{figure}
+
+A block diagram of a USRP-based SDR transceiver built with a GNURadio flow 
+graph is shown in Figure \ref{usrpGNURadioBlock}. USRP kit is used as a
+hardware while GNURadio
+package is used for the baseband signal processing tasks. The next sections
+describe USRP kits and GNURadio package.
+
 
 
 \section{USRP}
@@ -17,10 +72,10 @@ products. The UHD supports Linux, Mac OS X and Windows.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{usrpBlock}
+\includegraphics[width=0.9\textwidth]{usrpBlock}
 \caption[Block diagram of USRP]{Block diagram of USRP.\\
-\emph{Source:\\ Kranthi Ananthula, Experimental setup of Cognitive Radio 
-Test-Bed using Software Defined Radio, M. Tech. Dissertation, 2013.}}
+\footnotesize{Source: Kranthi A., Experimental setup of Cognitive Radio 
+Test-Bed using Software Defined Radio, Master's Thesis, 2013.}}
 \label{usrpBlock}
 \end{figure}
 
@@ -44,7 +99,6 @@ the receive and transmit directions, simultaneously (full duplex).
 
 \section{GNU Radio}
 
-\subsection{Introduction}
 GNU Radio is a free \& open-source software development toolkit that provides 
 signal processing blocks to implement software radios. It can be used with 
 readily-available low-cost external RF hardware to create software-defined 
