@@ -149,6 +149,30 @@ Where the cyclic autocorrelation function is defined by:
 
 Here $x(t)$ is the signal received and $\alpha$ is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
+
+We can also get the SCD function by considering a zero mean signal $x(t)$
+whose time varying autocorrelation function $R_x(t,\tau)$ defined as
+\cite{prithvi11}
+\begin{equation*}
+    R_{x}(t,\tau) = E\{x(t)x^{\ast}(t+\tau)\}
+\end{equation*}
+
+is periodic in time $t$ and can be represented as a Fourier series
+\begin{equation*}
+    R_{x}(t,\tau) = \sum_{\alpha}R_{x}^{\alpha} (\tau)e^{i2\pi\alpha t} 
+\end{equation*}
+for which the cyclic autocorrelation function is defined as
+\begin{equation*}
+    R_{x}^{\alpha}(\tau) = \lim_{T\rightarrow\infty} {\frac{1}{T}}
+    \int_{\frac{T}{2}}^{\frac{T}{2}}R_{x}(t,\tau)e^{-i2\pi\alpha t}dT
+\end{equation*}
+Again the Fourier transform of $R_{x}^{\alpha}(\tau)$ is the SCD defined as
+\begin{equation*}
+    S_{x}^{\alpha}(\tau)=\int_{-\infty}^{\infty}R_{x}^{\alpha}
+    (\tau)e^{-i2\pi f\tau}d\tau
+\end{equation*}
+
+
 This is a two-dimensional transform unlike power spectral density which is 
 one-dimensional. For successful detection under cyclo-stationary based spectrum 
 sensing, we need a priori knowledge of the cyclo-stationary features of the 
