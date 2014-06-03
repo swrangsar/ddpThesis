@@ -1,17 +1,17 @@
 \chapter{Software Defined Radio}
 
 Software Define Radio, SDR is a radio communication system where most of the 
-hardware components have been replaced by software. This isn't a new concept
-but recent advances in electronics technologies have made many things possible
-that were just theoretically possible before. In traditional radio systems,
-all the components are hardwired into the device. These components cannot be
-modified or tweaked easily. Most of them needs to be replaced instead. They
-are also much more expensive to reconfigure. But in an SDR, to change the
-functionality of the radio system all you need to do is rewrite its software
-code. Thus it can be reconfigured easily and economically. The protocols used
-by the software based radio system can also be changed easily. Usually, in 
-an SDR most of the hard work is handed over to a general purpose 
-microprocessor instead of a special purpose hardware.
+hardware components have been replaced by software \cite{wikiSDR}. This isn't
+a new concept but recent advances in electronics technologies have made many
+things possible that were just theoretically possible before. In traditional
+radio systems, all the components are hardwired into the device. These 
+components cannot be modified or tweaked easily. Most of them needs to be 
+replaced instead. They are also much more expensive to reconfigure. But in an
+SDR, to change the functionality of the radio system all you need to do is
+rewrite its software. Thus it can be reconfigured easily and economically.
+The protocols used by the software based radio system can also be changed
+easily. Usually, in an SDR most of the hard work is handed over to a general
+purpose microprocessor instead of a special purpose hardware.
 
 The traditional hardware radio system consists of elements such as mixers, 
 filters, amplifiers, converters, modulators, etc. resulting in higher 
@@ -22,7 +22,7 @@ General-Purpose Processor (GPP) are used to build the software radio elements.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.59\textwidth]{sdrBlock}
+  \includegraphics[width=0.7\textwidth]{sdrBlock}
   \caption{Block diagram of SDR.}
   \label{sdrBlock}
 \end{figure}
@@ -42,15 +42,16 @@ our Cognitive Radio testbed.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.59\textwidth]{usrpGNURadioBlock}
+  \includegraphics[width=0.7\textwidth]{usrpGNURadioBlock}
   \caption[USRP operation with GNURadio]{Block diagram for the operation of USRP
   with GNURadio.}
   \label{usrpGNURadioBlock}
 \end{figure}
 
-A block diagram of a USRP-based SDR transceiver executing a GNURadio flow 
-graph is shown in Figure \ref{usrpGNURadioBlock}. The USRP kit is the hardware
-interface and GNURadio is used for the baseband signal processing tasks.
+A block diagram of a USRP-based SDR transceiver executing a GNURadio based 
+application is shown in Figure \ref{usrpGNURadioBlock}. The USRP kit is the 
+hardware interface and GNURadio is used for the baseband signal processing
+tasks.
 
 
 \section{USRP}
