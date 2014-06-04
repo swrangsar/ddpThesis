@@ -39,7 +39,7 @@ svn co http://wush.net/svn/range/software/public OpenBTS/
 
 sudo apt-get install autoconf libtool libosip2-dev libortp-dev \
 libusb-1.0-0-dev g++ sqlite3 libsqlite3-dev erlang libreadline6-dev \
-libncurses5-dev
+libncurses5-dev asterisk
 
 cd OpenBTS
 cd a53/trunk
@@ -61,6 +61,24 @@ ln -s ../Transceiver52M/transceiver .
 sudo mkdir /etc/OpenBTS
 sudo sqlite3 -init ./apps/OpenBTS.example.sql /etc/OpenBTS/OpenBTS.db ".quit"
 sudo sqlite3 /etc/OpenBTS/OpenBTS.db .dump
+
+sudo mkdir -p /var/lib/asterisk/sqlite3dir
+
+cd ../..
+cd subscriberRegistry/trunk
+make
+
+sudo sqlite3 -init subscriberRegistry.example.sql \
+/etc/OpenBTS/sipauthserve.db ".quit"
+
+
+cd ../..
+cd smqueue/trunk
+autoreconf -i
+./configure
+make
+
+sudo sqlite3 -init smqueue/smqueue.example.sql /etc/OpenBTS/smqueue.db ".quit"
 
 \end{lstlisting}
 
