@@ -8,13 +8,13 @@ communication devices,
 we cannot afford to waste our spectral resources anymore.
 
 In November 2002, the Spectrum Policy Task Force, a group under the Federal
-Communications Commission(FCC) 
-in the United States, published a report saying \cite{repFCC}, 
+Communications Commission(FCC) in the United States, published a report saying
+\cite{repFCC}, 
 \begin{quote}
 ``In many bands, spectrum access is a more significant problem than physical 
-scarcity of spectrum,
-in large part due to legacy command-and-control regulation that limits the 
-ability of potential spectrum users to obtain such access.''
+scarcity of spectrum, in large part due to legacy command-and-control 
+regulation that limits the ability of potential spectrum users to obtain such 
+access.''
 \end{quote}
 
 If we were to scan the radio spectrum even in metropolitan places where it's
@@ -37,10 +37,10 @@ being utilized by that user.
 
 The spectrum can be better utilized by enabling secondary users (users who are
 not licensed to use the services) to access spectrum holes unoccupied by 
-primary users at the location and the time in question. \emph{Cognitive Radio}
-, which includes software-defined radio, has been promoted as the means to 
-make efficient use of the spectrum by exploiting the existence of spectrum 
-holes \cite{haykin05}\cite{mitola99}\cite{mitola00}.
+primary users at the location and the time in question. 
+\emph{Cognitive Radio}, which includes software-defined radio, has been 
+promoted as the means to make efficient use of the spectrum by exploiting the 
+existence of spectrum holes \cite{haykin05}\cite{mitola99}\cite{mitola00}.
 
 \section{Cognitive Radio}
 One of the definitions of Cognitive Radio is \cite{haykin05}:
@@ -65,18 +65,18 @@ technologies: digital radio, and computer software.
 
 \section{Contribution of Thesis}
 
-An experimental setup is developed to demonstrate the efficient utilization of
-spectrum by allowing secondary users to make use of the frequency bands that 
-are licensed to primary users but that are not being used at a particular
-space and time.
+A cognitive base transceiver station is developed to demonstrate the efficient 
+utilization of spectrum by allowing secondary users to make use of the 
+frequency bands that are already licensed to primary users but that are not 
+being used at that particular time and space.
 
 \begin{enumerate}
-    \item A two-frequency system is developed where the secondary BTS switches
-    from F1 to F2 as soon as the presence of primary users is detected in F1 
-    and vice-versa.
+    \item A two-frequency system is developed where as soon as the presence of 
+    primary users is detected in $F_1$  the secondary BTS switches from $F_1$ 
+    to $F_2$ and vice-versa.
     \item The two-frequency system is extended to a four-frequency one where
-    two of the four frequency channels always stay occupied. The secondary
-    system scans to find an unused channel and uses it.
+    two of the four frequency channels always remain occupied. The secondary
+    system switches to one of the two unused frequency channels.
     \item For sensing the frequency channels the energy detection based
     spectrum sensing method has been used and for peak detection the method 
     called CUSUM has been used. The frequency used by the secondary users is
@@ -88,15 +88,14 @@ space and time.
 
 
 \section{Organization}
-The rest of this document is organized as follows.
-Chapter 2 briefly describes the GSM architecture and its Um interface. 
-Chapter 3 gives a literature survey on Universal Software Radio Peripheral 
-(USRP N210). 
-Chapter 4 and 5 describe the literature survey done on the GNU Radio software 
-package and OpenBTS software respectively. 
-Chapter 6 covers a the experimental implementation of a cognitive BTS using 
-OpenBTS and some sensing techniques.
-It also describes the proposed future work along with some flowgraphs 
-describing the algorithms for the implementation of a cognitive BTS on the 
-OpenBTS platform.
+The remaining chapters of this document are organized as follows. Chapter 2 
+briefly touches upon the GSM system architecture and the GSM protocol 
+architecture. Chapter 3 introduces Software Defined Radio (SDR) and some of the
+tools that make SDR possible like the Universal Software Radio Peripheral 
+(USRP N210) and the GNU Radio software package. Various parts of the OpenBTS 
+software are described in Chapter 4. Chapter 5 reviews various techniques of 
+spectrum sensing and gives a comparison among them.
+Chapter 6 covers the Cognitive Radio testbed made using OpenBTS. It also 
+describes the proposed future work along with some flowgraphs describing the 
+algorithms for the implementation of a cognitive BTS on the OpenBTS platform.
 
