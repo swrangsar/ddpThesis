@@ -1,7 +1,7 @@
 \chapter{Installation procedures}
 The installation procedures given in this chapter are for the Ubuntu 12.04 LTS
-desktop operating system only. For other operating systems, please use the 
-internet.
+desktop operating system only. For other operating systems, please check on
+the internet.
 \section{UHD}
 \begin{lstlisting}[language=bash]
 # Install the runtime dependencies:
@@ -46,7 +46,7 @@ cd a53/trunk
 sudo make install
 
 
-## for USRP N210 only
+## for USRP N210 only, for other devices please check the internet
 cd openbts/trunk
 autoreconf -i
 ./configure --with-uhd
@@ -56,7 +56,7 @@ make
 cd apps
 ln -s ../Transceiver52M/transceiver .
 
-## for USRP N210 only
+## for USRP N210 only, for other devices please check the internet
 
 sudo mkdir /etc/OpenBTS
 sudo sqlite3 -init ./apps/OpenBTS.example.sql /etc/OpenBTS/OpenBTS.db ".quit"
@@ -83,7 +83,9 @@ sudo sqlite3 -init smqueue/smqueue.example.sql /etc/OpenBTS/smqueue.db ".quit"
 \end{lstlisting}
 
 
+\section{GNURadio}
+
+\begin{lstlisting}[language=bash]
 
 
-
-
+\end{lstlisting}
