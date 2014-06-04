@@ -1,9 +1,7 @@
-\chapter{Codes included in GNURadio}
+\chapter{Codes}
 
-\section{usrp\_spectrum\_sense.py}
-
+\section{secondaryBTS.py}
 \begin{lstlisting}[language=Python]
-
 #!/usr/bin/env python
 #
 # Copyright 2005,2007,2011 Free Software Foundation, Inc.
@@ -38,6 +36,10 @@ import sys
 import math
 import struct
 import threading
+import time
+import sqlite3
+import os
+import subprocess
 from datetime import datetime
 
 sys.stderr.write("Warning: this may have issues on some machines+Python version combinations to seg fault due to the callback in bin_statitics.\n\n")
@@ -103,9 +105,9 @@ class my_top_block(gr.top_block):
     def __init__(self):
         gr.top_block.__init__(self)
 
-        usage = "usage: %prog [options] min_freq max_freq"
+        usage = "usage: %prog [options] down_freq"
         parser = OptionParser(option_class=eng_option, usage=usage)
-        parser.add_option("-a", "--args", type="string", default="",
+        parser.add_option("-a", "--args", type="string", default="addr=192.168.20.2",
                           help="UHD device device address args [default=%default]")
         parser.add_option("", "--spec", type="string", default=None,
                       help="Subdevice of UHD device where appropriate")
@@ -122,7 +124,7 @@ class my_top_block(gr.top_block):
                           default=0.25, metavar="SECS",
                           help="time to dwell (in seconds) at a given frequency [default=%default]")
         parser.add_option("-b", "--channel-bandwidth", type="eng_float",
-                          default=6.25e3, metavar="Hz",
+                          default=976.56, metavar="Hz",
                           help="channel bandwidth of fft bins in Hz [default=%default]")
         parser.add_option("-l", "--lo-offset", type="eng_float",
                           default=0, metavar="Hz",
@@ -135,19 +137,18 @@ class my_top_block(gr.top_block):
         parser.add_option("", "--real-time", action="store_true", default=False,
                           help="Attempt to enable real-time scheduling")
 
+
         (options, args) = parser.parse_args()
-        if len(args) != 2:
+        if len(args) != 1:
             parser.print_help()
             sys.exit(1)
 
         self.channel_bandwidth = options.channel_bandwidth
 
-        self.min_freq = eng_notation.str_to_num(args[0])
-        self.max_freq = eng_notation.str_to_num(args[1])
+        self.down_freq = eng_notation.str_to_num(args[0])
+        self.up_freq = (self.down_freq) - 45e6
 
-        if self.min_freq > self.max_freq:
-            # swap them
-            self.min_freq, self.max_freq = self.max_freq, self.min_freq
+
 
         if not options.real_time:
             realtime = False
@@ -173,6 +174,7 @@ class my_top_block(gr.top_block):
             self.u.set_antenna(options.antenna, 0)
         
         self.u.set_samp_rate(options.samp_rate)
+
         self.usrp_rate = usrp_rate = self.u.get_samp_rate()
         
         self.lo_offset = options.lo_offset
@@ -194,19 +196,6 @@ class my_top_block(gr.top_block):
 
         c2mag = blocks.complex_to_mag_squared(self.fft_size)
 
-        # FIXME the log10 primitive is dog slow
-        #log = blocks.nlog10_ff(10, self.fft_size,
-        #                       -20*math.log10(self.fft_size)-10*math.log10(power/self.fft_size))
-
-        # Set the freq_step to 75% of the actual data throughput.
-        # This allows us to discard the bins on both ends of the spectrum.
-
-        self.freq_step = self.nearest_freq((0.75 * self.usrp_rate), self.channel_bandwidth)
-        self.min_center_freq = self.min_freq + (self.freq_step/2) 
-        nsteps = math.ceil((self.max_freq - self.min_freq) / self.freq_step)
-        self.max_center_freq = self.min_center_freq + (nsteps * self.freq_step)
-
-        self.next_freq = self.min_center_freq
 
         tune_delay  = max(0, int(round(options.tune_delay * usrp_rate / self.fft_size)))  # in fft_frames
         dwell_delay = max(1, int(round(options.dwell_delay * usrp_rate / self.fft_size))) # in fft_frames
@@ -230,10 +219,8 @@ class my_top_block(gr.top_block):
         print "gain =", options.gain
 
     def set_next_freq(self):
-        target_freq = self.next_freq
-        self.next_freq = self.next_freq + self.freq_step
-        if self.next_freq >= self.max_center_freq:
-            self.next_freq = self.min_center_freq
+        target_freq = self.up_freq
+
 
         if not self.set_freq(target_freq):
             print "Failed to set frequency to", target_freq
@@ -260,22 +247,25 @@ class my_top_block(gr.top_block):
     def set_gain(self, gain):
         self.u.set_gain(gain)
     
-    def nearest_freq(self, freq, channel_bandwidth):
-        freq = round(freq / channel_bandwidth, 0) * channel_bandwidth
-        return freq
+
 
 def main_loop(tb):
+    startOpenBTS(tb.down_freq,tb)
+
+
+
+
+def sub_loop(tb):
+
+    # use a counter to make sure power is less than threshold
+    # lowPowerCount = 0
+    # lowPowerCountMax = 10
+    print 'fft size', tb.fft_size
+    N = tb.fft_size
+    mid = N // 2
+    cusum = 0
+    counter = 0
     
-    def bin_freq(i_bin, center_freq):
-        #hz_per_bin = tb.usrp_rate / tb.fft_size
-        freq = center_freq - (tb.usrp_rate / 2) + (tb.channel_bandwidth * i_bin)
-        #print "freq original:",freq
-        #freq = nearest_freq(freq, tb.channel_bandwidth)
-        #print "freq rounded:",freq
-        return freq
-    
-    bin_start = int(tb.fft_size * ((1 - 0.75) / 2))
-    bin_stop = int(tb.fft_size - bin_start)
 
     while 1:
 
@@ -288,16 +278,135 @@ def main_loop(tb):
         # m.raw_data is a string that contains the binary floats.
         # You could write this as binary to a file.
 
-        for i_bin in range(bin_start, bin_stop):
 
-            center_freq = m.center_freq
-            freq = bin_freq(i_bin, center_freq)
-            #noise_floor_db = -174 + 10*math.log10(tb.channel_bandwidth)
-            noise_floor_db = 10*math.log10(min(m.data)/tb.usrp_rate)
-            power_db = 10*math.log10(m.data[i_bin]/tb.usrp_rate) - noise_floor_db
 
-            if (power_db > tb.squelch_threshold) and (freq >= tb.min_freq) and (freq <= tb.max_freq):
-                print datetime.now(), "center_freq", center_freq, "freq", freq, "power_db", power_db, "noise_floor_db", noise_floor_db
+        center_freq = m.center_freq
+        bins = 102
+        power_data = 0
+        noise_floor_db = 0      ##  10*math.log10(min(m.data)/tb.usrp_rate)
+        
+        for i in range(1, bins+1):
+            power_data += m.data[mid-i] + m.data[mid+i]
+        power_data += m.data[mid]
+        power_data /= ((2*bins) + 1)
+        
+        power_db = 10*math.log10(power_data/tb.usrp_rate) - noise_floor_db
+        power_threshold = -70.0
+        
+
+        #if (power_db > tb.squelch_threshold) and (power_db > power_threshold):
+            #print datetime.now(), "center_freq", center_freq, "power_db", power_db, "in use"
+            # lowPowerCount = 0
+        #else:
+        print datetime.now(), "center_freq", center_freq, "power_db", power_db
+            # lowPowerCount += 1
+
+        #    if (lowPowerCount > lowPowerCountMax):
+        #        down_freq = center_freq + 45e6
+        #        startOpenBTS(down_freq)
+        #        break
+
+        #cusum cusum cusum is here
+        cusum = max(0, cusum + power_db - power_threshold)
+        if (cusum > 0):
+            counter += 1
+            if (counter > 2):
+                print "CUSUM is now positive!!!"
+                down_freq = center_freq + 45e6
+                quitOpenBTS(down_freq, tb)
+                break
+        else:
+            counter = 0
+
+
+
+
+def startOpenBTS(downFrequency,tb):
+    arfcn=int((downFrequency-935e6)/2e5)
+    if (arfcn < 0):
+        print "ARFCN must be > 0 !!!"
+        sys.exit(1)
+    print 'ARFCN=', arfcn
+    #DB modifications
+    t=(arfcn,)
+    conn=sqlite3.connect("/etc/OpenBTS/OpenBTS.db")
+    cursor=conn.cursor()
+    cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
+    conn.commit()
+
+    #start the OpenBTS
+    f=subprocess.Popen(os.path.expanduser('~/ddpOpenBTS/runOpenBTS.sh'))
+    f.wait()
+    tb.msgq.delete_head()
+    time.sleep(0.25)
+    sub_loop(tb)
+              
+
+def quitOpenBTS(downFreq, tb):
+    f=subprocess.Popen(os.path.expanduser('~/ddpOpenBTS/quitOpenBTS.sh'))
+    f.wait()    
+    newDownFreq = getNewChannel(downFreq, tb)
+    startOpenBTS(newDownFreq, tb)
+
+        
+
+def getNewChannel(downFreq, tb):
+    newDownFreq = downFreq + 7e6
+    if newDownFreq > 960e6:
+        newDownFreq = 936e6
+
+    tb.up_freq = newDownFreq - 45e6
+    print "new tb.up_freq: ", tb.up_freq
+    tb.msgq.delete_head()
+    time.sleep(0.25)
+
+    print 'fft size', tb.fft_size
+    N = tb.fft_size
+    mid = N // 2
+    cusum = 0
+    counter = 0
+    loopcounter = 0
+    
+
+    while loopcounter < 10:
+
+        # Get the next message sent from the C++ code (blocking call).
+        # It contains the center frequency and the mag squared of the fft
+        m = parse_msg(tb.msgq.delete_head())
+
+
+        center_freq = m.center_freq
+        bins = 102
+        power_data = 0
+
+        
+        for i in range(1, bins+1):
+            power_data += m.data[mid-i] + m.data[mid+i]
+        power_data += m.data[mid]
+        power_data /= ((2*bins) + 1)
+        
+        power_db = 10*math.log10(power_data/tb.usrp_rate)
+        power_threshold = -70.0
+        
+        
+        print datetime.now(), "center_freq", center_freq, "power_db", power_db
+        print "precheck"
+
+        #cusum cusum cusum is here
+        cusum = max(0, cusum + power_db - power_threshold)
+        loopcounter += 1
+        if (cusum > 0):
+            counter += 1
+            if (counter > 2):
+                print "CUSUM is now positive!!!"
+                newDownFreq = getNewChannel(newDownFreq, tb)
+                break
+        else:
+            counter = 0
+    return newDownFreq
+
+
+
 
 if __name__ == '__main__':
     t = ThreadClass()
@@ -311,5 +420,94 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         pass
 
-    
+
 \end{lstlisting}
+
+
+
+
+\section{primaryBTS.py}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/env python
+
+
+import sys
+import sqlite3
+import os
+import re
+
+def main_loop():
+    usage = "usage: %prog channel_freq"
+    if len(sys.argv) != 2:
+        print 'usage:', sys.argv[0], 'channel_freq'
+        sys.exit(1)
+
+
+    center_freq = int(re.match(r'\d+', sys.argv[1]).group())*1e6
+    startOpenBTS(center_freq)
+
+def startOpenBTS(frequency):            
+    
+    arfcn=int((frequency-935e6)/2e5)
+    print 'ARFCN=', arfcn
+    
+    #DB modifications
+    t=(arfcn,)
+    conn=sqlite3.connect("/etc/OpenBTS/OpenBTS.db")
+    cursor=conn.cursor()
+    cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
+    conn.commit()
+    
+    #start the OpenBTS
+    f=os.popen('~/ddpOpenBTS/runOpenBTS.sh')
+    f.close()
+              
+
+if __name__ == '__main__':
+
+    try:
+        main_loop()
+
+    except KeyboardInterrupt:
+        pass
+
+\end{lstlisting}
+
+
+\section{runOpenBTS.sh}
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+sudo echo "Hi, this script starts OpenBTS in Ubuntu 12.04!"
+sudo service asterisk restart
+sudo gnome-terminal -x sh -c "sudo asterisk -r" &
+
+#cd ~/OpenBTS/
+#sudo gnome-terminal --tab -e "sudo smqueue/trunk/smqueue/smqueue" \
+#   --tab -e "sudo subscriberRegistry/trunk/sipauthserve" &
+
+cd ~/OpenBTS/openbts/trunk/apps/
+sudo gnome-terminal --tab -e "sudo ../../../smqueue/trunk/smqueue/smqueue" \
+    --tab -e "sudo ../../../subscriberRegistry/trunk/sipauthserve" &
+
+#sudo gnome-terminal -x sh -c "sudo ./OpenBTS" &
+#sudo gnome-terminal -x sh -c "sudo ./OpenBTSCLI" &
+sudo gnome-terminal --tab -e "sudo ./OpenBTS" \
+    --tab -e "sudo ./OpenBTSCLI" &
+cd ~
+
+\end{lstlisting}
+
+
+\section{quitOpenBTS.sh}
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+sudo echo "Hi, this script turns OpenBTS off in Ubuntu 12.04!"
+
+sudo killall transceiver smqueue sipauthserve OpenBTSCLI asterisk
+\end{lstlisting}
+
+
+
+
