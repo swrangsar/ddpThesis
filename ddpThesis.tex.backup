@@ -3,14 +3,17 @@
 
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage{hyperref}  % for citing URLs
 \usepackage{listings}
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{setspace}
+\usepackage{datetime}
+\usepackage{hyperref}  % for citing URLs
+
 \lstset{breaklines=true}
 \pagestyle{plain}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newdateformat{mydate}{\monthname[\THEMONTH] \THEYEAR}
 
 \topmargin       0in
 \oddsidemargin   0in
@@ -29,6 +32,7 @@
 \frontmatter
 \include{title}
 \include{abstract}
+\include{ack}
 
 \setcounter{tocdepth}{2}
 \tableofcontents
@@ -39,12 +43,17 @@
 \setlength\arraycolsep{2pt}
 
 \mainmatter
-%\include{intro}
+\include{intro}
 \include{gsm}
+\include{sdr}
 \include{bts}
+\include{sensing}
+\include{implementation}
+\include{conclusion}
 
 \appendix
-%\include{appendix1}
+\include{appendix1}
+%\include{appendix2}
 
 
 

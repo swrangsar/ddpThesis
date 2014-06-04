@@ -1,0 +1,43 @@
+\chapter{Installation procedures}
+The installation procedures given in this chapter are for the Ubuntu 12.04 LTS
+desktop operating system only. For other operating systems, please use the 
+internet.
+\section{UHD}
+\begin{lstlisting}[language=bash]
+# Install the runtime dependencies:
+
+sudo apt-get install python libboost-all-dev libusb-1.0-0-dev python-cheetah \
+doxygen python-docutils git cmake
+
+# Go to your home folder and git clone the UHD repository:
+
+cd ~
+git clone https://github.com/EttusResearch/uhd.git
+
+# Generate Makefiles with CMake:
+
+cd uhd/host
+mkdir build
+cd build
+cmake ../
+
+# Build and install:
+
+make
+make test
+sudo make install
+sudo ldconfig
+\end{lstlisting}
+
+
+\section{OpenBTS}
+
+\begin{lstlisting}[language=bash]
+
+\end{lstlisting}
+
+
+
+
+
+
