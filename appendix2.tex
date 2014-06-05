@@ -1,9 +1,8 @@
 \chapter{Installation procedures}
 To install either GNURadio or OpenBTS, you first need to have the UHD (driver
-software for the USRP) installed. 
-The installation procedures given in this chapter are for the Ubuntu 12.04 LTS
-desktop operating system only. For other operating systems, please check on
-the internet.
+software for the USRP) installed. The installation procedures given in this 
+chapter are for the Ubuntu Desktop Operating System (version 12.04 and
+greater) only. For other operating systems, please check the internet.
 \section{UHD}
 \begin{lstlisting}[language=bash]
 # Install the runtime dependencies:
@@ -90,7 +89,8 @@ sudo sqlite3 -init smqueue/smqueue.example.sql /etc/OpenBTS/smqueue.db ".quit"
 
 \begin{lstlisting}[language=bash]
 
-## for Ubuntu 12.04 only, for other versions of Ubuntu check the internet <
+## for Ubuntu 12.04 only, for other versions
+## of Ubuntu please check the internet <
 
 sudo apt-get install libfontconfig1-dev libxrender-dev \
 libpulse-dev swig g++ automake autoconf libtool python-dev \
@@ -102,7 +102,8 @@ libqwtplot3d-qt4-dev pyqt4-dev-tools python-qwt5-qt4 cmake git-core wget \
 libxi-dev python-docutils gtk2-engines-pixbuf r-base-dev python-tk \
 liborc-0.4-0 liborc-0.4-dev libasound2-dev python-gtk2
 
-## for Ubuntu 12.04 only, for other versions of Ubuntu check the internet >
+## for Ubuntu 12.04 only, for other versions 
+## of Ubuntu please check the internet >
 cd ~
 git clone http://git.gnuradio.org/git/gnuradio.git
 cd gnuradio
