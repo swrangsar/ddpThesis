@@ -46,15 +46,15 @@ of Energy Detection implementation.\\
 \end{figure}
 
 As described in the energy detection block diagram, it is basically a hypothesis
-testing problem with two possible hypothesis $H0$ and $H1$. Hypothesis $H1$ concludes 
-the presence of primary users in the band of interest and hypothesis $H0$ 
+testing problem with two possible hypothesis $H_0$ and $H_1$. Hypothesis $H_1$ concludes 
+the presence of primary users in the band of interest and hypothesis $H_0$ 
 concludes their absence. And energy detection technique is basically about 
 distinguishing between these two hypotheses\cite{sarijari09}.
 
 
 \begin{align}
-x(t) & = n(t); & H0 \nonumber \\
-x(t) & = hs(t)+n(t); & H1 \nonumber
+x(t) & = n(t); & H_0 \nonumber \\
+x(t) & = hs(t)+n(t); & H_1 \nonumber
 \end{align}
 
 $x(t)$ is signal received by secondary user and $s(t)$ is primary radio 
@@ -144,12 +144,10 @@ spectral correlation function is defined as:
 \begin{equation*}
         S(f,\alpha) = \int_{-\infty}^{\infty} R_{x}^{\alpha}(\tau)e^{-2 \pi f\tau}d\tau 
 \end{equation*}
-
 Where the cyclic autocorrelation function is defined by:
 \begin{equation*}
     R_{x}^{\alpha} = E\{x(t+\tau)x^{*}(t-\tau)e^{-2 \pi \alpha t}\}
 \end{equation*}
-
 Here $x(t)$ is the signal received and $\alpha$ is the cyclic frequency. The spectral 
 correlation function is also termed as cyclic spectrum.
 
@@ -159,7 +157,6 @@ whose time varying autocorrelation function $R_x(t,\tau)$ defined as
 \begin{equation*}
     R_{x}(t,\tau) = E\{x(t)x^{\ast}(t+\tau)\}
 \end{equation*}
-
 is periodic in time $t$ and can be represented as a Fourier series
 \begin{equation*}
     R_{x}(t,\tau) = \sum_{\alpha}R_{x}^{\alpha} (\tau)e^{i2\pi\alpha t} 
@@ -174,7 +171,6 @@ Again the Fourier transform of $R_{x}^{\alpha}(\tau)$ is the SCD defined as
     S_{x}^{\alpha}(\tau)=\int_{-\infty}^{\infty}R_{x}^{\alpha}
     (\tau)e^{-i2\pi f\tau}d\tau
 \end{equation*}
-
 
 This is a two-dimensional transform unlike power spectral density which is 
 one-dimensional. For successful detection under cyclo-stationary based spectrum 
