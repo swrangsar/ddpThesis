@@ -53,7 +53,7 @@
 
 \appendix
 \include{appendix1}
-%\include{appendix2}
+\include{appendix2}
 
 
 
