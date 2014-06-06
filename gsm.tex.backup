@@ -17,11 +17,11 @@ Telephone Network  (PSTN).
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{archPLMN}
+\includegraphics[scale=0.5]{gsmNetwork}
 \caption[GSM PLMN architecture]{The architecture of a GSM Public Land Mobile 
 Network (PLMN).\\
 \footnotesize{Source:
-\url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
+\url{http://gnuradio.org/redmine/attachments/download/156/fullnetwork.jpg}}}
 \end{figure}
 
 The network structure can be divided into the following discrete sections:
@@ -63,13 +63,13 @@ PSTN with the Integrated Services Digital Network (ISDN) option. The
 Inter-Working Function (IWF) of a GMSC makes it possible to connect the 
 circuit switched data paths of a GSM network with the PSTN/ISDN.
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{gsmNetworkComponents}
-\caption[GSM network components]{GSM network components.\\
-\footnotesize{Source: 
-\url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}}}
-\end{figure}
+% \begin{figure}
+% \centering
+% \includegraphics[scale=0.5]{gsmNetwork}
+% \caption[GSM network components]{GSM network components.\\
+% \footnotesize{Source: 
+% \url{http://gnuradio.org/redmine/attachments/download/156/fullnetwork.jpg}}}
+% \end{figure}
 
 
 
@@ -98,13 +98,9 @@ served by an MSC is called a MSC/VLR service area.
 
 \subsection{The Operation Subsystem (OSS)}
 
-The OSS consists of :
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-\item the Operation and Maintenance Center (OMC)
-\item the Authentication Center (AuC)
-\item the Home Location Register (HLR)
-\item the Equipment Identity Register (EIR)
-\end{itemize}
+The OSS consists of the Operation and Maintenance Center (OMC), the 
+Authentication Center (AuC), the Home Location Register (HLR) and the 
+Equipment Identity Register (EIR).
 
 The OSS is responsible for
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
@@ -242,9 +238,8 @@ and terminates
  
 
 \textbf{Mobility Management (MM)} manages mobility of the mobile stations 
-(MS). This
- protocol is used by the MS to communicate directly with the MSC bypassing 
- the BSS. It works over an already established
+(MS). This protocol is used by the MS to communicate directly with the MSC 
+bypassing the BSS. It works over an already established
  RR connection. It handles stuff like TMSI reallocation, authentication, 
  IMSI attach/detach, roaming, location update procedure, etc.
  
