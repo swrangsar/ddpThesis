@@ -1,4 +1,12 @@
 \chapter*{\centering{Abstract}}
 The explosive proliferation of mobile phones and other wireless communication
-devices has rendered the spectrum an insufficient resource. Added to this is
-the underutilization of the spectr
+devices has rendered the spectrum an insufficient resource. To make things
+worse, there exists a widespread underutilization of the spectrum. Cognitive
+Radio (CR) offers to tackle this problem by finding the unused frequency bands
+in the spectrum (also known as spectrum holes) and allocating them to the
+secondary users for use. Hence, CR makes the usage of spectrum more efficient.
+
+We demonstrate the capabilities of CR by developing a Two-frequency CR testbed
+and a Four-frequency CR testbed. Secondary users switch to an unused frequency
+band as soon as the presence of primary users is detected in the frequency
+band of operation. Energy detection method is used for the spectrum sensing.
