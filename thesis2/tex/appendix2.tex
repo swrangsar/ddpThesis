@@ -1,0 +1,117 @@
+\chapter{Installation procedures}
+To install either GNURadio or OpenBTS, you first need to have the UHD (driver
+software for the USRP) installed. The installation procedures given in this 
+chapter are for the Ubuntu Desktop Operating System (version 12.04 and
+greater) only. For other operating systems, please check the internet.
+\section{UHD}
+\begin{lstlisting}[language=bash]
+# Install the runtime dependencies:
+
+sudo apt-get install python libboost-all-dev libusb-1.0-0-dev python-cheetah \
+doxygen python-docutils git cmake
+
+# Go to your home folder and git clone the UHD repository:
+
+cd ~
+git clone https://github.com/EttusResearch/uhd.git
+
+# Generate Makefiles with CMake:
+
+cd uhd/host
+mkdir build
+cd build
+cmake ../
+
+# Build and install:
+
+make
+make test
+sudo make install
+sudo ldconfig
+\end{lstlisting}
+
+
+\section{OpenBTS}
+
+\begin{lstlisting}[language=bash]
+cd ~
+sudo apt-get install subversion
+mkdir OpenBTS
+svn co http://wush.net/svn/range/software/public OpenBTS/
+
+sudo apt-get install autoconf libtool libosip2-dev libortp-dev \
+libusb-1.0-0-dev g++ sqlite3 libsqlite3-dev erlang libreadline6-dev \
+libncurses5-dev asterisk
+
+cd OpenBTS
+cd a53/trunk
+sudo make install
+
+
+## for USRP N210 only, for other devices please check the internet <
+cd openbts/trunk
+autoreconf -i
+./configure --with-uhd
+make
+
+#(from OpenBTS root)
+cd apps
+ln -s ../Transceiver52M/transceiver .
+
+## for USRP N210 only, for other devices please check the internet >
+
+sudo mkdir /etc/OpenBTS
+sudo sqlite3 -init ./apps/OpenBTS.example.sql /etc/OpenBTS/OpenBTS.db ".quit"
+sudo sqlite3 /etc/OpenBTS/OpenBTS.db .dump
+
+sudo mkdir -p /var/lib/asterisk/sqlite3dir
+
+cd ../..
+cd subscriberRegistry/trunk
+make
+
+sudo sqlite3 -init subscriberRegistry.example.sql \
+/etc/OpenBTS/sipauthserve.db ".quit"
+
+
+cd ../..
+cd smqueue/trunk
+autoreconf -i
+./configure
+make
+
+sudo sqlite3 -init smqueue/smqueue.example.sql /etc/OpenBTS/smqueue.db ".quit"
+
+\end{lstlisting}
+
+
+\section{GNURadio}
+
+\begin{lstlisting}[language=bash]
+
+## for Ubuntu 12.04 only, for other versions
+## of Ubuntu please check the internet <
+
+sudo apt-get install libfontconfig1-dev libxrender-dev \
+libpulse-dev swig g++ automake autoconf libtool python-dev \
+libfftw3-dev libcppunit-dev libboost1.48-all-dev libusb-dev \
+libusb-1.0-0-dev fort77 libsdl1.2-dev python-wxgtk2.8 git-core \
+libqt4-dev python-numpy ccache python-opengl libgsl0-dev python-cheetah \
+python-lxml doxygen qt4-dev-tools libusb-1.0-0-dev libqwt5-qt4-dev \
+libqwtplot3d-qt4-dev pyqt4-dev-tools python-qwt5-qt4 cmake git-core wget \
+libxi-dev python-docutils gtk2-engines-pixbuf r-base-dev python-tk \
+liborc-0.4-0 liborc-0.4-dev libasound2-dev python-gtk2
+
+## for Ubuntu 12.04 only, for other versions 
+## of Ubuntu please check the internet >
+cd ~
+git clone http://git.gnuradio.org/git/gnuradio.git
+cd gnuradio
+mkdir build
+cd build
+cmake ../
+make && make test
+sudo make install
+sudo ldconfig
+
+\end{lstlisting}

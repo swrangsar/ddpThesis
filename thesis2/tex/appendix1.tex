@@ -1,0 +1,283 @@
+\chapter{Codes}
+
+\section{secondaryBTS.py}
+
+This code was written by modifying the already available program named 
+``usrp\_spectrum\_sense.py'' that comes together with the GNURadio software
+package. We set the default UHD device address to ``192.168.20.2'' because 
+that is the IP address of the USRP device we are using as a spectrum sensor.
+The default samping rate was set to 1e6 i.e. 1MHz. The default FFT size is
+given as 'sampling rate / channel bandwidth'. We wanted an FFT size of 1024 so
+we set the bandwidth to 976.56 Hz since 1 MHz / 976.56 Hz $\approx$ 1024.
+
+The class 'my\_top\_block' was modified by replacing the lines:
+\begin{lstlisting}[language=Python]
+
+        self.channel_bandwidth = options.channel_bandwidth
+
+        self.min_freq = eng_notation.str_to_num(args[0])
+        self.max_freq = eng_notation.str_to_num(args[1])
+
+        if self.min_freq > self.max_freq:
+            # swap them
+            self.min_freq, self.max_freq = self.max_freq, self.min_freq    
+\end{lstlisting}
+with the lines
+\begin{lstlisting}[language=Python]
+        self.channel_bandwidth = options.channel_bandwidth
+
+        self.down_freq = eng_notation.str_to_num(args[0])
+        self.up_freq = (self.down_freq) - 45e6    
+\end{lstlisting}
+
+The method 'set\_next\_freq' of the class 'my\_top\_block' was modified by
+replacing
+\begin{lstlisting}[language=Python]
+        target_freq = self.next_freq
+        self.next_freq = self.next_freq + self.freq_step
+        if self.next_freq >= self.max_center_freq:
+            self.next_freq = self.min_center_freq
+\end{lstlisting}
+with
+\begin{lstlisting}[language=Python]
+        target_freq = self.up_freq
+\end{lstlisting}
+
+
+
+
+In the code listing that follows we have listed only the functions that we
+customized and the ones that we added.
+
+\begin{lstlisting}[language=Python]
+
+def main_loop(tb):
+    startOpenBTS(tb.down_freq,tb)
+
+
+def sub_loop(tb):
+
+    print 'fft size', tb.fft_size
+    N = tb.fft_size
+    mid = N // 2
+    cusum = 0
+    counter = 0
+    
+
+    while 1:
+
+        # Get the next message sent from the C++ code (blocking call).
+        # It contains the center frequency and the mag squared of the fft
+        m = parse_msg(tb.msgq.delete_head())
+
+        # m.center_freq is the center frequency at the time of capture
+        # m.data are the mag_squared of the fft output
+        # m.raw_data is a string that contains the binary floats.
+        # You could write this as binary to a file.
+
+
+
+        center_freq = m.center_freq
+        bins = 102
+        power_data = 0
+        noise_floor_db = 0      ##  10*math.log10(min(m.data)/tb.usrp_rate)
+        
+        for i in range(1, bins+1):
+            power_data += m.data[mid-i] + m.data[mid+i]
+        power_data += m.data[mid]
+        power_data /= ((2*bins) + 1)
+        
+        power_db = 10*math.log10(power_data/tb.usrp_rate) - noise_floor_db
+        power_threshold = -70.0
+        
+        print datetime.now(), "center_freq", center_freq, "power_db", power_db
+
+        #cusum cusum cusum is here
+        cusum = max(0, cusum + power_db - power_threshold)
+        if (cusum > 0):
+            counter += 1
+            if (counter > 2):
+                print "CUSUM is now positive!!!"
+                down_freq = center_freq + 45e6
+                quitOpenBTS(down_freq, tb)
+                break
+        else:
+            counter = 0
+
+
+
+
+def startOpenBTS(downFrequency,tb):
+    arfcn=int((downFrequency-935e6)/2e5)
+    if (arfcn < 0):
+        print "ARFCN must be > 0 !!!"
+        sys.exit(1)
+    print 'ARFCN=', arfcn
+    #DB modifications
+    t=(arfcn,)
+    conn=sqlite3.connect("/etc/OpenBTS/OpenBTS.db")
+    cursor=conn.cursor()
+    cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
+    conn.commit()
+
+    #start the OpenBTS
+    f=subprocess.Popen(os.path.expanduser('~/ddpOpenBTS/runOpenBTS.sh'))
+    f.wait()
+    tb.msgq.delete_head()
+    time.sleep(0.25)
+    sub_loop(tb)
+              
+
+def quitOpenBTS(downFreq, tb):
+    f=subprocess.Popen(os.path.expanduser('~/ddpOpenBTS/quitOpenBTS.sh'))
+    f.wait()    
+    newDownFreq = getNewChannel(downFreq, tb)
+    startOpenBTS(newDownFreq, tb)
+
+        
+
+def getNewChannel(downFreq, tb):
+    newDownFreq = downFreq + 7e6
+    if newDownFreq > 960e6:
+        newDownFreq = 936e6
+
+    tb.up_freq = newDownFreq - 45e6
+    print "new tb.up_freq: ", tb.up_freq
+    tb.msgq.delete_head()
+    time.sleep(0.25)
+
+    print 'fft size', tb.fft_size
+    N = tb.fft_size
+    mid = N // 2
+    cusum = 0
+    counter = 0
+    loopcounter = 0
+    
+
+    while loopcounter < 10:
+
+        # Get the next message sent from the C++ code (blocking call).
+        # It contains the center frequency and the mag squared of the fft
+        m = parse_msg(tb.msgq.delete_head())
+
+
+        center_freq = m.center_freq
+        bins = 102
+        power_data = 0
+
+        
+        for i in range(1, bins+1):
+            power_data += m.data[mid-i] + m.data[mid+i]
+        power_data += m.data[mid]
+        power_data /= ((2*bins) + 1)
+        
+        power_db = 10*math.log10(power_data/tb.usrp_rate)
+        power_threshold = -70.0
+        
+        
+        print datetime.now(), "center_freq", center_freq, "power_db", power_db
+        print "precheck"
+
+        #cusum cusum cusum is here
+        cusum = max(0, cusum + power_db - power_threshold)
+        loopcounter += 1
+        if (cusum > 0):
+            counter += 1
+            if (counter > 2):
+                print "CUSUM is now positive!!!"
+                newDownFreq = getNewChannel(newDownFreq, tb)
+                break
+        else:
+            counter = 0
+    return newDownFreq
+
+\end{lstlisting}
+
+
+
+
+\section{primaryBTS.py}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/env python
+
+
+import sys
+import sqlite3
+import os
+import re
+
+def main_loop():
+    usage = "usage: %prog channel_freq"
+    if len(sys.argv) != 2:
+        print 'usage:', sys.argv[0], 'channel_freq'
+        sys.exit(1)
+
+
+    center_freq = int(re.match(r'\d+', sys.argv[1]).group())*1e6
+    startOpenBTS(center_freq)
+
+def startOpenBTS(frequency):            
+    
+    arfcn=int((frequency-935e6)/2e5)
+    print 'ARFCN=', arfcn
+    
+    #DB modifications
+    t=(arfcn,)
+    conn=sqlite3.connect("/etc/OpenBTS/OpenBTS.db")
+    cursor=conn.cursor()
+    cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
+    conn.commit()
+    
+    #start the OpenBTS
+    f=os.popen('~/ddpOpenBTS/runOpenBTS.sh')
+    f.close()
+              
+
+if __name__ == '__main__':
+
+    try:
+        main_loop()
+
+    except KeyboardInterrupt:
+        pass
+
+\end{lstlisting}
+
+
+\section{runOpenBTS.sh}
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+sudo echo "Hi, this script starts OpenBTS in Ubuntu 12.04!"
+sudo service asterisk restart
+sudo gnome-terminal -x sh -c "sudo asterisk -r" &
+
+#cd ~/OpenBTS/
+#sudo gnome-terminal --tab -e "sudo smqueue/trunk/smqueue/smqueue" \
+#   --tab -e "sudo subscriberRegistry/trunk/sipauthserve" &
+
+cd ~/OpenBTS/openbts/trunk/apps/
+sudo gnome-terminal --tab -e "sudo ../../../smqueue/trunk/smqueue/smqueue" \
+    --tab -e "sudo ../../../subscriberRegistry/trunk/sipauthserve" &
+
+#sudo gnome-terminal -x sh -c "sudo ./OpenBTS" &
+#sudo gnome-terminal -x sh -c "sudo ./OpenBTSCLI" &
+sudo gnome-terminal --tab -e "sudo ./OpenBTS" \
+    --tab -e "sudo ./OpenBTSCLI" &
+cd ~
+
+\end{lstlisting}
+
+
+\section{quitOpenBTS.sh}
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+sudo echo "Hi, this script turns OpenBTS off in Ubuntu 12.04!"
+
+sudo killall transceiver smqueue sipauthserve OpenBTSCLI asterisk
+\end{lstlisting}
+
+
+
+
