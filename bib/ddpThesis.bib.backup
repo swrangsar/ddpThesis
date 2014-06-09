@@ -1,0 +1,377 @@
+@Article{haykin05,
+    author = "Simon Haykin",
+    title = "Cognitive Radio: Brain-Empowered Wireless Communications",
+    journal = "IEEE Journal on selected areas in communications",
+    year = 2005,
+    volume = 23,
+    number = 2,  
+}
+
+@Misc{wikiCR,
+	key = "Cognitive Radio Wikipedia",
+	howpublished = "\url{http://en.wikipedia.org/wiki/Cognitive_radio}",
+}
+
+@Article{repFCC,
+	author = "Federal Communications Commission",
+	title = "Spectrum Policy Task Force",
+	month = "November",
+	year = 2002,
+	journal = "ET Docket No. 02-135",
+}
+
+@Article{staple04,
+    author = "Gregory Staple and Kevin Werbach",
+    title = "The End of Spectrum Scarcity",
+    journal = "IEEE Spectrum",
+    year = 2004,
+    month = "March",
+    volume = 41,
+    number = 3,
+    pages = "48--52",
+}
+
+@InProceedings{kolodzy01,
+    author = "Paul Kolodzy and others",
+    title = "Next generation communications: Kickoff meeting",
+    booktitle = "Proc. DARPA",
+    year = 2001,
+    month = "October",
+}
+
+@Article{mitola99,
+    author = "Joseph Mitola and others",
+    title = "Cognitive radio: Making software radios more personal",
+    journal = "IEEE Personal Communications",
+    year = 1999,
+    month = "August",
+    volume = 6,
+    number = 4,
+    pages = "13--18",
+}
+
+@PHDThesis{mitola00,
+    author = "Joseph Mitola",
+    title = "Cognitive Radio: An Integrated Agent Architecture for Software
+    Defined Radio",
+    school = "Royal Institute of Technology (KTH)",
+    year = 2000,
+    month = "May",
+    address = "Stockholm, Sweden",
+}
+
+@Article{welch67,
+    author = "Peter D. Welch",
+    title = "The use of fast Fourier transform for the estimation of power 
+    spectra: A method based on time averaging over short, modified 
+    periodograms ",
+    year = 1967,
+    month = "June",
+    pages ="70--73",
+    volume = 15,
+    number = 2,
+    journal = "Audio and Electroacoustics, IEEE Transactions on",
+}
+
+@Article{sarijari09,
+    author = "M. A. Sarijari and others",
+    title = "Energy Detection Sensing based on GNURadio
+and USRP: An Analysis Study ",
+    year = 2009,
+    journal = "Communications (MICC), 2009 IEEE 9th Malaysia International 
+    Conference on",
+    month = "December",
+}
+
+@Misc{wikiCusum,
+    key = "CUSUM",
+    howpublished = "\url{http://en.wikipedia.org/wiki/CUSUM}",
+}
+
+@Article{haykin09,
+    author = "Simon Haykin and David J. Thomson and Jeffrey H. Reed",
+    title = "Spectrum Sensing for Cognitive Radio",
+    journal = "Proceedings of the IEEE",
+    year = 2009,
+    volume = 97,
+    month = "May",
+    number = 5,  
+}
+
+@Article{zhang09,
+    author = "Wei Zhang and R.K. Mallik and K. Letaief",
+    title = "Optimization of cooperative spectrum sensing with energy 
+    detection in cognitive radio networks",
+    journal = "IEEE Transactions on Wireless Communications",
+    year = 2009,
+    month = "December",
+    pages = "5761--5766",
+}
+
+@InProceedings{cabric06,
+  author = "D Cabric and A Tkachenko and R W Brodersen",
+  title = "Experimental Study of Spectrum Sensing based on Energy Detection 
+  and Network Cooperation",
+  booktitle = "TAPAS '06 Proceedings of the first international workshop on 
+  Technology and policy for accessing spectrum",
+  month = "August",
+  year = 2006,
+}
+
+@Misc{wikiMF,
+    key = "Matched Filter Wiki",
+    howpublished = "\url{http://en.wikipedia.org/wiki/Matched_filter}",
+}
+
+@Misc{wikiSDR,
+    key = "Software Defined Radio Wiki",
+    howpublished = "\url{http://en.wikipedia.org/wiki/Software-defined\_radio}",
+}
+
+@Article{bhatta11,
+  title = "A Survey on Spectrum Sensing Techniques in Cognitive Radio",
+  author = "P P Bhattacharya and others",
+  journal = "International Journal of Computer Science \& Communication
+  Networks",
+  volume = 1,
+  number = 2,
+  pages = "196--206",
+  year = 2011,
+}
+
+@MastersThesis{kranthi13,
+  author = "Kranthi Ananthula",
+  title = "Experimental setup of Cognitive Radio Test-Bed using Software
+  Defined Radio",
+  institution = "Indian Institute of Technology Bombay",
+  year = 2013,
+}
+
+@Article{gardner91,
+  author = "W. A. Gardner",
+  title = "Exploitaion of spectral redundancy in cyclostationary signals",
+  journal = "IEEE Sig. Proc. Magazine",
+  pages = "14--35",
+  month = "April",
+  year = 1991,
+}
+
+@Article{deepa10,
+  title = "Cyclostationary-Based Architectures for Spectrum Sensing in IEEE 
+  802.22 WRAN",
+  journal ="Global Telecommunications Conference (GLOBECOM 2010), 2010 IEEE",
+  month = "December",
+  year = 2010,
+  author = "Deepa, B. and Iyer, A.P. and Murthy, C.R.",
+}
+
+@Article{prithvi11,
+  title = "Cyclostationary-Based Architectures for Spectrum Sensing in IEEE
+  802.22 WRAN",
+  journal = "Wireless Communication, Vehicular Technology, Information Theory
+  and Aerospace \& Electronic Systems Technology (Wireless VITAE), 2011 2nd 
+  International Conference on",
+  year = 2011,
+  author = "Prithiviraj, V. and Sarankumar, B. and Kalaiyarasan, A. and 
+  Chandru, P.P. and Singh, N.N.",
+}
+
+@PhdThesis{miller08,
+  author = "Andreas Miller",
+  title = "DAB Software Receiver Implementation",
+  institution = "Department of Information Technology and Electrical Engineering",
+  school = "ETH", 
+  year = 2008,
+}
+
+@Misc{openbtsMan,
+  howpublished = "\url{https://wush.net/trac/rangepublic/attachment/wiki/WikiStart/OpenBTS-4.0-Manual.pdf}",
+  note = "[Accessed on May 27, 2014]",
+}
+
+@Misc{arcadaFi,
+  howpublished = "\url{http://wireless.arcada.fi/MOBWI/material/CN\_1\_2.html}",
+  note = "[Accessed on May 27, 2014]",
+}
+
+@Misc{gnuradioFullNet,
+  howpublished = "\url{http://gnuradio.org/redmine/attachments/download/156/fullnetwork.jpg}",
+  note = "[Accessed on May 27, 2014]",
+}
+
+
+
+@Article{haykin05,
+    author = "Simon Haykin",
+    title = "Cognitive Radio: Brain-Empowered Wireless Communications",
+    journal = "IEEE Journal on selected areas in communications",
+    year = 2005,
+    volume = 23,
+    number = 2,  
+}
+
+@Misc{wikiCR,
+    key = "Cognitive Radio Wikipedia",
+    howpublished = "\url{http://en.wikipedia.org/wiki/Cognitive_radio}",
+}
+
+@Article{repFCC,
+    author = "Federal Communications Commission",
+    title = "Spectrum Policy Task Force",
+    month = "November",
+    year = 2002,
+    journal = "ET Docket No. 02-135",
+}
+
+@Article{staple04,
+    author = "Gregory Staple and Kevin Werbach",
+    title = "The End of Spectrum Scarcity",
+    journal = "IEEE Spectrum",
+    year = 2004,
+    month = "March",
+    volume = 41,
+    number = 3,
+    pages = "48--52",
+}
+
+@InProceedings{kolodzy01,
+    author = "Paul Kolodzy et al",
+    title = "Next generation communications: Kickoff meeting",
+    booktitle = "Proc. DARPA",
+    year = 2001,
+    month = "October",
+}
+
+@Article{mitola99,
+    author = "Joseph Mitola et al",
+    title = "Cognitive radio: Making software radios more personal",
+    journal = "IEEE Personal Communications",
+    year = 1999,
+    month = "August",
+    volume = 6,
+    number = 4,
+    pages = "13--18",
+}
+
+@PHDThesis{mitola00,
+    author = "Joseph Mitola",
+    title = "Cognitive Radio: An Integrated Agent Architecture for Software Defined Radio",
+    school = "Royal Institute of Technology (KTH)",
+    year = 2000,
+    month = "May",
+    address = "Stockholm, Sweden",
+}
+
+@Article{welch67,
+    author = "Peter D. Welch",
+    title = "The use of fast Fourier transform for the estimation of power spectra: A method based on time averaging over short, modified periodograms ",
+    year = 1967,
+    month = "June",
+    pages ="70--73",
+    volume = 15,
+    number = 2,
+    journal = "Audio and Electroacoustics, IEEE Transactions on",
+}
+
+@Article{sarijari09,
+    author = "M.A. Sarijari et. al.",
+    title = "Energy Detection Sensing based on GNU Radio
+and USRP: An Analysis Study ",
+    year = 2009,
+    journal = "Communications (MICC), 2009 IEEE 9th Malaysia International Conference on",
+    month = "December",
+}
+
+@Article{mansi11,
+  author = "Mansi Subhedar and Gajanan Birajdar", 
+  title = "Spectrum sensing techniques in cognitive Radio networks: A survey", 
+  journal = "International Journal of Next-Generation Networks",
+  volume = 3, 
+  number = 2, 
+  month = "June",
+  year = 2011,
+}
+
+@Article{cabric04,
+  author = "D. Cabric, S. M. Mishra and R. W. Brodersen",
+  title = "Implementation Issues in Spectrum Sensing for Cognitive Radios",
+  journal = "Proc. IEEE Asilomar Conf. Signals, Sys., and Comp.",
+  month = "November",
+  year = 2004,
+}
+
+@Article{akyildiz06,
+  author = "Ian F. Akyildiz, Won-Yeol Lee, Mehmet C. Vuran and Shantidev Mohanty",
+  title = "Next generation/dynamic spectrum access/cognitive radio wireless networks: A survey", 
+  journal = "Computer Networks", 
+  volume = 50,
+  year = 2006,
+}
+
+@PhdThesis{miller08,
+  author = "Andreas Miller",
+  title = "DAB Software Receiver Implementation",
+  institution = "Department of Information Technology and Electrical Engineering",
+  school = "ETH", 
+  year = 2008,
+}
+
+@MastersThesis{kranthi13,
+  author = "Kranthi Ananthula",
+  title = "Experimental setup of Cognitive Radio Test-Bed using Software Defined Radio",
+  institution = "Indian Institute of Technology Bombay",
+  year = 2013,
+}
+
+@Misc{wikiGNURadio,
+    key = "GNURadio Wiki",
+    howpublished = "\url{http://gnuradio.org/redmine/projects/gnuradio/wiki}",
+}
+
+@Misc{wikiMF,
+    key = "Matched Filter Wiki",
+    howpublished = "\url{http://en.wikipedia.org/wiki/Matched_filter}",
+}
+
+@Article{bhatta11,
+  title = "A Survey on Spectrum Sensing Techniques in Cognitive Radio",
+  author = "P P Bhattacharya and others",
+  journal = "International Journal of Computer Science & Communication Networks",
+  volume = 1,
+  number = 2,
+  pages = "196--206",
+  year = 2011,
+}
+
+@Article{prithvi11,
+  title = "Cyclostationary-Based Architectures for Spectrum Sensing in IEEE
+  802.22 WRAN",
+  journal = "Wireless Communication, Vehicular Technology, Information Theory
+  and Aerospace \& Electronic Systems Technology (Wireless VITAE), 2011 2nd 
+  International Conference on",
+  year = 2011,
+  author = "Prithiviraj, V. and Sarankumar, B. and Kalaiyarasan, A. and 
+  Chandru, P.P. and Singh, N.N.",
+}
+
+@InProceedings{cabric06,
+  author = "D Cabric and A Tkachenko and R W Brodersen",
+  title = "Experimental Study of Spectrum Sensing based on Energy Detection 
+  and Network Cooperation",
+  booktitle = "TAPAS '06 Proceedings of the first international workshop on 
+  Technology and policy for accessing spectrum",
+  month = "August",
+  year = 2006,
+}
+
+@Misc{openbtsMan,
+  howpublished = "\url{https://wush.net/trac/rangepublic/attachment/wiki/WikiStart/OpenBTS-4.0-Manual.pdf}",
+  note = "[Accessed on May 27, 2014]",
+}
+
+@Misc{wikiHill2dot0,
+  howpublished = "\url{http://www.hill2dot0.com/wiki/index.php?title=Image:G2407\_GSM-Architecture.jpg}",
+  note = "[Accessed on Oct 22, 2013]",
+}
+
+
