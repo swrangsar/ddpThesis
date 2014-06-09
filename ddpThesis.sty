@@ -1,5 +1,4 @@
-\documentclass[12pt, a4paper, openright]{book}
-
+\ProvidesPackage{../ddpThesis}
 
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -28,38 +27,3 @@
 \footskip       13mm
 
 \onehalfspacing
-
-\begin{document}
-
-\frontmatter
-\include{title}
-\include{decl}
-\include{abstract}
-\include{ack}
-
-\setcounter{tocdepth}{2}
-\tableofcontents
-
-\listoffigures
-\setlength\arraycolsep{2pt}
-
-\mainmatter
-\include{intro}
-\include{gsm}
-\include{sdr}
-\include{bts}
-\include{sensing}
-\include{implementation}
-\include{conclusion}
-
-\appendix
-\include{appendix1}
-\include{appendix2}
-
-
-
-\backmatter
-\bibliographystyle{plain}
-\bibliography{ddpThesis}
-
-\end{document}
