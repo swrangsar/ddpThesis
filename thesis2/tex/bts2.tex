@@ -56,7 +56,11 @@ in the suite run inside the access point on the same embedded computer. Figure
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{../images/btsSimple}
-\caption[Network Organization of OpenBTS]{\textbf{Network Organization of OpenBTS}: The smqueue block handles SMSs.
+\caption[Network Organization of OpenBTS]{Network Organization of OpenBTS {\cite{openbtsMan}}.}
+\label{btsSimple}
+\end{figure}
+
+The smqueue block handles SMSs.
 The subscriber registry database contains the details of all registered users and it
 maps the registered IMSIs to corresponding dialling numbers. The softswitch connects
 speech calls (e.g. Asterisk, FreeSwitch). The transceiver performs radio modem
@@ -64,9 +68,8 @@ functions and manages the Gigabit Ethernet interface (USB2 interface, in case
 of USRP1 or older models) to the USRP device. The OpenBTS itself is the GSM
 implementation from the TDMA part of L1 up through L3 and the L3/L4 boundary.
 It has a SIP interface to communicate with the other blocks like smqueue, subscriber
-registry, etc {\cite{openbtsMan}}.}
-\label{btsSimple}
-\end{figure}
+registry, etc.
+
 
 In larger network, with more than one access points, one of the BTS can behave as a master
 and provide servers to the rest of them. Figure \ref{fig:btsLarge} describes a network with two access points
