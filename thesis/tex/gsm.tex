@@ -13,7 +13,7 @@ data rate of 9.6 kbits/sec or 14.4 kbits/sec using better codecs.
 
 A GSM Public Land Mobile Network (PLMN) consists of at least one Service Area
 managed by a Mobile Switching Center (MSC) connected to the Public Switched 
-Telephone Network  (PSTN).
+Telephone Network (PSTN) \cite{arcadaFi2}.
 
 \begin{figure}
 \centering
@@ -50,7 +50,7 @@ MSC.
 \centering
 \includegraphics[scale=0.7]{../images/archMSCServiceArea}
 \caption[Network architecture for a single MSC Service Area]{The GSM network 
-architecture for a single MSC controlled Service Area {\cite{arcadaFi}}.}
+architecture for a single MSC controlled Service Area {\cite{arcadaFi2}}.}
 \end{figure}
 
 
@@ -99,7 +99,7 @@ The data communication protocols in a GSM network are implemented to work over
 the bearer\footnote{A bearer data channel is a channel that carries call 
 content i.e.
 one that does not carry signaling.} data channel. 
-The GSM protocol architecture is structured into three independent planes:
+The GSM protocol architecture is structured into three independent planes \cite{arcadaFi3}:
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
  \item user plane
  \item control plane
@@ -115,7 +115,7 @@ signalling data.
 The signalling data are carried over logical channels called Dm-channels 
 (wireless analog of the D-channels for wired interface).
 The spare capacities of the Dm-channels are used for carrying user data.
-Eventually all logical channels have to multiplexed onto the physical channel.
+Eventually all logical channels have to multiplexed onto the physical channel \cite{arcadaFi3}.
 
 The management plane takes care of the coordination between different planes.
 It also manages functions related to the control and/or user planes.
@@ -202,7 +202,7 @@ etc. It
  
  
 \textbf{Base Station System Application Part (BSSAP)} is a signaling protocol
-at the A interface supported by MTP and SCCP.
+at the A interface supported by MTP and SCCP \cite{arcadaFi3}.
  \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
   \item \textit{Direct Transfer Application Part (DTAP)} handles signaling 
   between the MS and the MSC.
@@ -215,7 +215,7 @@ at the A interface supported by MTP and SCCP.
 
 
 \textbf{Mobile Application Part (MAP)} is an SS7 application-layer protocol 
-for the various nodes in a GSM network.
+for the various nodes in a GSM network \cite{arcadaFi3}.
  It provides facilities such as:
   \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
    \item roaming support via location update, IMSI attach/detach, 

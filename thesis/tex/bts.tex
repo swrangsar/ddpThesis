@@ -1,43 +1,67 @@
 \chapter{OpenBTS}
 
-OpenBTS is a Unix application that uses a software radio to present a GSM Um interface 
-to handsets and uses a SIP softswitch or PBX to connect calls.
-The combination of the global-standard GSM air interface with low cost VoIP backhaul 
-forms the basis of a new type of cellular network that can be deployed and operated at a much lower
-cost than existing technologies in many applications, 
-especially rural cellular deployments and private cellular networks in remote areas.
+OpenBTS is a software implementation of a GSM access point \cite{wikiOpenBTS}.
+It allows common GSM-compatible mobile phones to be used a SIP endpoints to VoIP-based
+networks. It implements the lower three layers of the industry-standard GSM
+protocol stack. OpenBTS is an open source software written in C++. Some 
+additional real-time components of it are written in Erlang.
+
+OpenBTS was first developed with a goal to provide low-cost and easily 
+deployable GSM networks in poor and rural ureas.
+
+\section{GSM architecture of OpenBTS}
+In an OpenBTS based network, the layers of conventional GSM network above layer 3
+are replaced by OpenBTS itself. The functions of the BSC are handled internally.
+The call handling functionalities of the MSC are handed over to a VoIP 
+softswitch or PBX like Asterisk. In fact, multiple OpenBTS networks 
+can be set up sharing a common VoIP softswitch or PBX \cite{wikiOpenBTS}.
+
+The GSM-based Um interface of OpenBTS 
+does not use any standard GSM hardware. Instead OpenBTS uses software-defined
+radio transceivers for its Um interface. The USRP from Ettus Research was the
+first such hardware device to be used for OpenBTS Um interface \cite{wikiOpenBTS}.
+
+
 
 \section{The OpenBTS Application Suite}
-A complete OpenBTS installation consists of many distinct applications:
+The OpenBTS Application Suite comes with several software applications that 
+are listed as follows:
 
 \begin{itemize}
-\item \textbf{OpenBTS --} The actual OpenBTS application, containing most of
-the GSM stack above the radio modem.
-\item \textbf{Transceiver --} The software radio modem and hardware control interface.
-\item \textbf{SMQueue --} A store-and-forward server for text messaging.
-\item \textbf{Asterisk --} A VoIP PBX or ``softswitch''.
-\item \textbf{SIPAuthServe --} An application managing the database of subscriber information.
-\item \textbf{Other Services --} Optional services supported through 
-external servers, interfaced to OpenBTS through various protocols.
+\item \textbf{OpenBTS}
+\item \textbf{Transceiver}
+\item \textbf{SMQueue}
+\item \textbf{Asterisk}
+\item \textbf{SIPAuthServe}
 \end{itemize}
 
-\section{Key applications}
+Besides these, there are optional services supported through 
+external servers and interfaced to OpenBTS through various protocols. For 
+example, the RRLP server.
+
 \subsection{OpenBTS}
-The OpenBTS application contains:
+The OpenBTS application contains various functions beginning from Layer 1 upto
+Layer 3/Layer 4. The Layer 1 functions are:
 \begin{itemize}
-\item L1 TDM functions
-\item L1 FEC functions
-\item L1 closed loop power and timing controls
-\item L2 LAPDm
-\item L3 radio resource management functions
-\item L3 GSM-SIP gateway for mobility management
-\item L3 GSM-SIP gateway for call control
-\item L4 GSM-SIP gateway for text messaging
+\item TDM functions
+\item FEC functions
+\item closed loop power and timing controls
 \end{itemize}
 
-The general design approach of OpenBTS is not to implement any function above L3 or L4, so at L3 or L4
-every subprotocol of GSM is either terminated locally or translated through a gateway to some other protocol
-for handling by an external application. Similarly, OpenBTS itself does not contain any speech transcoding
+\emph{LAPDm} is the only Layer 2 function implemented in the OpenBTS 
+application.
+
+The Layer 3 functions are:
+\begin{itemize}
+\item radio resource management
+\item mobility management
+\item call control
+\end{itemize}
+
+\emph{GSM-SIP gateway for text messaging} is the Layer 4 function included
+in OpenBTS.
+
+OpenBTS itself does not contain any speech transcoding
 functions above the L1 FEC parts.
 
 
