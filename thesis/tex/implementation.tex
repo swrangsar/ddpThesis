@@ -1,4 +1,4 @@
-\chapter{OpenBTS based Cognitive Radio Test-bed}
+\chapter{OpenBTS based Cognitive Radio Test-Bed}
 
 In this project we try to demonstrate the coexistence of primary and secondary
 users in the same GSM frequency band by making the secondary users switch to 
@@ -9,21 +9,21 @@ being used at that particular space and time. This allows secondary users to
 make use of already licensed frequency bands instead of having to allot them 
 completely new frequency bands altogether.
 
-In the first phase of the project, we implemented a two-frequency system where
-the secondary system had an option of switching into one of two frequency 
-channels depending on which one was free. We expanded this to a four-frequency
+In the first phase of the project, we implemented a 2-frequency system where
+the secondary system had an option of switching into one of 2-frequency 
+channels depending on which one was free. We expanded this to a 4-frequency
 system with two primary systems in the second phase. The secondary would 
 search for an unused frequency band among these four frequencies, two of which
 always remain used.
 
-\section{The two-frequency system}
-\subsection{Experimental setup of the two-frequency system}
+\section{The 2-frequency system}
+\subsection{Experimental setup of the 2-frequency system}
 
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{../images/freq2}
-\caption[Experimental setup, 2-frequency system]{Experimental setup of the two
- frequency system}
+\caption[Experimental setup, 2-frequency system]{Experimental setup of the 
+2-frequency system}
 \label{freq2}
 \end{figure}
 
@@ -55,7 +55,7 @@ the secondary users continuously in the background and takes decisions whether
 to switch the frequency band of the secondary BTS or not, depending upon the 
 energy level in the frequency band in which it is running.
 
-\subsection{Testing of the two-frequency system}
+\subsection{Testing of the 2-frequency system}
 First we choose any two GSM frequency bands say 945 MHz ($F_1$) and 950 MHz 
 ($F_2$). The primary users are made to occupy $F_1$. Then we let the secondary
 users come into $F_1$. This makes the energy level in $F_1$ go high, which 
@@ -72,16 +72,16 @@ decision to switch into that channel.
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{../images/freqSys2}
-\caption[Two frequency system]{Flowchart for the two frequency system}
+\caption[2-frequency system]{Flowchart for the 2-frequency system}
 \label{freqSys2}
 \end{figure}
 
 
 
-\section{The four-frequency system}
+\section{The 4-frequency system}
 
-As has been said earlier, in second phase, we expanded the two-frequency
-system to a four-frequency one. The frequency channels are $F_1$ = 936 MHz, 
+As has been said earlier, in second phase, we expanded the 2-frequency
+system to a 4-frequency one. The frequency channels are $F_1$ = 936 MHz, 
 $F_2$ = 943 MHz, $F_3$ = 950 MHz, $F_4$ = 957 MHz. We also had two primary 
 systems instead of just one this time. We also used a method known as CUSUM 
 for peak detection in this case.
@@ -89,12 +89,12 @@ for peak detection in this case.
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{../images/freq4}
-\caption[Experimental setup, 4-frequency system]{Experimental setup of the four
- frequency system}
+\caption[Experimental setup, 4-frequency system]{Experimental setup of the 
+4-frequency system}
 \label{freq4}
 \end{figure}
 
-\subsection{Experimental setup of the four-frequency system}
+\subsection{Experimental setup of the 4-frequency system}
 The tools used in this experiment are as follows:
 \begin{itemize}
     \item \textbf{Two primary BTSs --} One is a laptop and the other one is a
@@ -102,7 +102,7 @@ The tools used in this experiment are as follows:
     them runs OpenBTS with a USRP kit as its radio interface. A pair of mobile
     phones are connected to each one of them.
     \item \textbf{A secondary BTS --} This is the same as in the 
-    two-frequency system. It runs OpenBTS and GNURadio on two different USRP
+    2-frequency system. It runs OpenBTS and GNURadio on two different USRP
     kits. A pair of mobile phones (secondary users) are connected to its
     OpenBTS network.
 \end{itemize}
@@ -110,7 +110,7 @@ The tools used in this experiment are as follows:
 One of the primary BTSs has a USRP with a SBX 400-4400 MHz RX/TX 
 daughterboard, the rest of the USRPs all had a WBX daughterboard as before.
 
-\subsection{Testing of the four-frequency system}
+\subsection{Testing of the 4-frequency system}
 
 Initially we make one of the primary systems operate in $F_2$. And the 
 secondary is made to operate in $F_1$. Now we let the other primary come into 
@@ -123,15 +123,15 @@ But the frequency $F_2$ happens to be occupied by the one of the primary
 systems. So, the secondary moves ahead to $F_3$ which is unoccupied and 
 utilizes that channel.
 
-Unlike the two-frequency system, in this case the secondary always checks 
+Unlike the 2-frequency system, in this case the secondary always checks 
 the availability of a channel before deciding to switch into it. In the 
-two-frequency system, it was assumed that one of the two channels is always
+2-frequency system, it was assumed that one of the two channels is always
 unoccupied.
 
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{../images/freqSys4}
-\caption[Four frequency system]{Flowchart for  the four frequency system}
+\caption[4-frequency system]{Flowchart for  the 4-frequency system}
 \label{freqSys4}
 \end{figure}
 
@@ -217,13 +217,13 @@ during the course of the project.
     two kits do not use the same IP address. So, we had to configure the kits
     to use different IP addresses. This was done by burning a different IP 
     address to one of the kits.
-    \item Next we built a two-frequency system which had a pair of primary 
+    \item Next we built a 2-frequency system which had a pair of primary 
     users and a pair of secondary users communicating in parallel. The primary
     users were to be given higher priority. So the secondary users would have
     to switch to a different and unoccupied channel as soon as the primary 
     users started making calls. A detailed description has already been given
     at the beginning part of this chapter.
-    \item Then we extended the two-frequency system to a four-frequency system
+    \item Then we extended the 2-frequency system to a 4-frequency system
     which has two pairs of primary users instead of just one. Thus we have 
     demonstrated the coexistence of primary users and secondary users in the 
     same GSM frequency band.
