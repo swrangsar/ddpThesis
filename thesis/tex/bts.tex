@@ -148,6 +148,8 @@ configuration files named \textsf{sip.conf} and \textsf{extensions.conf}. These
 files are located in the folder \textsf{/etc/asterisk/} for a default 
 installation of Asterisk.
 
+We also have to update the database \textsf{sqlite3.db} located in
+\textsf{/var/lib/asterisk/sqlite3dir/}.
 \subsubsection{sip.conf}
 
 The \textsf{sip.conf} file contains user device configuration for every user of 
@@ -183,3 +185,10 @@ of the following values:
 The requested user is handled by the dialplan in the \texttt{context} of the
 device configuration. The dialplan configurations are contained in the
 file \textsf{extensions.conf}.
+
+The option \texttt{allow} controls the audio codecs that are allowed for the
+phone.
+
+
+\subsubsection{extensions.conf}
+This file defines the dialplan followed for each user. 
