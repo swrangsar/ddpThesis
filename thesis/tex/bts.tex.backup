@@ -178,6 +178,8 @@ just to ensure that the device names are unique to each user.
   \label{sip_conf}
 \end{figure}
 
+The op
+
 The option \texttt{type} is used to determine how the user is matched to the 
 incoming request for a configuration entry. The \texttt{type} option can take any 
 of the following values:
@@ -216,10 +218,29 @@ response to some external triggers.
   \caption[Screenshot - extensions.conf]{Screenshot for \textsf{extensions.conf}}
   \label{ext_conf}
 \end{figure}
-For our experiment, we wrote a macro to avoid having to repeat the same 
-dialplan for each user/extension. The macro is listed below:
+For our experiment, we added a macro to \textsf{extensions.conf} to avoid
+having to repeat the same dialplan for each user/extension. The macro is
+listed below:
 \begin{verbatim}
+[macro-dialGSM]
+exten => s,1,Dial(SIP/${ARG1})
+exten => s,2,Goto(s-${DIALSTATUS},1)
+exten => s-CANCEL,1,Hangup
+exten => s-NOANSWER,1,Hangup
+exten => s-BUSY,1,Busy(30)
+exten => s-CONGESTION,1,Congestion(30)
+exten => s-CHANUNAVAIL,1,playback(ss-noservice)
+exten => s-CANCEL,1,Hangup
+\end{verbatim}
 
+Then we configured each of our extensions under the \texttt{context} of 
+\textsl{sip-external} as in the example that follows: 
+\begin{verbatim}
+[sip-external]
+exten => 1111,1,Macro(dialGSM,IMSI123451234512345@127.0.0.1:5062)
+exten => 2222,1,Macro(dialGSM,IMSI123451234512312@127.0.0.1:5062)
+exten => 9999,1,Macro(dialGSM,IMSI123451234123412@127.0.0.1:5062)
+exten => 5555,1,Macro(dialGSM,IMSI123412341234123@127.0.0.1:5062)   
 \end{verbatim}
 
 
