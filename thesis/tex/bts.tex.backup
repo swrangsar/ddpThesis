@@ -195,7 +195,9 @@ device configuration. The dialplan configurations are contained in the
 file \textsf{extensions.conf}. In our experiment, we have named the
 \texttt{context} as \textsl{sip-external} and we have put all the phones used
 in the experiment under this \texttt{context}. So, for each phone in our
-experiment Asterisk will be using the dialplan listed in the \text the \context of \textsl{sip-external}
+experiment, Asterisk will be using the dialplan listed in the
+\textsf{extensions.conf} file under the \texttt{context} of
+\textsl{sip-external}.
 
 
 The option \texttt{allow} controls the audio codecs that are allowed for the
@@ -204,10 +206,44 @@ phone.
 
 \subsection{extensions.conf}
 
-This file defines the dialplan followed for each user.
+This file defines the dialplan followed for each user. The dialplan is a form
+of scripting language. It contains instructions that Asterisk follows in 
+response to some external triggers.
+
 \begin{figure}
   \centering
     \includegraphics[width=0.9\textwidth]{../images/ext_conf}
   \caption[Screenshot - extensions.conf]{Screenshot for \textsf{extensions.conf}}
   \label{ext_conf}
 \end{figure}
+For our experiment, we wrote a macro to avoid having to repeat the same 
+dialplan for each user/extension. The macro is listed below:
+\begin{verbatim}
+
+\end{verbatim}
+
+
+\subsection{sqlite3.db}
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.9\textwidth]{../images/dialdata}
+  \caption[Screenshot - dialdatatable]{Screenshot for \texttt{dialdatatable}}
+  \label{dialdata}
+\end{figure}
+
+Asterisk also has a database in \textsl{sqlite} format storing all the 
+\emph{caller id to device name} mapping data and the user device configuration
+data. The table \texttt{dialdatatable} contains the mapping from each device
+name to the corresponding caller id of the subscriber/user. The
+\texttt{sip\_buddies} table on the other hand has all the user device 
+configuration data already listed in \textsf{sip.conf}.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.9\textwidth]{../images/sipbuddies}
+  \caption[Screenshot - sip\_buddies]{Screenshot for \texttt{sip\_buddies}}
+  \label{sipbuddies}
+\end{figure}
+
+
