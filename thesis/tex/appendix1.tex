@@ -22,7 +22,6 @@ The class 'my\_top\_block' was modified by replacing the lines:
         self.min_freq = eng_notation.str_to_num(args[0])
         self.max_freq = eng_notation.str_to_num(args[1])
         if self.min_freq > self.max_freq:
-            # swap them
             self.min_freq, self.max_freq = self.max_freq, self.min_freq    
 \end{lstlisting}
 with the lines
@@ -63,30 +62,18 @@ def sub_loop(tb):
     counter = 0
 
     while 1:
-
-        # Get the next message sent from the C++ code (blocking call).
-        # It contains the center frequency and the mag squared of the fft
         m = parse_msg(tb.msgq.delete_head())
-
-        # m.center_freq is the center frequency at the time of capture
-        # m.data are the mag_squared of the fft output
-        # m.raw_data is a string that contains the binary floats.
-        # You could write this as binary to a file.
-
         center_freq = m.center_freq
         bins = 102
         power_data = 0
         noise_floor_db = 0 
-        
         for i in range(1, bins+1):
             power_data += m.data[mid-i] + m.data[mid+i]
         power_data += m.data[mid]
         power_data /= ((2*bins) + 1)
-        
         power_db = 10*math.log10(power_data/tb.usrp_rate) - noise_floor_db
         power_threshold = -59.0
         print datetime.now(), "center_freq", center_freq, "power_db", power_db
-
         cusum = max(0, cusum + power_db - power_threshold)
         if (cusum > 0):
             counter += 1
@@ -96,21 +83,17 @@ def sub_loop(tb):
                 quitOpenBTS(down_freq, tb)
                 break
 
-                
 def startOpenBTS(downFrequency,tb):
     arfcn=int((downFrequency-935e6)/2e5)
     if (arfcn < 0):
         print "ARFCN must be > 0 !!!"
         sys.exit(1)
     print 'ARFCN=', arfcn
-    #DB modifications
     t=(arfcn,)
     conn=sqlite3.connect("/etc/OpenBTS/OpenBTS.db")
     cursor=conn.cursor()
     cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
     conn.commit()
-
-    #start the OpenBTS
     f=subprocess.Popen(os.path.expanduser('~/ddpOpenBTS/runOpenBTS.sh'))
     f.wait()
     tb.msgq.delete_head()
@@ -125,7 +108,6 @@ def quitOpenBTS(downFreq, tb):
         newDownFreq = downFreq + 10e6
     else:
         newDownFreq = downFreq - 10e6
-
     tb.up_freq = newDownFreq - 45e6
     print "new tb.up_freq: ", tb.up_freq
     startOpenBTS(newDownFreq, tb)
@@ -139,28 +121,22 @@ Most of the code is similar to \textsf{freq2secondaryBTS.py}. The only modified
 functions are listed below:
 
 \begin{lstlisting}[language=Python]
-
 def main_loop(tb):
     startOpenBTS(tb.down_freq,tb)
 
-
 def sub_loop(tb):
-
     print 'fft size', tb.fft_size
     N = tb.fft_size
     mid = N // 2
     cusum = 0
     counter = 0
     
-
     while 1:
         m = parse_msg(tb.msgq.delete_head())
-
         center_freq = m.center_freq
         bins = 102
         power_data = 0
         noise_floor_db = 0
-        
         for i in range(1, bins+1):
             power_data += m.data[mid-i] + m.data[mid+i]
         power_data += m.data[mid]
@@ -185,14 +161,11 @@ def startOpenBTS(downFrequency,tb):
         print "ARFCN must be > 0 !!!"
         sys.exit(1)
     print 'ARFCN=', arfcn
-    #DB modifications
     t=(arfcn,)
     conn=sqlite3.connect("/etc/OpenBTS/OpenBTS.db")
     cursor=conn.cursor()
     cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
     conn.commit()
-
-    #start the OpenBTS
     f=subprocess.Popen(os.path.expanduser('~/ddpOpenBTS/runOpenBTS.sh'))
     f.wait()
     tb.msgq.delete_head()
@@ -209,7 +182,6 @@ def getNewChannel(downFreq, tb):
     newDownFreq = downFreq + 7e6
     if newDownFreq > 960e6:
         newDownFreq = 936e6
-
     tb.up_freq = newDownFreq - 45e6
     print "new tb.up_freq: ", tb.up_freq
     tb.msgq.delete_head()
@@ -220,15 +192,12 @@ def getNewChannel(downFreq, tb):
     cusum = 0
     counter = 0
     loopcounter = 0
-    
 
     while loopcounter < 10:
         m = parse_msg(tb.msgq.delete_head())
-
         center_freq = m.center_freq
         bins = 102
         power_data = 0
-
         for i in range(1, bins+1):
             power_data += m.data[mid-i] + m.data[mid+i]
         power_data += m.data[mid]
@@ -266,7 +235,6 @@ def main_loop():
     if len(sys.argv) != 2:
         print 'usage:', sys.argv[0], 'channel_freq'
         sys.exit(1)
-
     center_freq = int(re.match(r'\d+', sys.argv[1]).group())*1e6
     startOpenBTS(center_freq)
 
@@ -278,10 +246,8 @@ def startOpenBTS(frequency):
     cursor=conn.cursor()
     cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
     conn.commit()
-
     f=os.popen('~/ddpOpenBTS/runOpenBTS.sh')
     f.close()
-              
 
 if __name__ == '__main__':
     try:
@@ -294,11 +260,9 @@ if __name__ == '__main__':
 \section{runOpenBTS.sh}
 \begin{lstlisting}[language=bash]
 #!/bin/bash
-
 sudo echo "Hi, this script starts OpenBTS in Ubuntu 12.04!"
 sudo service asterisk restart
 sudo gnome-terminal -x sh -c "sudo asterisk -r" &
-
 cd ~/OpenBTS/openbts/trunk/apps/
 sudo gnome-terminal --tab -e "sudo ../../../smqueue/trunk/smqueue/smqueue" \
     --tab -e "sudo ../../../subscriberRegistry/trunk/sipauthserve" &
@@ -311,7 +275,6 @@ cd ~
 \section{quitOpenBTS.sh}
 \begin{lstlisting}[language=bash]
 #!/bin/bash
-
 sudo echo "Hi, this script turns OpenBTS off in Ubuntu 12.04!"
 sudo killall transceiver smqueue sipauthserve OpenBTSCLI asterisk
 \end{lstlisting}
