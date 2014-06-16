@@ -17,12 +17,9 @@ channel bandwidth'. We wanted an FFT size of 1024 so we set the bandwidth to
 
 The class 'my\_top\_block' was modified by replacing the lines:
 \begin{lstlisting}[language=Python]
-
         self.channel_bandwidth = options.channel_bandwidth
-
         self.min_freq = eng_notation.str_to_num(args[0])
         self.max_freq = eng_notation.str_to_num(args[1])
-
         if self.min_freq > self.max_freq:
             # swap them
             self.min_freq, self.max_freq = self.max_freq, self.min_freq    
@@ -30,7 +27,6 @@ The class 'my\_top\_block' was modified by replacing the lines:
 with the lines
 \begin{lstlisting}[language=Python]
         self.channel_bandwidth = options.channel_bandwidth
-
         self.down_freq = eng_notation.str_to_num(args[0])
         self.up_freq = (self.down_freq) - 45e6    
 \end{lstlisting}
@@ -58,18 +54,12 @@ customized and the ones that we added.
 def main_loop(tb):
     startOpenBTS(tb.down_freq,tb)
 
-    
 def sub_loop(tb):
-
-    # use a counter to make sure power is less than threshold
-    # lowPowerCount = 0
-    # lowPowerCountMax = 10
     print 'fft size', tb.fft_size
     N = tb.fft_size
     mid = N // 2
     cusum = 0
     counter = 0
-    
 
     while 1:
 
@@ -81,8 +71,6 @@ def sub_loop(tb):
         # m.data are the mag_squared of the fft output
         # m.raw_data is a string that contains the binary floats.
         # You could write this as binary to a file.
-
-
 
         center_freq = m.center_freq
         bins = 102
@@ -96,22 +84,8 @@ def sub_loop(tb):
         
         power_db = 10*math.log10(power_data/tb.usrp_rate) - noise_floor_db
         power_threshold = -59.0
-        
-        
-
-        #if (power_db > tb.squelch_threshold) and (power_db > power_threshold):
-            #print datetime.now(), "center_freq", center_freq, "power_db", power_db, "in use"
-            # lowPowerCount = 0
-        #else:
         print datetime.now(), "center_freq", center_freq, "power_db", power_db
-            # lowPowerCount += 1
 
-        # if (lowPowerCount > lowPowerCountMax):
-        # down_freq = center_freq + 45e6
-        # startOpenBTS(down_freq)
-        # break
-
-        #cusum cusum cusum is here
         cusum = max(0, cusum + power_db - power_threshold)
         if (cusum > 0):
             counter += 1
@@ -123,8 +97,6 @@ def sub_loop(tb):
 
                 
 def startOpenBTS(downFrequency,tb):
-    
-    
     arfcn=int((downFrequency-935e6)/2e5)
     if (arfcn < 0):
         print "ARFCN must be > 0 !!!"
@@ -159,10 +131,6 @@ def quitOpenBTS(downFreq, tb):
 \end{lstlisting}
 
 
-
-
-
-
 \section{Code for the 4-frequency system}
 \subsection{secondaryBTS.py}
 
@@ -185,17 +153,7 @@ def sub_loop(tb):
     
 
     while 1:
-
-        # Get the next message sent from the C++ code (blocking call).
-        # It contains the center frequency and the mag squared of the fft
         m = parse_msg(tb.msgq.delete_head())
-
-        # m.center_freq is the center frequency at the time of capture
-        # m.data are the mag_squared of the fft output
-        # m.raw_data is a string that contains the binary floats.
-        # You could write this as binary to a file.
-
-
 
         center_freq = m.center_freq
         bins = 102
@@ -275,17 +233,12 @@ def getNewChannel(downFreq, tb):
     
 
     while loopcounter < 10:
-
-        # Get the next message sent from the C++ code (blocking call).
-        # It contains the center frequency and the mag squared of the fft
         m = parse_msg(tb.msgq.delete_head())
-
 
         center_freq = m.center_freq
         bins = 102
         power_data = 0
 
-        
         for i in range(1, bins+1):
             power_data += m.data[mid-i] + m.data[mid+i]
         power_data += m.data[mid]
@@ -293,12 +246,10 @@ def getNewChannel(downFreq, tb):
         
         power_db = 10*math.log10(power_data/tb.usrp_rate)
         power_threshold = -70.0
-        
-        
+
         print datetime.now(), "center_freq", center_freq, "power_db", power_db
         print "precheck"
 
-        #cusum cusum cusum is here
         cusum = max(0, cusum + power_db - power_threshold)
         loopcounter += 1
         if (cusum > 0):
@@ -310,7 +261,6 @@ def getNewChannel(downFreq, tb):
         else:
             counter = 0
     return newDownFreq
-
 \end{lstlisting}
 
 
@@ -319,8 +269,6 @@ def getNewChannel(downFreq, tb):
 \section{primaryBTS.py}
 \begin{lstlisting}[language=Python]
 #!/usr/bin/env python
-
-
 import sys
 import sqlite3
 import os
@@ -331,7 +279,6 @@ def main_loop():
     if len(sys.argv) != 2:
         print 'usage:', sys.argv[0], 'channel_freq'
         sys.exit(1)
-
 
     center_freq = int(re.match(r'\d+', sys.argv[1]).group())*1e6
     startOpenBTS(center_freq)
@@ -354,13 +301,11 @@ def startOpenBTS(frequency):
               
 
 if __name__ == '__main__':
-
     try:
         main_loop()
 
     except KeyboardInterrupt:
         pass
-
 \end{lstlisting}
 
 
@@ -372,20 +317,12 @@ sudo echo "Hi, this script starts OpenBTS in Ubuntu 12.04!"
 sudo service asterisk restart
 sudo gnome-terminal -x sh -c "sudo asterisk -r" &
 
-#cd ~/OpenBTS/
-#sudo gnome-terminal --tab -e "sudo smqueue/trunk/smqueue/smqueue" \
-#   --tab -e "sudo subscriberRegistry/trunk/sipauthserve" &
-
 cd ~/OpenBTS/openbts/trunk/apps/
 sudo gnome-terminal --tab -e "sudo ../../../smqueue/trunk/smqueue/smqueue" \
     --tab -e "sudo ../../../subscriberRegistry/trunk/sipauthserve" &
-
-#sudo gnome-terminal -x sh -c "sudo ./OpenBTS" &
-#sudo gnome-terminal -x sh -c "sudo ./OpenBTSCLI" &
 sudo gnome-terminal --tab -e "sudo ./OpenBTS" \
     --tab -e "sudo ./OpenBTSCLI" &
 cd ~
-
 \end{lstlisting}
 
 
@@ -394,10 +331,6 @@ cd ~
 #!/bin/bash
 
 sudo echo "Hi, this script turns OpenBTS off in Ubuntu 12.04!"
-
 sudo killall transceiver smqueue sipauthserve OpenBTSCLI asterisk
 \end{lstlisting}
-
-
-
 
