@@ -122,3 +122,64 @@ Round-cornered boxes are software components \protect\cite{openbtsMan}.}
   \#1 providing servers for both \protect\cite{openbtsMan}}
   \label{fig:btsLarge}
 \end{figure}
+
+
+\section{Asterisk}
+Asterisk is an open source software implementation of a Private Branch
+Exchange (PBX). Just like a real-world PBX, it allows attached phones to call
+each other and to connect to other telephone services like the PSTN and the 
+VoIP. It supports various VoIP protocols like Session Initiation Protocol (SIP),
+H.323, etc. Besides VoIP protocols, it also supports traditional protocols 
+like ISDN and SS7.
+
+OpenBTS uses Asterisk to handle speech calls.
+
+\subsection{Configuration of Asterisk}
+Every phone operating in a GSM network has a Subscriber Identity Module (SIM)
+card. Every SIM has an identifier called IMSI, which stands for International
+Mobile Subscriber Identity.
+
+Asterisk requires a unique name for each user. We use the IMSI
+number for the name of every Asterisk user because the IMSI numbers are unique
+to each GSM network user.
+
+In order to register a SIM to an OpenBTS network, we need to edit two 
+configuration files named \textsf{sip.conf} and \textsf{extensions.conf}. These
+files are located in the folder \textsf{/etc/asterisk/} for a default 
+installation of Asterisk.
+
+\subsubsection{sip.conf}
+
+The \textsf{sip.conf} file contains user device configuration for every user of 
+the Asterisk system. This file contains a section for each user. A typical 
+section is as follows:
+\begin{verbatim}
+[IMSI123451234512345]
+callerid=1111
+canreinvite=no
+type=friend
+context=sip-external
+allow=gsm
+host=dynamic
+dtmfmode=info    
+\end{verbatim}
+
+The first line of each section is the device name (aka extension name in
+Asterisk). We used the IMSI number of each SIM prefixed with the word ``IMSI''
+just to ensure that the device names are unique to each user.
+
+The option \texttt{type} is used to determine how the user is matched to the 
+incoming request for a configuration entry. The \texttt{type} option can take any 
+of the following values:
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item \textbf{peer -} The incoming request is matched using the IP
+    address and the port number.
+    \item \textbf{user -} The incoming request is matched using the 
+    device name of the user.
+    \item \textbf{friend -} The incoming request is matched on the name first,
+    and then the IP address.
+\end{itemize}
+
+The requested user is handled by the dialplan in the \texttt{context} of the
+device configuration. The dialplan configurations are contained in the
+file \textsf{extensions.conf}.
