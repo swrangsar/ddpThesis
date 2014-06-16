@@ -7,12 +7,13 @@
 
 This code was written to demonstrate the 2-frequency system.
 This code was written by modifying the already available program named 
-``usrp\_spectrum\_sense.py'' that comes together with the GNURadio software
+\textsf{usrp\_spectrum\_sense.py'} that comes together with the GNURadio software
 package. We set the 
-default UHD device address to ``192.168.20.2'' because that is the IP address
+default UHD device address to \textsf{192.168.20.2} because that is the IP address
 of the USRP device we are using as a spectrum sensor. The default samping rate
-was set to 1e6 i.e. 1MHz. The default FFT size is given as 'sampling rate /
-channel bandwidth'. We wanted an FFT size of 1024 so we set the bandwidth to
+was set to 1e6 i.e. 1MHz. The default FFT size is given as
+\textsf{sampling rate /channel bandwidth}. We wanted an FFT size of 1024 so we
+set the bandwidth to
 976.56 Hz since 1 MHz / 976.56 Hz $\approx$ 1024.
 
 The class 'my\_top\_block' was modified by replacing the lines:
@@ -31,7 +32,7 @@ with the lines
         self.up_freq = (self.down_freq) - 45e6    
 \end{lstlisting}
 
-The method 'set\_next\_freq' of the class 'my\_top\_block' was modified by
+The method \textsf{set\_next\_freq} of the class \textsf{my\_top\_block} was modified by
 replacing
 \begin{lstlisting}[language=Python]
         target_freq = self.next_freq
@@ -134,7 +135,7 @@ def quitOpenBTS(downFreq, tb):
 \section{Code for the 4-frequency system}
 \subsection{secondaryBTS.py}
 
-Most of the code is similar to ``freq2secondaryBTS.py''. The only modified 
+Most of the code is similar to \textsf{freq2secondaryBTS.py}. The only modified 
 functions are listed below:
 
 \begin{lstlisting}[language=Python]
