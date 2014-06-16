@@ -168,7 +168,8 @@ dtmfmode=info
 \end{verbatim}
 
 The first line of each section is the device name (aka extension name in
-Asterisk). We used the IMSI number of each SIM prefixed with the word ``IMSI''
+Asterisk) i.e. the name given to the device by us for use within the Asterisk
+system. We used the IMSI number of each SIM prefixed with the word \textsf{``IMSI''}
 just to ensure that the device names are unique to each user.
 
 \begin{figure}
@@ -179,6 +180,9 @@ just to ensure that the device names are unique to each user.
 \end{figure}
 
 The \texttt{callerid} option sets dialling number of the device.
+
+Setting the \texttt{canreinvite} option to \textsl{No} prevents two SIP users
+from communicating directly even if they have the ability to do so.
 
 The option \texttt{host} is used for locating the user device in the network.
 Setting the \texttt{host} as \textsl{dynamic} tells Asterisk that the user

@@ -76,7 +76,7 @@ def sub_loop(tb):
         center_freq = m.center_freq
         bins = 102
         power_data = 0
-        noise_floor_db = 0 ## 10*math.log10(min(m.data)/tb.usrp_rate)
+        noise_floor_db = 0 
         
         for i in range(1, bins+1):
             power_data += m.data[mid-i] + m.data[mid+i]
@@ -159,19 +159,15 @@ def sub_loop(tb):
         center_freq = m.center_freq
         bins = 102
         power_data = 0
-        noise_floor_db = 0      ##  10*math.log10(min(m.data)/tb.usrp_rate)
+        noise_floor_db = 0
         
         for i in range(1, bins+1):
             power_data += m.data[mid-i] + m.data[mid+i]
         power_data += m.data[mid]
         power_data /= ((2*bins) + 1)
-        
         power_db = 10*math.log10(power_data/tb.usrp_rate) - noise_floor_db
         power_threshold = -70.0
-        
         print datetime.now(), "center_freq", center_freq, "power_db", power_db
-
-        #cusum cusum cusum is here
         cusum = max(0, cusum + power_db - power_threshold)
         if (cusum > 0):
             counter += 1
@@ -182,9 +178,6 @@ def sub_loop(tb):
                 break
         else:
             counter = 0
-
-
-
 
 def startOpenBTS(downFrequency,tb):
     arfcn=int((downFrequency-935e6)/2e5)
@@ -205,15 +198,12 @@ def startOpenBTS(downFrequency,tb):
     tb.msgq.delete_head()
     time.sleep(0.25)
     sub_loop(tb)
-              
 
 def quitOpenBTS(downFreq, tb):
     f=subprocess.Popen(os.path.expanduser('~/ddpOpenBTS/quitOpenBTS.sh'))
     f.wait()    
     newDownFreq = getNewChannel(downFreq, tb)
     startOpenBTS(newDownFreq, tb)
-
-        
 
 def getNewChannel(downFreq, tb):
     newDownFreq = downFreq + 7e6
@@ -224,7 +214,6 @@ def getNewChannel(downFreq, tb):
     print "new tb.up_freq: ", tb.up_freq
     tb.msgq.delete_head()
     time.sleep(0.25)
-
     print 'fft size', tb.fft_size
     N = tb.fft_size
     mid = N // 2
@@ -244,13 +233,10 @@ def getNewChannel(downFreq, tb):
             power_data += m.data[mid-i] + m.data[mid+i]
         power_data += m.data[mid]
         power_data /= ((2*bins) + 1)
-        
         power_db = 10*math.log10(power_data/tb.usrp_rate)
         power_threshold = -70.0
-
         print datetime.now(), "center_freq", center_freq, "power_db", power_db
         print "precheck"
-
         cusum = max(0, cusum + power_db - power_threshold)
         loopcounter += 1
         if (cusum > 0):
@@ -285,18 +271,14 @@ def main_loop():
     startOpenBTS(center_freq)
 
 def startOpenBTS(frequency):            
-    
     arfcn=int((frequency-935e6)/2e5)
     print 'ARFCN=', arfcn
-    
-    #DB modifications
     t=(arfcn,)
     conn=sqlite3.connect("/etc/OpenBTS/OpenBTS.db")
     cursor=conn.cursor()
     cursor.execute("update config set valuestring=? where keystring='GSM.Radio.C0'",t)
     conn.commit()
-    
-    #start the OpenBTS
+
     f=os.popen('~/ddpOpenBTS/runOpenBTS.sh')
     f.close()
               
@@ -304,7 +286,6 @@ def startOpenBTS(frequency):
 if __name__ == '__main__':
     try:
         main_loop()
-
     except KeyboardInterrupt:
         pass
 \end{lstlisting}
