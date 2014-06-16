@@ -52,6 +52,8 @@ instructions that asterisk follows in response to external triggers.
 Add following lines at end of the file extension.conf file. We should use
 macros to avoid repeating the same dial plan for every client as below.
 
+
+\begin{verbatim}
 [macro-dialGSM]
 exten => s,1,Dial(SIP/${ARG1})
 exten => s,2,Goto(s-${DIALSTATUS},1)
@@ -61,15 +63,39 @@ exten => s-BUSY,1,Busy(30)
 exten => s-CONGESTION,1,Congestion(30)
 exten => s-CHANUNAVAIL,1,playback(s-noservice)
 exten => s-CANCEL,1,Hangup
+\end{verbatim}
+
 Now we define a new context which maps between Caller Id and the IMSI as shown
-below. This is needed because when you make a call, you don`t dial a
+below. This is needed because when you make a call, you don't dial a
 destination IMSI but you call its caller ID.
+
+\begin{verbatim}
 [sip-external]
 exten => 200,1,Macro(dialGSM,IMSI40420137807462@127.0.0.1:5062)
 exten => 202,1,Macro(dialGSM,IMSI404201675035769@127.0.0.1:5062)
+\end{verbatim}
 
 
 \section{sqlite3.db}
-figure here 
 
-the figure above is the screen shot of the sqlite3.db file. Sqlite3.db is the database in sqlite format. It is part of the asterisk only. There are two tables in this database. One is dialdatatable and sip_buddies. Dialdatatable contains mapping from IMSI  to the dialing number defined by us. Sip_buddies contain user device configuration similar to what we have it sip.conf. If we fill up only the dialdatatable and not sip_buddies during SMS the IMSI numbers will be shown instead of the SIP usernames (phone numbers) which is not very convenient. 
+\begin{figure}
+  \centering
+    \includegraphics[width=\textwidth]{../images/dialdata}
+  \caption[Screenshot - sqlite3.db]{Screenshot of \emph{sqlite3.db}.}
+  \label{dialdata}
+\end{figure}
+
+Figure \ref{dialdata} is the screenshot of the sqlite3.db file. Sqlite3.db is 
+the database in sqlite format. It is part of the asterisk only. There are two
+tables in this database. One is dialdatatable and sip\_buddies. 
+Dialdatatable contains mapping from IMSI  to the dialing number defined by us.
+Sip\_buddies contain user device configuration similar to what we have it 
+sip.conf. If we fill up only the dialdatatable and not sip\_buddies during SMS
+the IMSI numbers will be shown instead of the SIP usernames (phone numbers)
+which is not very convenient.
+
+After doing these specified changes we can call using the registered SIMs
+using the local network and also send SMS. More than one pair of users can be
+registered in the network. But if two calls happen simultaneously time
+division multiplexing is done as OpenBTS can operate only on one frequency
+at a time. 
