@@ -2,20 +2,20 @@
 
 Software Defined Radio, SDR is a radio communication system where most of the 
 hardware components have been replaced by software \cite{wikiSDR}. This isn't
-a new concept but recent advances in electronics technologies have made many
-things possible that were just theoretically possible before. In traditional
-radio systems, all the components are hardwired into the device. These 
-components cannot be modified or tweaked easily. Most of them needs to be 
-replaced instead. They are also much more expensive to reconfigure. But in an
-SDR, to change the functionality of the radio system all you need to do is
-rewrite its software. Thus it can be reconfigured easily and economically.
-The protocols used by the software based radio system can also be changed
-easily. Usually, in an SDR most of the hard work is handed over to a general
-purpose microprocessor instead of a special purpose hardware.
+much of a new concept but recent advances in electronics has made many
+previously unrealizable things realizable. In traditional
+radio systems, all the components are hardwired into the device. When there is
+a need to reconfigure these systems they have to be replaced because it is
+not easy to modify them. Thus they make reconfigurations expensive. The 
+functionality of an SDR system can be changed just by rewriting its software.
+Thus it can be reconfigured easily and economically.
+The protocols used by an SDR system also can be changed
+easily. SDR runs on a general
+purpose microprocessor and doesn't require a special purpose hardware.
 
 The traditional hardware radio system consists of elements such as mixers, 
 filters, amplifiers, converters, modulators, etc. resulting in higher 
-production costs and minimal flexibility. Whereas in SDR technologies like 
+production costs and minimal flexibility. In SDR technologies like 
 Field Programmable Gate Array (FPGA), Digital Signal Processor (DSP) and 
 General-Purpose Processor (GPP) are used to build the software radio elements.
 
@@ -35,7 +35,7 @@ transmission of signals at the operating frequency. The IF section performs
 the digital to analog conversion and vice versa. It also does various signal 
 processing tasks like filtering, modulation and demodulation, digital up 
 conversion (DUC), digital down conversion (DDC) etc. The last stage of the 
-radio is the baseband processor. It is at this point that the digital data 
+radio is the baseband processor. This is the point where the digital data 
 gets processed \cite{miller08}\cite{kranthi13}.
 We have used GNURadio and USRP N210 to configure the SDR used in implementing
 our Cognitive Radio Test-Bed. 
@@ -93,49 +93,49 @@ computer. This enables the user to realize 50 MS/s of real-time bandwidth in
 the receive and transmit directions, simultaneously (full duplex).
 
 
-\section{GNU Radio}
+\section{GNURadio}
 
-GNU Radio is a free \& open-source software development toolkit that provides 
+GNURadio is a free \& open-source software development toolkit that provides 
 signal processing blocks to implement software radios. It can be used with 
 readily-available low-cost external RF hardware to create software-defined 
 radios, or without hardware in a simulation-like environment. It is widely 
 used in hobbyist, academic and commercial environments to support both 
 wireless communications research and real-world radio systems.
 
-\subsection{What does GNU Radio do?}
-It does all the signal processing. You can use it to write applications to 
+\subsection{What does GNURadio do?}
+It does all the signal processing. It can be used to write applications to 
 receive data out of digital streams or to push data into digital streams, 
 which is then transmitted using hardware.
 
-GNU Radio has software equivalents of real world radio system components like 
+GNURadio has software equivalents of real world radio system components like 
 filters, demodulators, equalizers, etc. These are usually referred to as
 blocks. You can create a complex system by connecting various blocks. If you
 cannot find some specific blocks, you can even create your own blocks and add
 them.
 
-Most of GNU Radio has been implemented using the Python programming language,
+Most of GNURadio has been implemented using the Python programming language,
 and the performance-critical parts have been implemented using C++. Typically,
-a GNU Radio user writes his applications in Python, unless he has some
-performance-critical needs. Thus, GNU Radio gives its users an easy-to-use,
+a GNURadio user writes his applications in Python, unless he has some
+performance-critical needs. Thus, GNURadio gives its users an easy-to-use,
 rapid application development environment.
 
-\subsection{GNU Radio with USRP}
+\subsection{GNURadio with USRP}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{../images/gnuradio_architecture}
-\caption{Architecture of GNU Radio}
+\caption{Architecture of GNURadio}
 \label{gnuradio_architecture}
 \end{figure}
 
 The USRP and the host computer make up the hardware part of the SDR system. 
-The host computer must run a compatible software package such as GNU Radio or
-Simulink to complete the SDR system. In this project we are using GNU Radio
+The host computer must run a compatible software package such as GNURadio or
+Simulink to complete the SDR system. In this project we are using GNURadio
 as the software platform.
 
-GNU Radio communicates with the USRP through the USRP Hardware Driver (UHD)
+GNURadio communicates with the USRP through the USRP Hardware Driver (UHD)
 software. The UHD provides a host driver and an Application Programming
-Interface (API) for the USRP. GNU Radio uses the UHD to set user-specified
+Interface (API) for the USRP. GNURadio uses the UHD to set user-specified
 parameters like RF center frequency, antenna selection, gain, sampling rate,
 interpolation, decimation, etc.
 
