@@ -1,24 +1,24 @@
 \chapter{OpenBTS}
 
-OpenBTS is a software implementation of a GSM access point \cite{wikiOpenBTS}.
-It allows common GSM-compatible mobile phones to be used a SIP endpoints to VoIP-based
-networks. It implements the lower three layers of the industry-standard GSM
+OpenBTS is a software implementation of a \gls{gsm} access point \cite{wikiOpenBTS}.
+It allows common GSM-compatible mobile phones to be used a \gls{sip} endpoints to VoIP-based
+networks. It implements the lower three layers of the industry-standard \gls{gsm}
 protocol stack. OpenBTS is an open source software written in C++. Some 
 additional real-time components of it are written in Erlang.
 
 OpenBTS was first developed with a goal to provide low-cost and easily 
-deployable GSM networks in poor and rural ureas.
+deployable \gls{gsm} networks in poor and rural ureas.
 
 \section{GSM architecture of OpenBTS}
-In an OpenBTS based network, the layers of conventional GSM network above layer 3
+In an OpenBTS based network, the layers of conventional \gls{gsm} network above layer 3
 are replaced by OpenBTS itself. The functions of the BSC are handled internally.
 The call handling functionalities of the MSC are handed over to a VoIP 
-softswitch or PBX like Asterisk. In fact, multiple OpenBTS networks 
-can be set up sharing a common VoIP softswitch or PBX \cite{wikiOpenBTS}.
+softswitch or \gls{pbx} like Asterisk. In fact, multiple OpenBTS networks 
+can be set up sharing a common VoIP softswitch or \gls{pbx} \cite{wikiOpenBTS}.
 
-The GSM-based Um interface of OpenBTS 
-does not use any standard GSM hardware. Instead OpenBTS uses software-defined
-radio transceivers for its Um interface. The USRP from Ettus Research was the
+The \gls{gsm}-based Um interface of OpenBTS 
+does not use any standard \gls{gsm} hardware. Instead OpenBTS uses software-defined
+radio transceivers for its Um interface. The \gls{usrp} from Ettus Research was the
 first such hardware device to be used for OpenBTS Um interface \cite{wikiOpenBTS}.
 
 
@@ -66,7 +66,7 @@ functions above the L1 FEC parts.
 
 
 \subsection{Transceiver}
-The transceiver application performs the radiomodem functions of GSM 05.05 and manages 
+The transceiver application performs the radiomodem functions of \gls{gsm} 05.05 and manages 
 the Gigabit Ethernet interface
 (USB2 interface, in case
 of USRP1 or older models) to the radio hardware.
@@ -78,18 +78,18 @@ a text message from one MS to another, or to an MS from any source.
 
 \subsection{SIP router/PBX}
 
-OpenBTS uses a SIP router or PBX to perform the 
+OpenBTS uses a \gls{sip} router or \gls{pbx} to perform the 
 call control functions that are normally performed by the MSC
-in a conventional GSM network. These switches also provide transcoding 
+in a conventional \gls{gsm} network. These switches also provide transcoding 
 services.
 
-The SIP router used in OpenBTS is Asterisk by default. Though there are other
-PBXs available in the market like Yate, FreeSwitch, etc.
+The \gls{sip} router used in OpenBTS is Asterisk by default. Though there are other
+\glspl{pbx} available in the market like Yate, FreeSwitch, etc.
 
 \subsection{SIPAuthServe}
 An application that implements Subscriber Registry, the database of subscriber 
-information that replaces both the Asterisk SIP registry and the GSM Home 
-Location Register (HLR) found in a conventional GSM network.
+information that replaces both the Asterisk \gls{sip} registry and the \gls{gsm} Home 
+Location Register (HLR) found in a conventional \gls{gsm} network.
 
 \section{Network organization}
 In the simplest network, with just a single access point, all the applications run
@@ -135,13 +135,13 @@ like ISDN and SS7.
 OpenBTS uses Asterisk to handle speech calls.
 
 \section{Configuration of Asterisk}
-Every phone operating in a GSM network has a Subscriber Identity Module (SIM)
+Every phone operating in a \gls{gsm} network has a Subscriber Identity Module (SIM)
 card. Every SIM has an identifier called IMSI, which stands for International
 Mobile Subscriber Identity.
 
 Asterisk requires a unique name for each user. We use the IMSI
 number for the name of every Asterisk user because the IMSI numbers are unique
-to each GSM network user.
+to each \gls{gsm} network user.
 
 In order to register a SIM to an OpenBTS network, we need to edit two 
 configuration files named \textsf{sip.conf} and \textsf{extensions.conf}. These
@@ -181,7 +181,7 @@ just to ensure that the device names are unique to each user.
 
 The \texttt{callerid} option sets dialling number of the device.
 
-Setting the \texttt{canreinvite} option to \textsl{No} prevents two SIP users
+Setting the \texttt{canreinvite} option to \textsl{No} prevents two \gls{sip} users
 from communicating directly even if they have the ability to do so.
 
 The option \texttt{host} is used for locating the user device in the network.

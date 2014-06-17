@@ -1,21 +1,21 @@
 \chapter{Software Defined Radio}
 
-Software Defined Radio, SDR is a radio communication system where most of the 
+\gls{sdr} is a radio communication system where most of the 
 hardware components have been replaced by software \cite{wikiSDR}. This isn't
 much of a new concept but recent advances in electronics has made many
 previously unrealizable things realizable. In traditional
 radio systems, all the components are hardwired into the device. When there is
 a need to reconfigure these systems they have to be replaced because it is
 not easy to modify them. Thus they make reconfigurations expensive. The 
-functionality of an SDR system can be changed just by rewriting its software.
+functionality of an \gls{sdr} system can be changed just by rewriting its software.
 Thus it can be reconfigured easily and economically.
-The protocols used by an SDR system also can be changed
-easily. SDR runs on a general
+The protocols used by an \gls{sdr} system also can be changed
+easily. \gls{sdr} runs on a general
 purpose microprocessor and doesn't require a special purpose hardware.
 
 The traditional hardware radio system consists of elements such as mixers, 
 filters, amplifiers, converters, modulators, etc. resulting in higher 
-production costs and minimal flexibility. In SDR technologies like 
+production costs and minimal flexibility. In \gls{sdr} technologies like 
 Field Programmable Gate Array (FPGA), Digital Signal Processor (DSP) and 
 General-Purpose Processor (GPP) are used to build the software radio elements.
 
@@ -27,8 +27,8 @@ General-Purpose Processor (GPP) are used to build the software radio elements.
   \label{sdrBlock}
 \end{figure}
 
-The SDR contains a number of basic functional blocks.
-The SDR in general can be divided into three basic sections, namely the front
+The \gls{sdr} contains a number of basic functional blocks.
+The \gls{sdr} in general can be divided into three basic sections, namely the front
 end, the IF section and the base-band section. The front end section consits 
 of analogue RF circuitry that is responsible for the reception and 
 transmission of signals at the operating frequency. The IF section performs
@@ -37,7 +37,7 @@ processing tasks like filtering, modulation and demodulation, digital up
 conversion (DUC), digital down conversion (DDC) etc. The last stage of the 
 radio is the baseband processor. This is the point where the digital data 
 gets processed \cite{miller08}\cite{kranthi13}.
-We have used GNURadio and USRP N210 to configure the SDR used in implementing
+We have used GNURadio and \gls{usrp} N210 to configure the \gls{sdr} used in implementing
 our Cognitive Radio Test-Bed. 
 
 \begin{figure}
@@ -48,40 +48,40 @@ our Cognitive Radio Test-Bed.
   \label{usrpGNURadioBlock}
 \end{figure}
 
-A block diagram of a USRP-based SDR transceiver executing a GNURadio based 
-application is shown in Figure \ref{usrpGNURadioBlock}. The USRP kit is the 
+A block diagram of a \gls{usrp}-based \gls{sdr} transceiver executing a GNURadio based 
+application is shown in Figure \ref{usrpGNURadioBlock}. The \gls{usrp} kit is the 
 hardware interface and GNURadio is used for the baseband signal processing
 tasks.
 
 
-\section{USRP}
+\section{\gls{usrp}}
 
-The USRP (Universal Software Radio Peripheral) is intended to provide a 
+The \gls{usrp} is intended to provide a 
 low-cost, high quality hardware platform for software radio. It is designed
 and marketed by Ettus Research, LLC. It is commonly used by research labs,
-universities, and hobbyists. The USRP platform is designed for RF applications
-from DC to 6 GHz. USRPs connect to a host computer through a high-speed USB or
-Gigabit Ethernet link, which the host-based software uses to control the USRP
+universities, and hobbyists. The \gls{usrp} platform is designed for RF applications
+from DC to 6 GHz. \gls{usrp}s connect to a host computer through a high-speed USB or
+Gigabit Ethernet link, which the host-based software uses to control the \gls{usrp}
 hardware and transmit/receive data.
 
-The USRP Hardware Driver (UHD) is the official driver for all Ettus Research
-products. The UHD supports Linux, Mac OS X and Windows.
+The \gls{uhd} is the official driver for all Ettus Research
+products. The \gls{uhd}supports Linux, Mac OS X and Windows.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{../images/usrpBlock}
-\caption[Block diagram of USRP]{Block diagram of USRP 
+\caption[Block diagram of USRP]{Block diagram of USRP
 \protect\cite{kranthi13}.}
 \label{usrpBlock}
 \end{figure}
 
-In this project we are using a particular model of the USRP known as the
-USRP N210.
+In this project we are using a particular model of the \gls{usrp} known as the
+\gls{usrp} N210.
 
-\subsection{USRP N210}
+\subsection{\gls{usrp} N210}
 
-The USRP N200 and N210 are the highest performing class of hardware of the 
-USRP family of products, which enables engineers to rapidly design and 
+The \gls{usrp} N200 and N210 are the highest performing class of hardware of the 
+\gls{usrp} family of products, which enables engineers to rapidly design and 
 implement powerful, flexible software radio systems. The N200 and N210 
 hardware is ideally suited for applications requiring high RF performance and
 great bandwidth. Such applications include physical layer prototyping, dynamic
@@ -119,7 +119,7 @@ a GNURadio user writes his applications in Python, unless he has some
 performance-critical needs. Thus, GNURadio gives its users an easy-to-use,
 rapid application development environment.
 
-\subsection{GNURadio with USRP}
+\subsection{GNURadio with \gls{usrp}}
 
 \begin{figure}
 \centering
@@ -128,14 +128,14 @@ rapid application development environment.
 \label{gnuradio_architecture}
 \end{figure}
 
-The USRP and the host computer make up the hardware part of the SDR system. 
+The \gls{usrp} and the host computer make up the hardware part of the \gls{sdr} system. 
 The host computer must run a compatible software package such as GNURadio or
-Simulink to complete the SDR system. In this project we are using GNURadio
+Simulink to complete the \gls{sdr} system. In this project we are using GNURadio
 as the software platform.
 
-GNURadio communicates with the USRP through the USRP Hardware Driver (UHD)
-software. The UHD provides a host driver and an Application Programming
-Interface (API) for the USRP. GNURadio uses the UHD to set user-specified
+GNURadio communicates with the \gls{usrp} through the \gls{uhd}
+software. The \gls{uhd}provides a host driver and an Application Programming
+Interface (API) for the \gls{usrp}. GNURadio uses the \gls{uhd}to set user-specified
 parameters like RF center frequency, antenna selection, gain, sampling rate,
 interpolation, decimation, etc.
 

@@ -2,18 +2,16 @@
 
 \section{Overview}
 
-GSM (Global System for Mobile Communications, originally Groupe Sp\'ecial 
-Mobile), is a very popular standard that describes protocols for second 
-generation (2G) digital cellular networks used by mobile phones. GSM networks 
+\acrshort{gsm} (Global System for Mobile Communications, originally Groupe Sp\'ecial 
+Mobile), is a very popular standard that describes protocols for \gls{2g} digital cellular networks used by mobile phones. \gls{gsm} networks 
 usually operate in the 900 MHz, 1800 MHz or 1900 MHz bands. It supports a full
 data rate of 9.6 kbits/sec or 14.4 kbits/sec using better codecs.
 
 
 \section{System Architecture}
 
-A GSM Public Land Mobile Network (PLMN) consists of at least one Service Area
-managed by a Mobile Switching Center (MSC) connected to the Public Switched 
-Telephone Network (PSTN) \cite{arcadaFi2}.
+A \gls{gsm} \gls{plmn} consists of at least one Service Area
+managed by a \gls{msc} connected to the \gls{pstn} \cite{arcadaFi2}.
 
 \begin{figure}
 \centering
@@ -34,16 +32,16 @@ The network structure can be divided into the following discrete sections:
 
 A base station subsystem consists of
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt] 
-\item a Base Station Controller (BSC) and
-\item at least one Base Transceiver Station (BTS) for Mobile Stations (MS).
-A mobile station can be a cell phone, or any electronic equipment such as a 
-Personal Digital Assistant (PDA) with a phone interface.
+\item a \gls{bsc} and
+\item at least one \gls{bts} for \gls{ms}.
+A mobile station can be a cell phone, or any electronic equipment such as a \gls{pda} 
+with a phone interface.
 \end{itemize}
 
-The area served by a BTS is called a Network Cell. One or more BTSs
-are managed by a BSC.  A group of BSSs can be managed as a Location 
+The area served by a \gls{bts} is called a Network Cell. One or more \glspl{bts}
+are managed by a \gls{bsc}.  A group of BSSs can be managed as a Location 
 Area (Location Area) provided all those BSSs are being managed by the same 
-MSC.
+\gls{msc}.
 
 
 \begin{figure}
@@ -54,24 +52,24 @@ architecture for a single MSC controlled Service Area {\cite{arcadaFi2}}.}
 \end{figure}
 
 
-An MSC may also be connected via a Gateway MSC (GMSC) to other MSCs or the
-PSTN with the Integrated Services Digital Network (ISDN) option. The 
-Inter-Working Function (IWF) of a GMSC makes it possible to connect the 
-circuit switched data paths of a GSM network with the PSTN/ISDN.
+An \gls{msc} may also be connected via a \gls{gmsc} to other \glspl{msc} or the
+\gls{pstn} with \gls{isdn} option. The 
+Inter-Working Function (IWF) of a G\gls{msc} makes it possible to connect the 
+circuit switched data paths of a \gls{gsm} network with the \gls{pstn}/\gls{isdn}.
 
 \subsection{Network and Switching Subsystem (NSS)}
 
-The NSS is made up of an MSC and a Visitor Location Register (VLR). An MSC 
+The NSS is made up of an \gls{msc} and a \gls{vlr}. An \gls{msc} 
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
 \item sets up, controls and shuts down connections
 \item handles call charges
 \item manages additionals services like call forwarding, call blocking, etc.
 \end{itemize}
 
-A VLR contains all the subscriber data and location data of the phones being 
-served by the accompanying MSC. The VLR also maintains data about the SIMs 
+A \gls{vlr} contains all the subscriber data and location data of the phones being 
+served by the accompanying \gls{msc}. The \gls{vlr} also maintains data about the SIMs 
 that do not belong to the network but have roamed into the network. The area 
-served by an MSC is called a MSC/VLR service area.
+served by an \gls{msc} is called a \gls{msc}/\gls{vlr} service area.
 
 \subsection{The Operation Subsystem (OSS)}
 
@@ -88,18 +86,18 @@ configuration, fault management, etc.
 \end{itemize}
 
 The AuC controls all the encryption algorithms used for verifying the SIMs. 
-The EIR contains the serial numbers of all the MSs (mobile phones) being 
+The EIR contains the serial numbers of all the \glspl{ms} (mobile phones) being 
 served. The HLR contains the subscriber data and location data of all the 
 SIMs in different parts of the network.
 
 
 
 \section{Protocol Architecture}
-The data communication protocols in a GSM network are implemented to work over
+The data communication protocols in a \gls{gsm} network are implemented to work over
 the bearer\footnote{A bearer data channel is a channel that carries call 
 content i.e.
 one that does not carry signaling.} data channel. 
-The GSM protocol architecture is structured into three independent planes \cite{arcadaFi3}:
+The \gls{gsm} protocol architecture is structured into three independent planes \cite{arcadaFi3}:
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
  \item user plane
  \item control plane
@@ -126,17 +124,17 @@ etc.
 \subsection{Signalling Transmission}
 In GSM, the network nodes exchange signaling information with each other to
 establish, control and terminate connections.
-The various interfaces in a GSM network are:
+The various interfaces in a \gls{gsm} network are:
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
- \item MS-BTS: Um
- \item BTS-BSC: Abis
- \item BSC-MSC: A
- \item MSC-VLR: B
- \item MSC-HLR: C
- \item VLR-HLR: D
- \item MSC-MSC: E
- \item MSC-EIR: F
- \item VLR-VLR: G
+ \item \gls{ms}-\gls{bts}: Um
+ \item \gls{bts}-\gls{bsc}: Abis
+ \item \gls{bsc}-\gls{msc}: A
+ \item \gls{msc}-\gls{vlr}: B
+ \item \gls{msc}-HLR: C
+ \item \gls{vlr}-HLR: D
+ \item \gls{msc}-\gls{msc}: E
+ \item \gls{msc}-EIR: F
+ \item \gls{vlr}-\gls{vlr}: G
 \end{itemize}
 
 The Um interface is the only interface that uses the wireless physical medium 
@@ -145,10 +143,10 @@ mediums.
 
 \subsubsection{\uppercase{Data Link Layer (Layer 2) protocols}}
 
-\textbf{Link Access Protocol on Dm-channel (LAPDm)} is a layer 2 protocol that
+\textbf{\gls{lapdm}} is a layer 2 protocol that
 provides safe, reliable connections to layer 3 protocols. It is a 
 wireless-adapted version of 
- the standard Link Access Protocol on D-channel (LAPD) of ISDN. It works in 
+ the standard \gls{lapd} of \gls{isdn}. It works in 
  two modes: Unacknowledged and Acknowledged. In Unacknowledged mode it 
  operates without acknowledgement,
  without error correction and without flow control. While in acknowledged 
@@ -156,11 +154,10 @@ wireless-adapted version of
  flow is controlled.
  
  
- \textbf{Message Transfer Part (MTP)} is the standard ISDN message transport 
- part of Signaling System 7 (SS7). The networking layers covered by MTP cannot
+ \textbf{Message Transfer Part (MTP)} is the standard \gls{isdn} message transport 
+ part of \gls{ss7}. The networking layers covered by MTP cannot
  be mapped
- one-to-one to the OSI model\footnote{Operation Systems Interconnection 
- model}. But it covers layer 1, layer 2 and parts of layer 3 from the OSI 
+ one-to-one to the \gls{osi} model. But it covers layer 1, layer 2 and parts of layer 3 from the \gls{osi} 
  model. The parts of layer 3
  not covered by MTP are covered by Signalling Connection Control Part (SCCP).
 
@@ -176,54 +173,20 @@ and terminates
  
 
 \textbf{Mobility Management (MM)} manages mobility of the mobile stations 
-(MS). This protocol is used by the MS to communicate directly with the MSC 
+(\gls{ms}). This protocol is used by the \gls{ms} to communicate directly with the \gls{msc} 
 bypassing the BSS. It works over an already established
- RR connection. It handles stuff like TMSI reallocation, authentication, 
- IMSI attach/detach, roaming, location update procedure, etc.
+ RR connection. It handles stuff like T\gls{ms}I reallocation, authentication, 
+ \gls{imsi} attach/detach, roaming, location update procedure, etc.
  
  
  \textbf{Call Management (CM)} protocol consists of the following parts:
  \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
   \item \textit{Call Control (CC)} sets up, manages and ends calls. For each 
-  call a CC instance is created in the MS and another one in the MSC. CC 
+  call a CC instance is created in the \gls{ms} and another one in the \gls{msc}. CC 
   instances 
   communicate over already established MM and RR connections.
-  \item \textit{Short Message Service (SMS)} works over already established 
-  MM, RR and LAPDm connections.
+  \item \textit{Short Message Service (\gls{sms})} works over already established 
+  MM, RR and \gls{lapdm} connections.
   \item \textit{Supplementary Services (SS)} provide upper layers the access 
-  to GSM supplementary services like call forwarding, call barring, etc. 
+  to \gls{gsm} supplementary services like call forwarding, call barring, etc. 
  \end{itemize}
-
-
-% \textbf{Signal Connection Control Part (SCCP)} is a SS7 protocol that provides
-% routing, flow control, connection-orientation, error correction facilities 
-% etc. It works at the A-interface.
- 
-%  
-% \textbf{Base Station System Application Part (BSSAP)} is a signaling protocol
-% at the A interface supported by MTP and SCCP \cite{arcadaFi3}.
-%  \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-%   \item \textit{Direct Transfer Application Part (DTAP)} handles signaling 
-%   between the MS and the MSC.
-%   \item \textit{Base Station System Management Application Part (BSSMAP)} 
-%   transfers management information from the BSC to the MSC.
-%   \item \textit{Base Station System Operation and Management Application Part 
-%   (BSSOMAP)} transports network management information from
-%   OMC to BSC.
-%  \end{itemize}
-% 
-% 
-% \textbf{Mobile Application Part (MAP)} is an SS7 application-layer protocol 
-% for the various nodes in a GSM network \cite{arcadaFi3}.
-%  It provides facilities such as:
-%   \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-%    \item roaming support via location update, IMSI attach/detach, 
-%    authentication
-%    \item call handling
-%    \item subscriber tracing
-%    \item SMS
-%    \item supplementary services
-%   \end{itemize}
-% 
-% 
-% 
