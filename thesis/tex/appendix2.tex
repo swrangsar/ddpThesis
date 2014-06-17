@@ -6,26 +6,21 @@ greater) only. For other operating systems, please check the internet.
 \section{UHD}
 \begin{lstlisting}[language=bash]
 # Install the runtime dependencies:
-
 sudo apt-get install python libboost-all-dev libusb-1.0-0-dev python-cheetah \
 doxygen python-docutils git cmake
 
 # Go to your home folder and git clone the UHD repository:
-
 cd ~
 git clone https://github.com/EttusResearch/uhd.git
 
 # Generate Makefiles with CMake:
-
 cd uhd/host
 mkdir build
 cd build
 cmake ../
 
 # Build and install:
-
-make
-make test
+make && make test
 sudo make install
 sudo ldconfig
 \end{lstlisting}
@@ -59,11 +54,9 @@ cd apps
 ln -s ../Transceiver52M/transceiver .
 
 ## for USRP N210 only, for other devices please check the internet >
-
 sudo mkdir /etc/OpenBTS
 sudo sqlite3 -init ./apps/OpenBTS.example.sql /etc/OpenBTS/OpenBTS.db ".quit"
 sudo sqlite3 /etc/OpenBTS/OpenBTS.db .dump
-
 sudo mkdir -p /var/lib/asterisk/sqlite3dir
 
 cd ../..
@@ -73,7 +66,6 @@ make
 sudo sqlite3 -init subscriberRegistry.example.sql \
 /etc/OpenBTS/sipauthserve.db ".quit"
 
-
 cd ../..
 cd smqueue/trunk
 autoreconf -i
@@ -81,17 +73,14 @@ autoreconf -i
 make
 
 sudo sqlite3 -init smqueue/smqueue.example.sql /etc/OpenBTS/smqueue.db ".quit"
-
 \end{lstlisting}
 
 
 \section{GNURadio}
 
 \begin{lstlisting}[language=bash]
-
 ## for Ubuntu 12.04 only, for other versions
 ## of Ubuntu please check the internet <
-
 sudo apt-get install libfontconfig1-dev libxrender-dev \
 libpulse-dev swig g++ automake autoconf libtool python-dev \
 libfftw3-dev libcppunit-dev libboost1.48-all-dev libusb-dev \
