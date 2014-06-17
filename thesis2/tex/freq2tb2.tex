@@ -1,0 +1,80 @@
+\chapter{Two-frequency Cognitive Radio Test-Bed}
+
+In our project we are able to successfully demonstrate the coexistence of 
+primary users and secondary users in the GSM band. In order to accomplish this, 
+implementation of a cognitive radio which detects the spectrum holes in the 
+radio spectrum and enables secondary users to utilize these for communication 
+is needed. An experimental setup is developed for this demonstration using 
+OpenBTS and GNU radio software and USRP N210 as hardware. First a 2-frequency 
+system is developed which is then expanded to a 4-frequency system.
+
+
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{../images/freq2}
+\caption[Experimental setup, 2-frequency system]{Experimental setup of the 
+2-frequency system}
+\label{freq2}
+\end{figure}
+
+
+\subsection{2-frequency system description}
+The figure above describes the experimental setup for 2-frequency system. It 
+consist of one primary and one secondary subsystems. The primary subsystem has 
+only OpenBTS software and one USRP for RF front. Where as secondary subsystem 
+has OpenBTS along with GNU radio and two USRP kits for each of these softwares 
+as hardware RF front. This secondary subsystem has cognitive capabilities. To 
+provide cognitive capabilities it was necessary for OpenBTS and GNU radio to run 
+together in the same computer and communicate with each other which was challenging. 
+Secondary subsystem continuously senses the frequency band of interest and  
+takes decision depending upon the analysis of the data collected and changes 
+its parameters accordingly so that primary and secondary users coexist. The 
+spectrum sensing is accomplished by using GNU radio.  GNU radio and 
+OpenBTS of the secondary subsystem were made to coordinate and behave in appropriate manner and take dynamic decisions 
+as and when required to make over all system behave cognitively.
+
+\subsection{2-frequency system testing}
+For 2-frequency cognitive system, two GSM bands are used with centre 
+frequency 945MHz ($F_1$) and 950MHz ($F_2$). Secondary users are made to occupy 
+one of these two bands say $F_1$. Then we make primary users enter the same 
+band. This results in an increase in energy levels in this band which is sensed 
+by the secondary subsystem as it is continuously scanning this band. 
+Immediately secondary users are shifted to other frequency band ($F_2$) thereby 
+vacating $F_1$ for primary users. Hence a 2-frequency cognitive system 
+demonstrating coexistence of a pair of primary and secondary users is 
+accomplished. 
+The whole technique is described using a flow graph shown in figure
+\ref{freqSys2}:
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1\textwidth]{../images/freqSys2}
+\caption[2-frequency system]{Flowchart for 2-frequency system}
+\label{freqSys2}
+\end{figure}
+
+
+
+
+\section{CUSUM}
+CUMSUM peak detection is also applied after energy detection to ensure that the
+detected high energy in the band of interest is not due to some irrelevant 
+reasons like random fluctuations in noise power etc, but due to the presence of 
+primary radio in that band. This ensures high accuracy in primary radio 
+detection and correct decision making.
+CUSUM is basically a sequential analysis technique to detect change. 
+It is a criterion for deciding when to take corrective action. As the name 
+implies CUSUM involves calculating cumulative sum. This makes it sequential. 
+The samples from a process $x_n$  are assigned weights $\omega_n$  and summed 
+as followed,
+
+\begin{align}
+S_0 &= 0; \nonumber \\
+S_{n+1} &= max(0, S_n + x_n - \omega_n) \nonumber
+\end{align}
+When the value of $S$ exceeds a certain threshold value a change in value has 
+been found. This formula detects change only in positive direction. To detect 
+change in negative direction we have to do min operation instead of max 
+operation and the change  is detected when value goes below the threshold.
+

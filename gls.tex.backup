@@ -1,0 +1,44 @@
+\usepackage[nomain,acronym,toc,nonumberlist]{glossaries}
+\makeglossaries
+\newacronym{cr}{CR}{Cognitive Radio}
+\newacronym{sdr}{SDR}{Software Defined Radio}
+\newacronym{pu}{PU}{Primary User}
+\newacronym{su}{SU}{Secondary User}
+\newacronym{gsm}{GSM}{Global System for Communications}
+\newacronym{snr}{SNR}{Signal to Noise Ratio}
+\newacronym{usrp}{USRP}{Universal Software Radio Peripheral}
+\newacronym{fft}{FFT}{Fast Fourier Transform}
+\newacronym{uhd}{UHD}{USRP Hardware Driver}
+\newacronym{sip}{SIP}{Session Initiation Protocol}
+\newacronym{pbx}{PBX}{Private Branch Exchange}
+\newacronym{fcc}{FCC}{Federal Communications Commission}
+\newacronym{rf}{RF}{Radio Frequency}
+\newacronym{if}{IF}{Intermediate Frequency}
+\newacronym{2g}{2G}{Second Generation}
+\newacronym{plmn}{PLMN}{Public Land Mobile Network}
+\newacronym{pstn}{PSTN}{Public Switched Telephone Network}
+\newacronym{msc}{MSC}{Mobile Switching Center}
+\newacronym{bsc}{BSC}{Base Station Controller}
+\newacronym{ms}{MS}{Mobile Station}
+\newacronym{bts}{BTS}{Base Transceiver Station}
+\newacronym{pda}{PDA}{Personal Digital Assistant}
+\newacronym{isdn}{ISDN}{Integrated Services Digital Network}
+\newacronym{vlr}{VLR}{Visitor Location Register}
+\newacronym{gmsc}{GMSC}{Gateway MSC}
+\newacronym{sms}{SMS}{Short Message Service}
+\newacronym{imsi}{IMSI}{International Mobile Subscriber Identity}
+\newacronym{osi}{OSI}{Open Systems Interconnection}
+\newacronym{ss7}{SS7}{Signaling System 7}
+\newacronym{lapd}{LAPD}{Link Access Protocol on D-channel}
+\newacronym{lapdm}{LAPDm}{Link Access Protocol on Dm-channel}
+\newacronym{iwf}{IWF}{Inter-Working Function}
+\newacronym{omc}{OMC}{Operation and Maintenance Center}
+\newacronym{auc}{AuC}{Authentication Center}
+\newacronym{hlr}{HLR}{Home Location Register}
+\newacronym{eir}{EIR}{Equipment Identity Register}
+\newacronym{sim}{SIM}{Subscriber Identity Module}
+\newacronym{tch}{TCH}{Traffic Control Channel}
+\newacronym{sccp}{SCCP}{Signalling Connection Control Part}
+\newacronym{fpga}{FPGA}{Field Programmable Gate Array}
+\newacronym{mimo}{MIMO}{Multiple Input Multiple Output}
+\newacronym{gpp}{GPP}{General-Purpose Processor}

@@ -3,7 +3,8 @@
 \section{Overview}
 
 \acrshort{gsm} (Global System for Mobile Communications, originally Groupe Sp\'ecial 
-Mobile), is a very popular standard that describes protocols for \gls{2g} digital cellular networks used by mobile phones. \gls{gsm} networks 
+Mobile), is a very popular standard that describes protocols for \gls{2g} 
+digital cellular networks used by mobile phones. \gls{gsm} networks 
 usually operate in the 900 MHz, 1800 MHz or 1900 MHz bands. It supports a full
 data rate of 9.6 kbits/sec or 14.4 kbits/sec using better codecs.
 
@@ -40,7 +41,7 @@ with a phone interface.
 
 The area served by a \gls{bts} is called a Network Cell. One or more \glspl{bts}
 are managed by a \gls{bsc}.  A group of BSSs can be managed as a Location 
-Area (Location Area) provided all those BSSs are being managed by the same 
+Area (LA) provided all those BSSs are being managed by the same 
 \gls{msc}.
 
 
@@ -54,7 +55,7 @@ architecture for a single MSC controlled Service Area {\cite{arcadaFi2}}.}
 
 An \gls{msc} may also be connected via a \gls{gmsc} to other \glspl{msc} or the
 \gls{pstn} with \gls{isdn} option. The 
-Inter-Working Function (IWF) of a G\gls{msc} makes it possible to connect the 
+\gls{iwf} of a \gls{gmsc} makes it possible to connect the 
 circuit switched data paths of a \gls{gsm} network with the \gls{pstn}/\gls{isdn}.
 
 \subsection{Network and Switching Subsystem (NSS)}
@@ -67,15 +68,15 @@ The NSS is made up of an \gls{msc} and a \gls{vlr}. An \gls{msc}
 \end{itemize}
 
 A \gls{vlr} contains all the subscriber data and location data of the phones being 
-served by the accompanying \gls{msc}. The \gls{vlr} also maintains data about the SIMs 
+served by the accompanying \gls{msc}. The \gls{vlr} also maintains data about the \glspl{sim} 
 that do not belong to the network but have roamed into the network. The area 
 served by an \gls{msc} is called a \gls{msc}/\gls{vlr} service area.
 
 \subsection{The Operation Subsystem (OSS)}
 
-The OSS consists of the Operation and Maintenance Center (OMC), the 
-Authentication Center (AuC), the Home Location Register (HLR) and the 
-Equipment Identity Register (EIR).
+The OSS consists of the \gls{omc}, the 
+\gls{auc}, the \gls{hlr} and the 
+\gls{eir}.
 
 The OSS is responsible for
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
@@ -85,10 +86,10 @@ configuration, fault management, etc.
 \item administering subscribers
 \end{itemize}
 
-The AuC controls all the encryption algorithms used for verifying the SIMs. 
-The EIR contains the serial numbers of all the \glspl{ms} (mobile phones) being 
-served. The HLR contains the subscriber data and location data of all the 
-SIMs in different parts of the network.
+The \gls{auc} controls all the encryption algorithms used for verifying the \glspl{sim}. 
+The \gls{eir} contains the serial numbers of all the \glspl{ms} (mobile phones) being 
+served. The \gls{hlr} contains the subscriber data and location data of all the 
+\glspl{sim} in different parts of the network.
 
 
 
@@ -105,7 +106,7 @@ The \gls{gsm} protocol architecture is structured into three independent planes 
 \end{itemize}
 
 The user plane defines protocols for handling the voice and user data. 
-At the Um interface, the traffic control channel (TCH) is used to carry the 
+At the Um interface, the \gls{tch} is used to carry the 
 user data.
 
 The control plane defines protocols for controlling connections by using 
@@ -130,10 +131,10 @@ The various interfaces in a \gls{gsm} network are:
  \item \gls{bts}-\gls{bsc}: Abis
  \item \gls{bsc}-\gls{msc}: A
  \item \gls{msc}-\gls{vlr}: B
- \item \gls{msc}-HLR: C
- \item \gls{vlr}-HLR: D
+ \item \gls{msc}-\gls{hlr}: C
+ \item \gls{vlr}-\gls{hlr}: D
  \item \gls{msc}-\gls{msc}: E
- \item \gls{msc}-EIR: F
+ \item \gls{msc}-\gls{eir}: F
  \item \gls{vlr}-\gls{vlr}: G
 \end{itemize}
 
@@ -159,7 +160,7 @@ wireless-adapted version of
  be mapped
  one-to-one to the \gls{osi} model. But it covers layer 1, layer 2 and parts of layer 3 from the \gls{osi} 
  model. The parts of layer 3
- not covered by MTP are covered by Signalling Connection Control Part (SCCP).
+ not covered by MTP are covered by \gls{sccp}.
 
 \subsubsection{\uppercase{Network Layer (Layer 3) protocols}}
 
@@ -175,7 +176,7 @@ and terminates
 \textbf{Mobility Management (MM)} manages mobility of the mobile stations 
 (\gls{ms}). This protocol is used by the \gls{ms} to communicate directly with the \gls{msc} 
 bypassing the BSS. It works over an already established
- RR connection. It handles stuff like T\gls{ms}I reallocation, authentication, 
+ RR connection. It handles stuff like \gls{tmsi} reallocation, authentication, 
  \gls{imsi} attach/detach, roaming, location update procedure, etc.
  
  
@@ -185,7 +186,7 @@ bypassing the BSS. It works over an already established
   call a CC instance is created in the \gls{ms} and another one in the \gls{msc}. CC 
   instances 
   communicate over already established MM and RR connections.
-  \item \textit{Short Message Service (\gls{sms})} works over already established 
+  \item \textit{\gls{sms}} works over already established 
   MM, RR and \gls{lapdm} connections.
   \item \textit{Supplementary Services (SS)} provide upper layers the access 
   to \gls{gsm} supplementary services like call forwarding, call barring, etc. 

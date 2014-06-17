@@ -2,9 +2,9 @@
 
 Spectrum sensing is the main task in the entire operation of cognitive
 radio. Spectrum sensing is defined as the finding of spectrum holes in 
-the local neighborhood of the cognitive radio receiver. Spectrum holes are the
+the local neighborhood of the \gls{cr} receiver. Spectrum holes are the
 underutilized (in part or in full) subbands of spectrum at a particular time
-in a specific location. Moreover for cognitive radio to fulfil its potential
+in a specific location. Moreover for \gls{cr} to fulfil its potential
 in solving the problem of spectrum underutilization, the spectrum sensing 
 method used should be reliable and computationally feasible in real-time 
 \cite{haykin09}.
@@ -35,17 +35,17 @@ the required number of \gls{fft}  bins.
 Spectrum sensing can be viewed as a binary hypothesis-testing problem 
 \cite{zhang09}:
 \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-    \item $H_0$: primary user is absent
-    \item $H_1$: primary user is present
+    \item $H_0$: \acrlong{pu} is absent
+    \item $H_1$: \acrlong{pu} is present
 \end{itemize}
 The detection is basically to decide between the following two hypotheses,
 \begin{align}
     H_0 : \qquad x(t) &= n(t),  \nonumber \\
     H_1 : \qquad x(t) &= h(t)s(t) + n(t),  \nonumber
 \end{align}
-where $x(t)$ is the received signal, $s(t)$ is the primary user signal, $h(t)$
-is the complex channel gain and $n(t)$ is the additive white gaussian noise
-(AWGN) with zero mean and variance $\sigma_n^2$. Generally $h(t)$ is assumed
+where $x(t)$ is the received signal, $s(t)$ is the \gls{pu} signal, $h(t)$
+is the complex channel gain and $n(t)$ is the \gls{awgn} with zero mean 
+and variance $\sigma_n^2$. Generally $h(t)$ is assumed
 to be constant $h_0$ for the detection period. A statistics $Y$ is computed by
 taking energy samples over a time $T$ in a bandwidth $B$ and compared with a 
 predefined threshold $\gamma$ for making the decision.
@@ -66,8 +66,8 @@ because its computationally less resource-intensive.
 
 But this method is not without problems. It is always to difficult to 
 determine a threshold that will work for all situations. This method cannot
-say whether an interfering signal is from a primary user or a secondary user.
-Low \gls{snr}  (signal to noise ratio) signals cannot be detected easily.
+say whether an interfering signal is from a \gls{pu} or a \gls{su}.
+Low \gls{snr} signals cannot be detected easily.
 
 The frequency resolution can be improved by increasing N, the number of \gls{fft}  
 points, but then this requires more samples and thereby takes more time.
@@ -93,7 +93,7 @@ additive noise is completely orthogonal to the reference signal or when the
 noise is completely Gaussian. In practice though, the noise doesn't turn out 
 to be purely Gaussian.
  
-Matched filtering requires only $O$(1/\gls{snr} ) samples to meet a given $P_d$, 
+Matched filtering requires only $O(1/SNR)$ samples to meet a given $P_d$, 
 probability of detection requirement. Thus it requires less detection time.
 
 But, matched filtering requires us to have a priori information about the 
@@ -104,14 +104,15 @@ signal correctly also requires timing synchronization, carrier
 synchronization, etc. It might still be possible to achive this because the
 received data carry preambles, synchronization data, etc.
 
-This method requires a specific type of receiver for every primary user.
+This method requires a specific type of receiver for every \gls{pu}.
 Implementing this method on a receiver will increase the complexity and the 
 power consumption greatly.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{../images/matchedFilter}
-\caption[Matched filter]{Block diagram of Matched filter implementation.}
+\caption[Matched Filter block diagram]{Block diagram of Matched Filter
+implementation.}
 \label{matchedFilter}
 \end{figure}
 
@@ -166,7 +167,7 @@ $X(n)$. Let $X_0(n)$ be the first such segment. Then $X_1(n) = X_0(n+D)$ and
 $X_2(n) = X_1(n+D)$ and so on, where $n=0, ..., L-1$. We take $K$ segments
 such that those $K$ segments almost use up all the data in $X(n)$ i.e.
 $ (K-1)D + L = N$. Supposing $W(n), n=0, ..., L-1$ is the window, we calculate
-the Discrete Fourier Transform (DFT) of each segment to get
+the \gls{dft} of each segment to get
 \begin{equation*}
     A_k(m) = \frac{1}{L}\sum_{n=0}^{L-1}X_k(n)W(n)e^{-j2\pi nm/L} \qquad
     k = 0, ..., K-1

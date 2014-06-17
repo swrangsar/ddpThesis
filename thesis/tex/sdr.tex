@@ -16,8 +16,8 @@ purpose microprocessor and doesn't require a special purpose hardware.
 The traditional hardware radio system consists of elements such as mixers, 
 filters, amplifiers, converters, modulators, etc. resulting in higher 
 production costs and minimal flexibility. In \gls{sdr} technologies like 
-Field Programmable Gate Array (FPGA), Digital Signal Processor (DSP) and 
-General-Purpose Processor (GPP) are used to build the software radio elements.
+\gls{fpga}, Digital Signal Processor (DSP) and 
+\gls{gpp} are used to build the software radio elements.
 
 
 \begin{figure}
@@ -29,16 +29,16 @@ General-Purpose Processor (GPP) are used to build the software radio elements.
 
 The \gls{sdr} contains a number of basic functional blocks.
 The \gls{sdr} in general can be divided into three basic sections, namely the front
-end, the IF section and the base-band section. The front end section consits 
-of analogue RF circuitry that is responsible for the reception and 
-transmission of signals at the operating frequency. The IF section performs
+end, the \gls{if} section and the base-band section. The front end section consits 
+of analogue \gls{rf} circuitry that is responsible for the reception and 
+transmission of signals at the operating frequency. The \gls{if} section performs
 the digital to analog conversion and vice versa. It also does various signal 
 processing tasks like filtering, modulation and demodulation, digital up 
 conversion (DUC), digital down conversion (DDC) etc. The last stage of the 
 radio is the baseband processor. This is the point where the digital data 
 gets processed \cite{miller08}\cite{kranthi13}.
 We have used GNURadio and \gls{usrp} N210 to configure the \gls{sdr} used in implementing
-our Cognitive Radio Test-Bed. 
+our \gls{cr} Test-Bed. 
 
 \begin{figure}
   \centering
@@ -54,18 +54,18 @@ hardware interface and GNURadio is used for the baseband signal processing
 tasks.
 
 
-\section{\gls{usrp}}
+\section{USRP}
 
 The \gls{usrp} is intended to provide a 
 low-cost, high quality hardware platform for software radio. It is designed
 and marketed by Ettus Research, LLC. It is commonly used by research labs,
-universities, and hobbyists. The \gls{usrp} platform is designed for RF applications
-from DC to 6 GHz. \gls{usrp}s connect to a host computer through a high-speed USB or
+universities, and hobbyists. The \gls{usrp} platform is designed for \gls{rf} applications
+from DC to 6 GHz. \gls{usrp}s connect to a host computer through a high-speed \gls{usb} or
 Gigabit Ethernet link, which the host-based software uses to control the \gls{usrp}
 hardware and transmit/receive data.
 
 The \gls{uhd} is the official driver for all Ettus Research
-products. The \gls{uhd}supports Linux, Mac OS X and Windows.
+products. The \gls{uhd} supports Linux, Mac OS X and Windows.
 
 \begin{figure}
 \centering
@@ -78,16 +78,16 @@ products. The \gls{uhd}supports Linux, Mac OS X and Windows.
 In this project we are using a particular model of the \gls{usrp} known as the
 \gls{usrp} N210.
 
-\subsection{\gls{usrp} N210}
+\subsection{USRP N210}
 
 The \gls{usrp} N200 and N210 are the highest performing class of hardware of the 
 \gls{usrp} family of products, which enables engineers to rapidly design and 
 implement powerful, flexible software radio systems. The N200 and N210 
-hardware is ideally suited for applications requiring high RF performance and
+hardware is ideally suited for applications requiring high \gls{rf} performance and
 great bandwidth. Such applications include physical layer prototyping, dynamic
 spectrum access and cognitive radio, spectrum monitoring, record and playback,
 and even networked sensor deployment. The Networked Series products offers 
-MIMO capability with high bandwidth and dynamic range. The Gigabit Ethernet
+\gls{mimo} capability with high bandwidth and dynamic range. The Gigabit Ethernet
 interface serves as the connection between the N200/N210 and the host 
 computer. This enables the user to realize 50 MS/s of real-time bandwidth in 
 the receive and transmit directions, simultaneously (full duplex).
@@ -97,7 +97,7 @@ the receive and transmit directions, simultaneously (full duplex).
 
 GNURadio is a free \& open-source software development toolkit that provides 
 signal processing blocks to implement software radios. It can be used with 
-readily-available low-cost external RF hardware to create software-defined 
+readily-available low-cost external \gls{rf} hardware to create software-defined 
 radios, or without hardware in a simulation-like environment. It is widely 
 used in hobbyist, academic and commercial environments to support both 
 wireless communications research and real-world radio systems.
@@ -119,7 +119,7 @@ a GNURadio user writes his applications in Python, unless he has some
 performance-critical needs. Thus, GNURadio gives its users an easy-to-use,
 rapid application development environment.
 
-\subsection{GNURadio with \gls{usrp}}
+\subsection{GNURadio with USRP}
 
 \begin{figure}
 \centering
@@ -134,8 +134,8 @@ Simulink to complete the \gls{sdr} system. In this project we are using GNURadio
 as the software platform.
 
 GNURadio communicates with the \gls{usrp} through the \gls{uhd}
-software. The \gls{uhd}provides a host driver and an Application Programming
-Interface (API) for the \gls{usrp}. GNURadio uses the \gls{uhd}to set user-specified
-parameters like RF center frequency, antenna selection, gain, sampling rate,
+software. The \gls{uhd} provides a host driver and an \gls{api} for the
+\gls{usrp}. GNURadio uses the \gls{uhd} to set user-specified
+parameters like \gls{rf} center frequency, antenna selection, gain, sampling rate,
 interpolation, decimation, etc.
 

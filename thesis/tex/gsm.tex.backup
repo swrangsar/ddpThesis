@@ -1,0 +1,192 @@
+\chapter{GSM}
+
+\section{Overview}
+
+\acrshort{gsm} (Global System for Mobile Communications, originally Groupe Sp\'ecial 
+Mobile), is a very popular standard that describes protocols for \gls{2g} digital cellular networks used by mobile phones. \gls{gsm} networks 
+usually operate in the 900 MHz, 1800 MHz or 1900 MHz bands. It supports a full
+data rate of 9.6 kbits/sec or 14.4 kbits/sec using better codecs.
+
+
+\section{System Architecture}
+
+A \gls{gsm} \gls{plmn} consists of at least one Service Area
+managed by a \gls{msc} connected to the \gls{pstn} \cite{arcadaFi2}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{../images/gsmNetwork}
+\caption[GSM PLMN architecture]{The architecture of a GSM PLMN
+ {\cite{gnuradioFullNet}}}
+\end{figure}
+
+The network structure can be divided into the following discrete sections:
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+\item Base Station Subsystem
+\item Network and Switching Subsystem
+\item Operation Subsystem
+\end{itemize}
+
+
+\subsection{Base Station Subsystem (BSS)}
+
+A base station subsystem consists of
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt] 
+\item a \gls{bsc} and
+\item at least one \gls{bts} for \gls{ms}.
+A mobile station can be a cell phone, or any electronic equipment such as a \gls{pda} 
+with a phone interface.
+\end{itemize}
+
+The area served by a \gls{bts} is called a Network Cell. One or more \glspl{bts}
+are managed by a \gls{bsc}.  A group of BSSs can be managed as a Location 
+Area (Location Area) provided all those BSSs are being managed by the same 
+\gls{msc}.
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.7]{../images/archMSCServiceArea}
+\caption[Network architecture for a single MSC Service Area]{The GSM network 
+architecture for a single MSC controlled Service Area {\cite{arcadaFi2}}.}
+\end{figure}
+
+
+An \gls{msc} may also be connected via a \gls{gmsc} to other \glspl{msc} or the
+\gls{pstn} with \gls{isdn} option. The 
+Inter-Working Function (IWF) of a G\gls{msc} makes it possible to connect the 
+circuit switched data paths of a \gls{gsm} network with the \gls{pstn}/\gls{isdn}.
+
+\subsection{Network and Switching Subsystem (NSS)}
+
+The NSS is made up of an \gls{msc} and a \gls{vlr}. An \gls{msc} 
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+\item sets up, controls and shuts down connections
+\item handles call charges
+\item manages additionals services like call forwarding, call blocking, etc.
+\end{itemize}
+
+A \gls{vlr} contains all the subscriber data and location data of the phones being 
+served by the accompanying \gls{msc}. The \gls{vlr} also maintains data about the SIMs 
+that do not belong to the network but have roamed into the network. The area 
+served by an \gls{msc} is called a \gls{msc}/\gls{vlr} service area.
+
+\subsection{The Operation Subsystem (OSS)}
+
+The OSS consists of the Operation and Maintenance Center (OMC), the 
+Authentication Center (AuC), the Home Location Register (HLR) and the 
+Equipment Identity Register (EIR).
+
+The OSS is responsible for
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+\item network management functions like service provisioning, network 
+configuration, fault management, etc.
+\item billing calls
+\item administering subscribers
+\end{itemize}
+
+The AuC controls all the encryption algorithms used for verifying the SIMs. 
+The EIR contains the serial numbers of all the \glspl{ms} (mobile phones) being 
+served. The HLR contains the subscriber data and location data of all the 
+SIMs in different parts of the network.
+
+
+
+\section{Protocol Architecture}
+The data communication protocols in a \gls{gsm} network are implemented to work over
+the bearer\footnote{A bearer data channel is a channel that carries call 
+content i.e.
+one that does not carry signaling.} data channel. 
+The \gls{gsm} protocol architecture is structured into three independent planes \cite{arcadaFi3}:
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+ \item user plane
+ \item control plane
+ \item management plane
+\end{itemize}
+
+The user plane defines protocols for handling the voice and user data. 
+At the Um interface, the traffic control channel (TCH) is used to carry the 
+user data.
+
+The control plane defines protocols for controlling connections by using 
+signalling data.
+The signalling data are carried over logical channels called Dm-channels 
+(wireless analog of the D-channels for wired interface).
+The spare capacities of the Dm-channels are used for carrying user data.
+Eventually all logical channels have to multiplexed onto the physical channel \cite{arcadaFi3}.
+
+The management plane takes care of the coordination between different planes.
+It also manages functions related to the control and/or user planes.
+The management plane handles things like network configuration, network fault,
+etc.
+
+
+\subsection{Signalling Transmission}
+In GSM, the network nodes exchange signaling information with each other to
+establish, control and terminate connections.
+The various interfaces in a \gls{gsm} network are:
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+ \item \gls{ms}-\gls{bts}: Um
+ \item \gls{bts}-\gls{bsc}: Abis
+ \item \gls{bsc}-\gls{msc}: A
+ \item \gls{msc}-\gls{vlr}: B
+ \item \gls{msc}-HLR: C
+ \item \gls{vlr}-HLR: D
+ \item \gls{msc}-\gls{msc}: E
+ \item \gls{msc}-EIR: F
+ \item \gls{vlr}-\gls{vlr}: G
+\end{itemize}
+
+The Um interface is the only interface that uses the wireless physical medium 
+for carrying signals. The rest of the interfaces all use wired and digital 
+mediums.
+
+\subsubsection{\uppercase{Data Link Layer (Layer 2) protocols}}
+
+\textbf{\gls{lapdm}} is a layer 2 protocol that
+provides safe, reliable connections to layer 3 protocols. It is a 
+wireless-adapted version of 
+ the standard \gls{lapd} of \gls{isdn}. It works in 
+ two modes: Unacknowledged and Acknowledged. In Unacknowledged mode it 
+ operates without acknowledgement,
+ without error correction and without flow control. While in acknowledged 
+ mode, it asserts acknowledgement, error correction is done by resending and 
+ flow is controlled.
+ 
+ 
+ \textbf{Message Transfer Part (MTP)} is the standard \gls{isdn} message transport 
+ part of \gls{ss7}. The networking layers covered by MTP cannot
+ be mapped
+ one-to-one to the \gls{osi} model. But it covers layer 1, layer 2 and parts of layer 3 from the \gls{osi} 
+ model. The parts of layer 3
+ not covered by MTP are covered by Signalling Connection Control Part (SCCP).
+
+\subsubsection{\uppercase{Network Layer (Layer 3) protocols}}
+
+\textbf{Radio Resource Management (RR)} is a protocol that sets up, manages 
+and terminates
+ radio link channels. It is involved in measuring radio field strength, 
+ signal quality etc.
+ It manages handover, modulation scheme, co-channel interference, etc. The 
+ goal is to 
+ utilize the limited spectral resources efficiently.
+ 
+
+\textbf{Mobility Management (MM)} manages mobility of the mobile stations 
+(\gls{ms}). This protocol is used by the \gls{ms} to communicate directly with the \gls{msc} 
+bypassing the BSS. It works over an already established
+ RR connection. It handles stuff like T\gls{ms}I reallocation, authentication, 
+ \gls{imsi} attach/detach, roaming, location update procedure, etc.
+ 
+ 
+ \textbf{Call Management (CM)} protocol consists of the following parts:
+ \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+  \item \textit{Call Control (CC)} sets up, manages and ends calls. For each 
+  call a CC instance is created in the \gls{ms} and another one in the \gls{msc}. CC 
+  instances 
+  communicate over already established MM and RR connections.
+  \item \textit{Short Message Service (\gls{sms})} works over already established 
+  MM, RR and \gls{lapdm} connections.
+  \item \textit{Supplementary Services (SS)} provide upper layers the access 
+  to \gls{gsm} supplementary services like call forwarding, call barring, etc. 
+ \end{itemize}

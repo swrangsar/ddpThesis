@@ -1,11 +1,11 @@
 \chapter{OpenBTS based Cognitive Radio Test-Bed}
 
 In this project we try to demonstrate the coexistence of primary and secondary
-users in the same GSM frequency band by making the secondary users switch to 
-some neighboring unoccupied GSM frequency band (spectrum hole) as soon as the 
-primary users of that frequency band makes a call. A spectrum hole is a 
-frequency band/channel that have been licensed to the primary users but is not 
-being used at that particular space and time. This allows secondary users to 
+users in the same \gls{gsm} frequency band by making the \glspl{su} switch to 
+some neighboring unoccupied \gls{gsm} frequency band (spectrum hole) as soon as the 
+\glspl{pu} of that frequency band makes a call. A spectrum hole is a 
+frequency band/channel that have been licensed to the \glspl{pu} but is not 
+being used at that particular space and time. This allows \glspl{su} to 
 make use of already licensed frequency bands instead of having to allot them 
 completely new frequency bands altogether.
 
@@ -32,40 +32,40 @@ always remain used.
 The hardware and software components used in this experiment are the 
 following:
 \begin{itemize}
-    \item \textbf{A primary BTS --} This is a Linux laptop running OpenBTS
-    software with 1 USRP as the OpenBTS radio interface. The USRP hardware kit
+    \item \textbf{A primary \gls{bts} --} This is a Linux laptop running OpenBTS
+    software with 1 \gls{usrp} as the OpenBTS radio interface. The \gls{usrp} hardware kit
     has a WBX 50-2200 MHz RX/TX daughterboard in it. Two mobile phones 
-    (primary users) are connected to the OpenBTS network running in this 
-    primary BTS system.
-    \item \textbf{A secondary BTS --} This is an Ubuntu desktop running
-    OpenBTS and GNURadio software. Two USRP kits are connected to this
+    (\glspl{pu}) are connected to the OpenBTS network running in this 
+    primary \gls{bts} system.
+    \item \textbf{A secondary \gls{bts} --} This is an Ubuntu desktop running
+    OpenBTS and GNURadio software. Two \gls{usrp} kits are connected to this
     machine, one as the OpenBTS radio interface and the other as the GNURadio
     radio interface. The GNURadio software is used for the spectrum sensing. 
-    So, here the OpenBTS software with its radio interface acts as a Base
-    Transceiver Station (BTS) while the GNURadio software alongwith its radio
-    interface acts as a spectrum sensor. Each of the two USRP kits has a
+    So, here the OpenBTS software with its radio interface acts as a \gls{bts}
+    while the GNURadio software alongwith its radio
+    interface acts as a spectrum sensor. Each of the two \gls{usrp} kits has a
     WBX 50-2200 MHz RX/TX daughterboard. Two other mobile phones (secondary 
-    users) are connected to the OpenBTS network running in this secondary BTS.
+    users) are connected to the OpenBTS network running in this secondary \gls{bts}.
 \end{itemize}
 
-The secondary BTS system has cognitive capabilities. It was a challenge to 
+The secondary \gls{bts} system has cognitive capabilities. It was a challenge to 
 make OpenBTS and GNURadio run simultaneously in the same computer and make 
 them communicate with each other. GNURadio keeps sensing the spectrum used by
-the secondary users continuously in the background and takes decisions whether
-to switch the frequency band of the secondary BTS or not, depending upon the 
+the \glspl{su} continuously in the background and takes decisions whether
+to switch the frequency band of the secondary \gls{bts} or not, depending upon the 
 energy level in the frequency band in which it is running.
 
 \subsection{Testing of the 2-frequency system}
-First we choose any two GSM frequency bands say 945 MHz ($F_1$) and 950 MHz 
-($F_2$). The primary users are made to occupy $F_1$. Then we let the secondary
+First we choose any two \gls{gsm} frequency bands say 945 MHz ($F_1$) and 950 MHz 
+($F_2$). The \glspl{pu} are made to occupy $F_1$. Then we let the secondary
 users come into $F_1$. This makes the energy level in $F_1$ go high, which 
-gets detected by the spectrum sensor of the secondary BTS. So, the secondary 
-BTS moves out of $F_1$ and switches its frequency to $F_2$. Similarly, now if 
-the primary users are made to come into $F_2$, the secondary switches back to 
+gets detected by the spectrum sensor of the secondary \gls{bts}. So, the secondary 
+\gls{bts} moves out of $F_1$ and switches its frequency to $F_2$. Similarly, now if 
+the \glspl{pu} are made to come into $F_2$, the secondary switches back to 
 $F_1$.
 
 In this experiment we don't have the situation where both $F_1$ and $F_2$ 
-remain occupied because there is only one set of primary users. Therefore, the 
+remain occupied because there is only one set of \glspl{pu}. Therefore, the 
 secondary also doesn't check the energy level in a channel before taking the
 decision to switch into that channel.
 
@@ -97,18 +97,18 @@ for peak detection in this case.
 \subsection{Experimental setup of the 4-frequency system}
 The tools used in this experiment are as follows:
 \begin{itemize}
-    \item \textbf{Two primary BTSs --} One is a laptop and the other one is a
+    \item \textbf{Two primary \glspl{bts} --} One is a laptop and the other one is a
     desktop. Both of them runs Ubuntu as the Operating System. Each one of
-    them runs OpenBTS with a USRP kit as its radio interface. A pair of mobile
+    them runs OpenBTS with a \gls{usrp} kit as its radio interface. A pair of mobile
     phones are connected to each one of them.
-    \item \textbf{A secondary BTS --} This is the same as in the 
-    2-frequency system. It runs OpenBTS and GNURadio on two different USRP
-    kits. A pair of mobile phones (secondary users) are connected to its
+    \item \textbf{A secondary \gls{bts} --} This is the same as in the 
+    2-frequency system. It runs OpenBTS and GNURadio on two different \gls{usrp}
+    kits. A pair of mobile phones (\glspl{su}) are connected to its
     OpenBTS network.
 \end{itemize}
 
-One of the primary BTSs has a USRP with a SBX 400-4400 MHz RX/TX 
-daughterboard, the rest of the USRPs all had a WBX daughterboard as before.
+One of the primary \glspl{bts} has a \gls{usrp} with a SBX 400-4400 MHz RX/TX 
+daughterboard, the rest of the \glspl{usrp} all had a WBX daughterboard as before.
 
 \subsection{Testing of the 4-frequency system}
 
@@ -136,17 +136,17 @@ unoccupied.
 \end{figure}
 
 The spectrum sensing is done using the energy detection based method. For 
-making decisions whether to switch the frequency of the secondary BTS or not, 
+making decisions whether to switch the frequency of the secondary \gls{bts} or not, 
 a threshold of energy level is required to be set. If the energy level in a 
-given channel is beyond the thresho ld, it implies that the primary users are
+given channel is beyond the thresho ld, it implies that the \glspl{pu} are
 also using that channel i.e. that channel is already occupied by primary 
 users.
 
 To choose a threshold energy level, we took various readings of the noise 
-floor, energy when only primary users were active, energy when only secondary 
-users were active and also when both primary users and secondary users were 
+floor, energy when only \glspl{pu} were active, energy when only secondary 
+users were active and also when both \glspl{pu} and \glspl{su} were 
 active simultaneously for a short duration. The energy level threshold depends
-on the distance of the mobile phones from the BTS. We can subdue this 
+on the distance of the mobile phones from the \gls{bts}. We can subdue this 
 dependency on the distance by setting the threshold quite low so that even if
 the users move farther away the decision making is not affected.
 
@@ -179,9 +179,9 @@ What follows is a brief overview of the things done and the challenges faced
 during the course of the project.
 
 \begin{enumerate}
-    \item We began by trying to get acquainted with Cognitive Radio. We 
-    carried out a literature survey on Cognitive Radio and also on the ongoing 
-    research work in the field of Cognitive Radio.
+    \item We began by trying to get acquainted with \gls{cr}. We 
+    carried out a literature survey on \gls{cr} and also on the ongoing 
+    research work in the field of \gls{cr}.
     \item Since GNURadio applications are written in the Python programming 
     language, we had to brush up our knowledge of the Python language.
     \item We familiarized ourselves with the GNURadio software package. Even 
@@ -189,18 +189,18 @@ during the course of the project.
     back then because GNURadio required a manual installation. We tweaked
     and played around with the already existing codes of signal processing
     blocks that come by default with GNURadio.
-    \item We acquainted ourselves with the USRP hardware kit, which happens to
+    \item We acquainted ourselves with the \gls{usrp} hardware kit, which happens to
     be the prime hardware used in our project. An outdoor experiment was
-    carried out to estimate the range of the USRP kit. This is largest 
+    carried out to estimate the range of the \gls{usrp} kit. This is largest 
     distance upto which mobile phones are able to get reasonable signal
-    quality from the USRP.
+    quality from the \gls{usrp}.
     \item Then we got familiar with the OpenBTS software. We had a hard time
     installing and configuring OpenBTS to work. But eventually we managed to 
-    get our SIMs registered to the OpenBTS network and also to make calls and
-    to text messages between the phones. The USRP kit is the hardware radio 
+    get our \glspl{sim} registered to the OpenBTS network and also to make calls and
+    to text messages between the phones. The \gls{usrp} kit is the hardware radio 
     interface for the OpenBTS software.
     \item Spectrum sensing lies at the very heart of the entire operation of 
-    Cognitive Radio. So we surveyed literature on various methods of spectrum
+    \gls{cr}. So we surveyed literature on various methods of spectrum
     sensing. We made a decision to go with Energy detection based method 
     because it is comparatively less complicated and computationally less 
     resource-expensive. Average Periodogram Analysis is a technique used in 
@@ -213,20 +213,20 @@ during the course of the project.
     \item A key approach in solving our problem was to make GNURadio and 
     OpenBTS run simultaneously in the same computer hardware. This was a
     little tricky for us. Because we had to figure out if it was possible to
-    run two USRP kits on the same computer. Fortunately, it is possible if the
+    run two \gls{usrp} kits on the same computer. Fortunately, it is possible if the
     two kits do not use the same IP address. So, we had to configure the kits
     to use different IP addresses. This was done by burning a different IP 
     address to one of the kits.
     \item Next we built a 2-frequency system which had a pair of primary 
-    users and a pair of secondary users communicating in parallel. The primary
-    users were to be given higher priority. So the secondary users would have
+    users and a pair of \glspl{su} communicating in parallel. The primary
+    users were to be given higher priority. So the \glspl{su} would have
     to switch to a different and unoccupied channel as soon as the primary 
     users started making calls. A detailed description has already been given
     at the beginning part of this chapter.
     \item Then we extended the 2-frequency system to a 4-frequency system
-    which has two pairs of primary users instead of just one. Thus we have 
-    demonstrated the coexistence of primary users and secondary users in the 
-    same GSM frequency band.
+    which has two pairs of \glspl{pu} instead of just one. Thus we have 
+    demonstrated the coexistence of \glspl{pu} and \glspl{su} in the 
+    same \gls{gsm} frequency band.
 \end{enumerate}
 
 

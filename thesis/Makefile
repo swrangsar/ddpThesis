@@ -13,7 +13,9 @@ ddpThesisSoft.pdf: ddpThesisSoft.tex
 	pdflatex ddpThesisSoft
 	pdflatex ddpThesisSoft
 
-Mac: ddpThesis.pdf ddpThesisSoft.pdf
+mac: ddpThesis.pdf ddpThesisSoft.pdf
 	open -a preview ddpThesis.pdf
+ubuntu: ddpThesis.pdf ddpThesisSoft.pdf
+	okular ddpThesis.pdf 
 clean:
 	rm -f ddpThesis.pdf ddpThesisSoft.pdf
