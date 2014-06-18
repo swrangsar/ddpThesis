@@ -1,7 +1,7 @@
 \chapter{OpenBTS based Cognitive Radio Test-Bed}
 
-In this project we try to demonstrate the coexistence of primary and secondary
-users in the same \gls{gsm} frequency band by making the \glspl{su} switch to 
+In this project we try to demonstrate the coexistence of \glspl{pu} and \glspl{su}
+in the same \gls{gsm} frequency band by making the \glspl{su} switch to 
 some neighboring unoccupied \gls{gsm} frequency band (spectrum hole) as soon as the 
 \glspl{pu} of that frequency band makes a call. A spectrum hole is a 
 frequency band/channel that have been licensed to the \glspl{pu} but is not 
@@ -44,8 +44,8 @@ following:
     So, here the OpenBTS software with its radio interface acts as a \gls{bts}
     while the GNURadio software alongwith its radio
     interface acts as a spectrum sensor. Each of the two \gls{usrp} kits has a
-    WBX 50-2200 MHz RX/TX daughterboard. Two other mobile phones (secondary 
-    users) are connected to the OpenBTS network running in this secondary \gls{bts}.
+    WBX 50-2200 MHz RX/TX daughterboard. Two other mobile phones (\glspl{su})
+    are connected to the OpenBTS network running in this secondary \gls{bts}.
 \end{itemize}
 
 The secondary \gls{bts} system has cognitive capabilities. It was a challenge to 
@@ -57,8 +57,8 @@ energy level in the frequency band in which it is running.
 
 \subsection{Testing of the 2-frequency system}
 First we choose any two \gls{gsm} frequency bands say 945 MHz ($F_1$) and 950 MHz 
-($F_2$). The \glspl{pu} are made to occupy $F_1$. Then we let the secondary
-users come into $F_1$. This makes the energy level in $F_1$ go high, which 
+($F_2$). The \glspl{pu} are made to occupy $F_1$. Then we let the \glspl{su}
+come into $F_1$. This makes the energy level in $F_1$ go high, which 
 gets detected by the spectrum sensor of the secondary \gls{bts}. So, the secondary 
 \gls{bts} moves out of $F_1$ and switches its frequency to $F_2$. Similarly, now if 
 the \glspl{pu} are made to come into $F_2$, the secondary switches back to 
@@ -139,12 +139,11 @@ The spectrum sensing is done using the energy detection based method. For
 making decisions whether to switch the frequency of the secondary \gls{bts} or not, 
 a threshold of energy level is required to be set. If the energy level in a 
 given channel is beyond the thresho ld, it implies that the \glspl{pu} are
-also using that channel i.e. that channel is already occupied by primary 
-users.
+also using that channel i.e. that channel is already occupied by \glspl{pu}
 
 To choose a threshold energy level, we took various readings of the noise 
-floor, energy when only \glspl{pu} were active, energy when only secondary 
-users were active and also when both \glspl{pu} and \glspl{su} were 
+floor, energy when only \glspl{pu} were active, energy when only \glspl{su}
+were active and also when both \glspl{pu} and \glspl{su} were 
 active simultaneously for a short duration. The energy level threshold depends
 on the distance of the mobile phones from the \gls{bts}. We can subdue this 
 dependency on the distance by setting the threshold quite low so that even if
@@ -217,11 +216,11 @@ during the course of the project.
     two kits do not use the same IP address. So, we had to configure the kits
     to use different IP addresses. This was done by burning a different IP 
     address to one of the kits.
-    \item Next we built a 2-frequency system which had a pair of primary 
-    users and a pair of \glspl{su} communicating in parallel. The primary
-    users were to be given higher priority. So the \glspl{su} would have
-    to switch to a different and unoccupied channel as soon as the primary 
-    users started making calls. A detailed description has already been given
+    \item Next we built a 2-frequency system which had a pair of \glspl{pu}
+    and a pair of \glspl{su} communicating in parallel. The \glspl{pu} 
+    were to be given higher priority. So the \glspl{su} would have
+    to switch to a different and unoccupied channel as soon as the \glspl{pu}
+    started making calls. A detailed description has already been given
     at the beginning part of this chapter.
     \item Then we extended the 2-frequency system to a 4-frequency system
     which has two pairs of \glspl{pu} instead of just one. Thus we have 
