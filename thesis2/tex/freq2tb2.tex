@@ -1,8 +1,13 @@
 \chapter{Two-frequency Cognitive Radio Test-Bed}
-
-In our project we are able to successfully demonstrate the coexistence of 
-primary users and secondary users in the GSM band. In order to accomplish this, 
-implementation of a cognitive radio which detects the spectrum holes in the 
+The main aim of this project is to demonstrate the coexistence of 
+primary users and secondary users in the GSM band. Also it has to be
+ensured that primary users is given a higher priority over the 
+secondary users and there should be no mutual interference. Analysis 
+of radio spectrum assigned to primary users conclude that it is most of the time underutilized. 
+The spectrum bands which are assigned to primary user and are not utilized by
+them at certain time instants are called spectrum holes. 
+So in order to accomplish coexistance of primary and secondary users, 
+implementation of a cognitive radio which detects these spectrum holes in the 
 radio spectrum and enables secondary users to utilize these for communication 
 is needed. An experimental setup is developed for this demonstration using 
 OpenBTS and GNU radio software and USRP N210 as hardware. First a 2-frequency 
@@ -20,7 +25,7 @@ system is developed which is then expanded to a 4-frequency system.
 
 
 \subsection{2-frequency system description}
-The figure above describes the experimental setup for 2-frequency system. It 
+Figure \ref{freq2} describes the experimental setup for 2-frequency system. It 
 consist of one primary and one secondary subsystems. The primary subsystem has 
 only OpenBTS software and one USRP for RF front. Where as secondary subsystem 
 has OpenBTS along with GNU radio and two USRP kits for each of these softwares 
@@ -41,10 +46,11 @@ one of these two bands say $F_1$. Then we make primary users enter the same
 band. This results in an increase in energy levels in this band which is sensed 
 by the secondary subsystem as it is continuously scanning this band. 
 Immediately secondary users are shifted to other frequency band ($F_2$) thereby 
-vacating $F_1$ for primary users. Hence a 2-frequency cognitive system 
+vacating $F_1$ for primary users. Periodogram analysis is used to calculate the energy levels in the band.
+ Hence a 2-frequency cognitive system 
 demonstrating coexistence of a pair of primary and secondary users is 
 accomplished. 
-The whole technique is described using a flow graph shown in figure
+The whole technique for this cognitive behavour of the secondary subsystemis described using a flow graph shown in figure
 \ref{freqSys2}:
 
 \begin{figure}[!h]
@@ -53,6 +59,15 @@ The whole technique is described using a flow graph shown in figure
 \caption[2-frequency system]{Flowchart for 2-frequency system}
 \label{freqSys2}
 \end{figure}
+
+As we can see in the flow graph, we begin with spectrum sensing where we choose optimal channel out of 945MHz and 950Mhz for secondary OpenBTS operation.
+Then secondary OpenBTS is made to operate on this channel which is utilized for communication by secondary users. 
+This band of operation is continously scanned after every time interval 't' to check for the presence of primary radio. If energy is lower than predefined threshold we rescan the channel as it is seen in the flow graph.
+If at any time instant the energy is found to be higher than the predefined threshold,
+ we conclude that primary radio has appeared and there is a need to vacate the channel. Hence  OpenBTS of the secondary subsystem is switched off and 
+restarted with now frequency band of operation as F1 if it was F2 previously and viceversa. And next we go back to the second step in the flow graph that is contious spectrum scanning. 
+If there are any issues in switching off of the OpenBTS the algorithm reaches end.
+
 
 
 

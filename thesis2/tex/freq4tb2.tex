@@ -1,10 +1,10 @@
 \chapter{Four-frequency Cognitive Radio Test-Bed}
 
 The 2-frequency system is expanded to a 4-frequency system by adding 
-another primary subsystem to the 2-frequency experimental setup and having 
-a 4-frequency radio spectrum instead of two. 
-
-
+another primary subsystem to the 2-frequency experimental setup. Here we 
+assume radio spectrum to be made up of four freqencies
+instead of two. Secondray subsystem finds optimum channel out of 
+these four frequencies for openBTS operation.
 \begin{figure}
 \centering
 \includegraphics[width=1\textwidth]{../images/freq4}
@@ -15,7 +15,8 @@ a 4-frequency radio spectrum instead of two.
 
 \subsection{4-frequency system description}
  The experimental setup of the four freqency system has 
-has two primary subsystems and one secondary subsystem as described in the figure above. Primary subsystem 
+has two primary subsystems and one secondary subsystem as described
+in figure \ref{freq4}. Primary subsystem 
 has OpenBTS and one USRP kit and secondary subsystem has OpenBTS and GNU radio 
 software and two USRP kits as we had previously in 2-frequency system. 
 Here we have four GSM bands with centre frequencies 
@@ -27,7 +28,7 @@ $F_1$=936MHz, $F_2$=943MHz, $F_3$=950MHz, $F_4$=957MHz as the radio spectrum.
 \subsection{4-frequency system testing}
 Here we make one pair of primary users occupy one of the four frequencies say 
 $F_2$. We make secondary users use one frequency say $F_1$. Now other pair of 
-primary users are made try and enter frequency $F_1$ for communication. This is sensed by 
+primary users are made to try and enter frequency $F_1$ for communication. This is sensed by 
 the secondary system and it tries to migrate secondary users to $F_2$ which is 
 also occupied. Our secondary system detects that $F_2$ is occupied and therefore 
 continues to find a spectrum hole in a 4-frequency spectrum. It finds that 
@@ -41,7 +42,12 @@ pair of primary users. Hence the other band where secondary users will be made
 to migrate is always unoccupied at the time of switching secondary radio to 
 that band. So there is no need to check for the peresence of primary users in that band.
 
-The flow graph in figure \ref{freqSys4} describes the 4-frequency cognitive system:
+The flow graph in figure \ref{freqSys4} describes the algorithm for secondary subsystem of the 4-frequency cognitive system.
+ We begin with optimal channel selection out of four frequencies 936MHz, 943MHz, 950MHz, 957MHz by using peridogram analysis
+. OpenBTS is started on this choosen frequency. Then we continously check for the presence of primary radio on this channel
+ after every time interval 't'. If energy goes above predefined threshold OpenBTS of the secondary subsystem is switched
+ off and restarted on a frequency which is seven more than previous frequency. If the previous frequency of operation was 
+957MHz than the new frequency is 936MHz. From here we go back to the second step of algorithm that is spectrum scanning. If there are issues in switching off of OpenBTS when algorithm reaches end.
 
 \begin{figure}
 \centering
