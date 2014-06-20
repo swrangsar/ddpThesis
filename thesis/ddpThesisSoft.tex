@@ -1,12 +1,14 @@
-\documentclass[12pt, a4paper, openright]{book}
+\documentclass[12pt, a4paper]{report}
 
 \usepackage{../ddpThesis}
 \input{../gls}
-
 \begin{document}
 
-\frontmatter
+%\frontmatter
+\pagenumbering{gobble}
 \include{tex/title}
+% \include{tex/declr}
+\pagenumbering{roman}
 \include{tex/abstract}
 \include{tex/ack}
 
@@ -15,8 +17,9 @@
 
 \listoffigures
 \setlength\arraycolsep{2pt}
+\printglossary[title=Abbreviations,toctitle=Abbreviations]
 
-\mainmatter
+% \mainmatter
 \include{tex/intro}
 \include{tex/gsm}
 \include{tex/sdr}
@@ -31,8 +34,7 @@
 
 
 
-\backmatter
+% \backmatter
 \bibliographystyle{unsrt}
 \bibliography{../bib/ddpThesis}
-\printglossaries
 \end{document}
