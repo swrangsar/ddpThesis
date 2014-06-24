@@ -7,6 +7,8 @@
 
 \frontmatter
 \include{tex/title2}
+%\pagenumbering{gobble}
+%\pagenumbering{roman}
 \include{tex/abstract2}
 \include{tex/ack2}
 
@@ -36,6 +38,9 @@
 
 \backmatter
 \bibliographystyle{unsrt}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{../bib/ddpThesis.bib}
 
 \end{document}
