@@ -1,15 +1,15 @@
-\documentclass[12pt, a4paper, openright]{book}
+\documentclass[12pt, a4paper]{report}
 
 \usepackage{../ddpThesis}
 
 
 \begin{document}
 
-\frontmatter
+%\frontmatter
 \include{tex/title2}
-%\pagenumbering{gobble}
+\pagenumbering{gobble}
 \include{tex/declr2}
-%\pagenumbering{roman}
+\pagenumbering{roman}
 \include{tex/abstract2}
 \include{tex/ack2}
 
@@ -19,7 +19,7 @@
 \listoffigures
 \setlength\arraycolsep{2pt}
 
-\mainmatter
+% \mainmatter
 \include{tex/intro2}
 \include{tex/gsm2}
 \include{tex/sdr2}
@@ -37,9 +37,9 @@
 
 
 
-\backmatter
+% \backmatter
 \bibliographystyle{unsrt}
-\cleardoublepage
+\clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{../bib/ddpThesis.bib}

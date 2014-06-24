@@ -1,14 +1,14 @@
-\documentclass[12pt, a4paper, openright]{book}
+\documentclass[12pt, a4paper]{report}
 
 \usepackage{../ddpThesis}
 \input{../gls}
 \begin{document}
 
-\frontmatter
-%\pagenumbering{gobble}
+% \frontmatter
+\pagenumbering{gobble}
 \include{tex/title}
 \include{tex/declr}
-%\pagenumbering{roman}
+\pagenumbering{roman}
 \include{tex/abstract}
 \include{tex/ack}
 
@@ -19,7 +19,7 @@
 \setlength\arraycolsep{2pt}
 \printglossary[title=Abbreviations,toctitle=Abbreviations]
 
-\mainmatter
+% \mainmatter
 \include{tex/intro}
 \include{tex/gsm}
 \include{tex/sdr}
@@ -34,9 +34,9 @@
 
 
 
-\backmatter
+% \backmatter
 \bibliographystyle{unsrt}
-\cleardoublepage
+\clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{../bib/ddpThesis}
